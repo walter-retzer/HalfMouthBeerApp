@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "app.halfmouth.android.androidApp-mergeDebugResources-2:/values-v24/values-v24.xml",
+            "map": [
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\c42dd79ec20e4f38dafc5eff1ebafba5\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                }
+            ]
+        }
+    ]
+}

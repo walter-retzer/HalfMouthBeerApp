@@ -1,0 +1,53 @@
+app.halfmouth.android.androidApp-pngs-0 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\build\generated\res\pngs\debug
+app.halfmouth.android.androidApp-resValues-1 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\build\generated\res\resValues\debug
+app.halfmouth.android.androidApp-packageDebugResources-2 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+app.halfmouth.android.androidApp-packageDebugResources-3 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+app.halfmouth.android.androidApp-merged_res-4 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\build\intermediates\merged_res\debug
+app.halfmouth.android.androidApp-debug-5 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\debug\res
+app.halfmouth.android.androidApp-main-6 C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\res
+app.halfmouth.android.androidApp-packaged_res-7 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\packaged_res\debug
+app.halfmouth.android.androidApp-activity-compose-1.8.0-8 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\06dd9cd24fa641dce1901909b08f3dc1\transformed\activity-compose-1.8.0\res
+app.halfmouth.android.androidApp-lifecycle-livedata-2.6.1-9 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a5d398ba688c02c4b603979dc77b5ff\transformed\lifecycle-livedata-2.6.1\res
+app.halfmouth.android.androidApp-lifecycle-runtime-ktx-2.6.1-10 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0cbf76b03ec7eb7808f8c006604b99f2\transformed\lifecycle-runtime-ktx-2.6.1\res
+app.halfmouth.android.androidApp-profileinstaller-1.3.0-11 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\res
+app.halfmouth.android.androidApp-lifecycle-process-2.6.1-12 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\res
+app.halfmouth.android.androidApp-savedstate-1.2.1-13 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2c2fb7f90ef15f9c0919dfd5caddaaae\transformed\savedstate-1.2.1\res
+app.halfmouth.android.androidApp-ui-tooling-preview-release-14 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\37a483e9d13844549cb0142d81f71ec1\transformed\ui-tooling-preview-release\res
+app.halfmouth.android.androidApp-fragment-1.3.6-15 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\39df6e8a72c7d3df84be0a287cb5c8cf\transformed\fragment-1.3.6\res
+app.halfmouth.android.androidApp-ui-graphics-release-16 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\3d14da8e65554b21130eb7dfb593ce10\transformed\ui-graphics-release\res
+app.halfmouth.android.androidApp-ui-tooling-data-release-17 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\416e4d3bbc04fca9d6f31f53e79c5c91\transformed\ui-tooling-data-release\res
+app.halfmouth.android.androidApp-runtime-saveable-release-18 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\4e33d4ee5459e3cd47596e625aa60a61\transformed\runtime-saveable-release\res
+app.halfmouth.android.androidApp-emoji2-1.4.0-19 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\res
+app.halfmouth.android.androidApp-ui-unit-release-20 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62156585731b5a9210e8b0e4c1457e51\transformed\ui-unit-release\res
+app.halfmouth.android.androidApp-material3-1.0.1-21 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62177844ae64a899571f5826f389064e\transformed\material3-1.0.1\res
+app.halfmouth.android.androidApp-activity-1.8.0-22 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62dd39cdd5ddef089af99a529c31895b\transformed\activity-1.8.0\res
+app.halfmouth.android.androidApp-runtime-release-23 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\69e2d42fdbeba234ed509c7599206c51\transformed\runtime-release\res
+app.halfmouth.android.androidApp-activity-ktx-1.8.0-24 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6d8e43524b7ab635788307dd26ab4bf2\transformed\activity-ktx-1.8.0\res
+app.halfmouth.android.androidApp-animation-core-release-25 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f75c215ecaff13463c1d870a5dae448\transformed\animation-core-release\res
+app.halfmouth.android.androidApp-lifecycle-viewmodel-savedstate-2.6.1-26 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\763d38df8413125f195e7eae011254d8\transformed\lifecycle-viewmodel-savedstate-2.6.1\res
+app.halfmouth.android.androidApp-ui-util-release-27 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\766b70327bab3e64f83573f0ba5d0677\transformed\ui-util-release\res
+app.halfmouth.android.androidApp-material-release-28 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\775928a29146e1b55969b56c1c24d12f\transformed\material-release\res
+app.halfmouth.android.androidApp-savedstate-ktx-1.2.1-29 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7ce304599d09fe0ad4331dbbe75aa979\transformed\savedstate-ktx-1.2.1\res
+app.halfmouth.android.androidApp-ui-geometry-release-30 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\888a80bcb4429fcdf4113a1c5de421b7\transformed\ui-geometry-release\res
+app.halfmouth.android.androidApp-animation-release-31 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92bb54e2d23f4db3e2c1cb89d3cd5d5a\transformed\animation-release\res
+app.halfmouth.android.androidApp-lifecycle-viewmodel-ktx-2.6.1-32 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\94fe4667a5ad646bfa479cb2b0ec4ebf\transformed\lifecycle-viewmodel-ktx-2.6.1\res
+app.halfmouth.android.androidApp-ui-text-release-33 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9994b81ee0cf4b3be97e720e6ee0317c\transformed\ui-text-release\res
+app.halfmouth.android.androidApp-foundation-release-34 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9da37ae945a0b055d136f56bc4fdb57b\transformed\foundation-release\res
+app.halfmouth.android.androidApp-core-ktx-1.12.0-35 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9e2fba8d9e8a3c83027a052d46dd4289\transformed\core-ktx-1.12.0\res
+app.halfmouth.android.androidApp-lifecycle-runtime-2.6.1-36 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a0631fe36d1e2b96c2c0fdd6c3a1ecb5\transformed\lifecycle-runtime-2.6.1\res
+app.halfmouth.android.androidApp-emoji2-views-helper-1.4.0-37 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a22b679957220f1d9f3d554cb690149a\transformed\emoji2-views-helper-1.4.0\res
+app.halfmouth.android.androidApp-ui-tooling-release-38 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\res
+app.halfmouth.android.androidApp-customview-poolingcontainer-1.0.0-39 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ab35fc7f416a3871ccf0747570b29467\transformed\customview-poolingcontainer-1.0.0\res
+app.halfmouth.android.androidApp-material-ripple-release-40 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\adc4113fcbf89cf29c98f240d0b52244\transformed\material-ripple-release\res
+app.halfmouth.android.androidApp-core-1.12.0-41 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\res
+app.halfmouth.android.androidApp-appcompat-1.6.1-42 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c42dd79ec20e4f38dafc5eff1ebafba5\transformed\appcompat-1.6.1\res
+app.halfmouth.android.androidApp-appcompat-resources-1.6.1-43 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c46c257cd02400971af975bf558abd3b\transformed\appcompat-resources-1.6.1\res
+app.halfmouth.android.androidApp-foundation-layout-release-44 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ca2823895f2af1dde014d3281608349f\transformed\foundation-layout-release\res
+app.halfmouth.android.androidApp-ui-release-45 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\cfcf19cb7baa946348cbe2c562209d25\transformed\ui-release\res
+app.halfmouth.android.androidApp-annotation-experimental-1.3.0-46 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\d127114298cb6b8891e15bb68672ccd4\transformed\annotation-experimental-1.3.0\res
+app.halfmouth.android.androidApp-lifecycle-livedata-core-2.6.1-47 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\dd8681712fb068a13f9b6b636070d2ef\transformed\lifecycle-livedata-core-2.6.1\res
+app.halfmouth.android.androidApp-core-runtime-2.2.0-48 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f39dde792d91c73c41e5a3670f4ef2ea\transformed\core-runtime-2.2.0\res
+app.halfmouth.android.androidApp-startup-runtime-1.1.1-49 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\res
+app.halfmouth.android.androidApp-material-icons-extended-release-50 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fac663b5154b74f10a24ed4e5aba36f1\transformed\material-icons-extended-release\res
+app.halfmouth.android.androidApp-material-icons-core-release-51 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fb1449d82c5be77c8d62ca09e79b460d\transformed\material-icons-core-release\res
+app.halfmouth.android.androidApp-lifecycle-viewmodel-2.6.1-52 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fe2d3268e42ede0cdaa55a00cb4e00b4\transformed\lifecycle-viewmodel-2.6.1\res

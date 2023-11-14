@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "app.halfmouth.shared-merged_res-4:/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\c42dd79ec20e4f38dafc5eff1ebafba5\\transformed\\appcompat-1.6.1\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "app.halfmouth.shared-mergeReleaseResources-2:/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\c42dd79ec20e4f38dafc5eff1ebafba5\\transformed\\appcompat-1.6.1\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                }
+            ]
+        }
+    ]
+}

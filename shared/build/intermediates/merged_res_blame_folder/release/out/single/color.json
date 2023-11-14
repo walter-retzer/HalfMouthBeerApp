@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/vector_tint_color.xml",
+        "source": "app.halfmouth.shared-ui-1.4.0-22:/color/vector_tint_color.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_search_url_text.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_secondary_text_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_hint_foreground_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/vector_tint_theme_color.xml",
+        "source": "app.halfmouth.shared-ui-1.4.0-22:/color/vector_tint_theme_color.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_hint_foreground_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_background_cache_hint_selector_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/switch_thumb_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_primary_text_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_primary_text_material_light.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/abc_secondary_text_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "app.halfmouth.shared-merged_res-4:/color/switch_thumb_material_dark.xml",
+        "source": "app.halfmouth.shared-appcompat-1.6.1-37:/color/switch_thumb_material_dark.xml"
+    }
+]

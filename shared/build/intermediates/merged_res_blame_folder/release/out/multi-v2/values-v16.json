@@ -1,0 +1,72 @@
+{
+    "logs": [
+        {
+            "outputFile": "app.halfmouth.shared-mergeReleaseResources-2:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\c42dd79ec20e4f38dafc5eff1ebafba5\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\b758b4e24ae934a00d164a4521bbd831\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "app.halfmouth.shared-merged_res-4:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\c42dd79ec20e4f38dafc5eff1ebafba5\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\PROJETOS APPs\\Pequeno Explorador - Modulo Principal\\caches\\transforms-3\\b758b4e24ae934a00d164a4521bbd831\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}

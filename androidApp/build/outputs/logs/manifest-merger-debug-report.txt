@@ -1,0 +1,383 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+MERGED from [:shared] C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [com.squareup.sqldelight:android-driver:1.5.5] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fd7c2a565754fc976129d5bc98d4a658\transformed\android-driver-1.5.5\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:resources-android:0.22.3] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ce45620d8101b00ee5c0b0454af58fb2\transformed\resources-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:mvvm-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0d4cf4985c908926c3d6a093360678ac\transformed\mvvm-compose-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:mvvm-flow-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92edb71fe3dfbc91e047b6ee082dbaf2\transformed\mvvm-flow-compose-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:mvvm-flow-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\5bf89b201e129d043cd95c0ae60c54bf\transformed\mvvm-flow-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:mvvm-core-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\619b9b607bbc1b93fb62704a9b9fecc6\transformed\mvvm-core-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [org.jetbrains.compose.components:library-android:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\bc84822ba66528e285dd09934d9f3b84\transformed\library-release\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.compose.material3:material3:1.0.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62177844ae64a899571f5826f389064e\transformed\material3-1.0.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\adc4113fcbf89cf29c98f240d0b52244\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fb1449d82c5be77c8d62ca09e79b460d\transformed\material-icons-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fac663b5154b74f10a24ed4e5aba36f1\transformed\material-icons-extended-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\775928a29146e1b55969b56c1c24d12f\transformed\material-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ca2823895f2af1dde014d3281608349f\transformed\foundation-layout-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9da37ae945a0b055d136f56bc4fdb57b\transformed\foundation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f75c215ecaff13463c1d870a5dae448\transformed\animation-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92bb54e2d23f4db3e2c1cb89d3cd5d5a\transformed\animation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\766b70327bab3e64f83573f0ba5d0677\transformed\ui-util-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62156585731b5a9210e8b0e4c1457e51\transformed\ui-unit-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9994b81ee0cf4b3be97e720e6ee0317c\transformed\ui-text-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\3d14da8e65554b21130eb7dfb593ce10\transformed\ui-graphics-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\888a80bcb4429fcdf4113a1c5de421b7\transformed\ui-geometry-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\416e4d3bbc04fca9d6f31f53e79c5c91\transformed\ui-tooling-data-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\37a483e9d13844549cb0142d81f71ec1\transformed\ui-tooling-preview-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c46c257cd02400971af975bf558abd3b\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c42dd79ec20e4f38dafc5eff1ebafba5\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\39df6e8a72c7d3df84be0a287cb5c8cf\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62dd39cdd5ddef089af99a529c31895b\transformed\activity-1.8.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6d8e43524b7ab635788307dd26ab4bf2\transformed\activity-ktx-1.8.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\06dd9cd24fa641dce1901909b08f3dc1\transformed\activity-compose-1.8.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\cfcf19cb7baa946348cbe2c562209d25\transformed\ui-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ae0c82e3d9bcd8af5cb02b4b20311b62\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ab35fc7f416a3871ccf0747570b29467\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a22b679957220f1d9f3d554cb690149a\transformed\emoji2-views-helper-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.loader:loader:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a5e07990a82e91161eac3cfca9463dd7\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a5d398ba688c02c4b603979dc77b5ff\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\dd8681712fb068a13f9b6b636070d2ef\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\94fe4667a5ad646bfa479cb2b0ec4ebf\transformed\lifecycle-viewmodel-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0cbf76b03ec7eb7808f8c006604b99f2\transformed\lifecycle-runtime-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\763d38df8413125f195e7eae011254d8\transformed\lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9e2fba8d9e8a3c83027a052d46dd4289\transformed\core-ktx-1.12.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f31720ba47a925d0964874a04676424\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a177bd685b7c88cb67cdfefced98db4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f78836c2ef2538492592fa27770b9618\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\438ff2931934c5d3cb4afd7e5a91001c\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f23b9554bcc627b9632a1949d5d85cc7\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a0631fe36d1e2b96c2c0fdd6c3a1ecb5\transformed\lifecycle-runtime-2.6.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fe2d3268e42ede0cdaa55a00cb4e00b4\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7ce304599d09fe0ad4331dbbe75aa979\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2c2fb7f90ef15f9c0919dfd5caddaaae\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\4e33d4ee5459e3cd47596e625aa60a61\transformed\runtime-saveable-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\69e2d42fdbeba234ed509c7599206c51\transformed\runtime-release\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:mvvm-internal-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7a088cffa11c515023f62930c2c08c1f\transformed\mvvm-internal-debug\AndroidManifest.xml:2:1-7:12
+MERGED from [dev.icerock.moko:parcelize-android-debug:0.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6c78dd1a85d5a94bc77e4302d61eb918\transformed\parcelize-debug\AndroidManifest.xml:2:1-9:12
+MERGED from [dev.icerock.moko:graphics-android-debug:0.9.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fa22fe522206e001406971ba0d524200\transformed\graphics-debug\AndroidManifest.xml:2:1-9:12
+MERGED from [dev.icerock.moko:kswift-runtime-android:0.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\75bea4d525bd33b994cb23924f1a3b43\transformed\kswift-runtime-debug\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\d127114298cb6b8891e15bb68672ccd4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2d960d5027474c72ce13d166edcafdf6\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\00f3bf82d50a42a74282ed2d1580e07b\transformed\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\51e0bcb0e45c7a76ed0ac422f17eaddb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\61b5b4afbc1c50820d0d4e96196a7ec8\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e3b1978f66e0067905bbcaf9f748ffe7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f39dde792d91c73c41e5a3670f4ef2ea\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b4a30558d63e620b52f1e254731599c6\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+	package
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:1-17:12
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:4:5-16:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e3b1978f66e0067905bbcaf9f748ffe7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e3b1978f66e0067905bbcaf9f748ffe7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:6:9-35
+	android:allowBackup
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:5:9-36
+	android:theme
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:7:9-40
+activity#app.halfmouth.android.MainActivity
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:8:9-15:20
+	android:exported
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:10:13-36
+	android:name
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:9:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:11:13-14:29
+action#android.intent.action.MAIN
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:12:17-69
+	android:name
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:12:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:13:17-77
+	android:name
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml:13:27-74
+uses-sdk
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+MERGED from [:shared] C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared] C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.sqldelight:android-driver:1.5.5] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fd7c2a565754fc976129d5bc98d4a658\transformed\android-driver-1.5.5\AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.sqldelight:android-driver:1.5.5] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fd7c2a565754fc976129d5bc98d4a658\transformed\android-driver-1.5.5\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:resources-android:0.22.3] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ce45620d8101b00ee5c0b0454af58fb2\transformed\resources-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:resources-android:0.22.3] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ce45620d8101b00ee5c0b0454af58fb2\transformed\resources-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0d4cf4985c908926c3d6a093360678ac\transformed\mvvm-compose-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0d4cf4985c908926c3d6a093360678ac\transformed\mvvm-compose-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-flow-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92edb71fe3dfbc91e047b6ee082dbaf2\transformed\mvvm-flow-compose-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-flow-compose-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92edb71fe3dfbc91e047b6ee082dbaf2\transformed\mvvm-flow-compose-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-flow-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\5bf89b201e129d043cd95c0ae60c54bf\transformed\mvvm-flow-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-flow-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\5bf89b201e129d043cd95c0ae60c54bf\transformed\mvvm-flow-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-core-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\619b9b607bbc1b93fb62704a9b9fecc6\transformed\mvvm-core-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-core-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\619b9b607bbc1b93fb62704a9b9fecc6\transformed\mvvm-core-debug\AndroidManifest.xml:5:5-44
+MERGED from [org.jetbrains.compose.components:library-android:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\bc84822ba66528e285dd09934d9f3b84\transformed\library-release\AndroidManifest.xml:5:5-7:41
+MERGED from [org.jetbrains.compose.components:library-android:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\bc84822ba66528e285dd09934d9f3b84\transformed\library-release\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.compose.material3:material3:1.0.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62177844ae64a899571f5826f389064e\transformed\material3-1.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3:1.0.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62177844ae64a899571f5826f389064e\transformed\material3-1.0.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\adc4113fcbf89cf29c98f240d0b52244\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\adc4113fcbf89cf29c98f240d0b52244\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fb1449d82c5be77c8d62ca09e79b460d\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fb1449d82c5be77c8d62ca09e79b460d\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fac663b5154b74f10a24ed4e5aba36f1\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fac663b5154b74f10a24ed4e5aba36f1\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\775928a29146e1b55969b56c1c24d12f\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\775928a29146e1b55969b56c1c24d12f\transformed\material-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ca2823895f2af1dde014d3281608349f\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ca2823895f2af1dde014d3281608349f\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9da37ae945a0b055d136f56bc4fdb57b\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9da37ae945a0b055d136f56bc4fdb57b\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f75c215ecaff13463c1d870a5dae448\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f75c215ecaff13463c1d870a5dae448\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92bb54e2d23f4db3e2c1cb89d3cd5d5a\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\92bb54e2d23f4db3e2c1cb89d3cd5d5a\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\766b70327bab3e64f83573f0ba5d0677\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\766b70327bab3e64f83573f0ba5d0677\transformed\ui-util-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62156585731b5a9210e8b0e4c1457e51\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62156585731b5a9210e8b0e4c1457e51\transformed\ui-unit-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9994b81ee0cf4b3be97e720e6ee0317c\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9994b81ee0cf4b3be97e720e6ee0317c\transformed\ui-text-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\3d14da8e65554b21130eb7dfb593ce10\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\3d14da8e65554b21130eb7dfb593ce10\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\888a80bcb4429fcdf4113a1c5de421b7\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\888a80bcb4429fcdf4113a1c5de421b7\transformed\ui-geometry-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\416e4d3bbc04fca9d6f31f53e79c5c91\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\416e4d3bbc04fca9d6f31f53e79c5c91\transformed\ui-tooling-data-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\37a483e9d13844549cb0142d81f71ec1\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\37a483e9d13844549cb0142d81f71ec1\transformed\ui-tooling-preview-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c46c257cd02400971af975bf558abd3b\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c46c257cd02400971af975bf558abd3b\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c42dd79ec20e4f38dafc5eff1ebafba5\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c42dd79ec20e4f38dafc5eff1ebafba5\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.6] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\39df6e8a72c7d3df84be0a287cb5c8cf\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\39df6e8a72c7d3df84be0a287cb5c8cf\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62dd39cdd5ddef089af99a529c31895b\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62dd39cdd5ddef089af99a529c31895b\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6d8e43524b7ab635788307dd26ab4bf2\transformed\activity-ktx-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6d8e43524b7ab635788307dd26ab4bf2\transformed\activity-ktx-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\06dd9cd24fa641dce1901909b08f3dc1\transformed\activity-compose-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\06dd9cd24fa641dce1901909b08f3dc1\transformed\activity-compose-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\cfcf19cb7baa946348cbe2c562209d25\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\cfcf19cb7baa946348cbe2c562209d25\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ae0c82e3d9bcd8af5cb02b4b20311b62\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ae0c82e3d9bcd8af5cb02b4b20311b62\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ab35fc7f416a3871ccf0747570b29467\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ab35fc7f416a3871ccf0747570b29467\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.emoji2:emoji2-views-helper:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a22b679957220f1d9f3d554cb690149a\transformed\emoji2-views-helper-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a22b679957220f1d9f3d554cb690149a\transformed\emoji2-views-helper-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a5e07990a82e91161eac3cfca9463dd7\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a5e07990a82e91161eac3cfca9463dd7\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a5d398ba688c02c4b603979dc77b5ff\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a5d398ba688c02c4b603979dc77b5ff\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\dd8681712fb068a13f9b6b636070d2ef\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\dd8681712fb068a13f9b6b636070d2ef\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\94fe4667a5ad646bfa479cb2b0ec4ebf\transformed\lifecycle-viewmodel-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\94fe4667a5ad646bfa479cb2b0ec4ebf\transformed\lifecycle-viewmodel-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0cbf76b03ec7eb7808f8c006604b99f2\transformed\lifecycle-runtime-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0cbf76b03ec7eb7808f8c006604b99f2\transformed\lifecycle-runtime-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\763d38df8413125f195e7eae011254d8\transformed\lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\763d38df8413125f195e7eae011254d8\transformed\lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9e2fba8d9e8a3c83027a052d46dd4289\transformed\core-ktx-1.12.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9e2fba8d9e8a3c83027a052d46dd4289\transformed\core-ktx-1.12.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f31720ba47a925d0964874a04676424\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6f31720ba47a925d0964874a04676424\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a177bd685b7c88cb67cdfefced98db4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a177bd685b7c88cb67cdfefced98db4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f78836c2ef2538492592fa27770b9618\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f78836c2ef2538492592fa27770b9618\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\438ff2931934c5d3cb4afd7e5a91001c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\438ff2931934c5d3cb4afd7e5a91001c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f23b9554bcc627b9632a1949d5d85cc7\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f23b9554bcc627b9632a1949d5d85cc7\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a0631fe36d1e2b96c2c0fdd6c3a1ecb5\transformed\lifecycle-runtime-2.6.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a0631fe36d1e2b96c2c0fdd6c3a1ecb5\transformed\lifecycle-runtime-2.6.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fe2d3268e42ede0cdaa55a00cb4e00b4\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fe2d3268e42ede0cdaa55a00cb4e00b4\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7ce304599d09fe0ad4331dbbe75aa979\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7ce304599d09fe0ad4331dbbe75aa979\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2c2fb7f90ef15f9c0919dfd5caddaaae\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2c2fb7f90ef15f9c0919dfd5caddaaae\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\4e33d4ee5459e3cd47596e625aa60a61\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\4e33d4ee5459e3cd47596e625aa60a61\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\69e2d42fdbeba234ed509c7599206c51\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\69e2d42fdbeba234ed509c7599206c51\transformed\runtime-release\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-internal-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7a088cffa11c515023f62930c2c08c1f\transformed\mvvm-internal-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:mvvm-internal-android:0.16.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7a088cffa11c515023f62930c2c08c1f\transformed\mvvm-internal-debug\AndroidManifest.xml:5:5-44
+MERGED from [dev.icerock.moko:parcelize-android-debug:0.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6c78dd1a85d5a94bc77e4302d61eb918\transformed\parcelize-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [dev.icerock.moko:parcelize-android-debug:0.8.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6c78dd1a85d5a94bc77e4302d61eb918\transformed\parcelize-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [dev.icerock.moko:graphics-android-debug:0.9.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fa22fe522206e001406971ba0d524200\transformed\graphics-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [dev.icerock.moko:graphics-android-debug:0.9.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fa22fe522206e001406971ba0d524200\transformed\graphics-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [dev.icerock.moko:kswift-runtime-android:0.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\75bea4d525bd33b994cb23924f1a3b43\transformed\kswift-runtime-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [dev.icerock.moko:kswift-runtime-android:0.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\75bea4d525bd33b994cb23924f1a3b43\transformed\kswift-runtime-debug\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\d127114298cb6b8891e15bb68672ccd4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\d127114298cb6b8891e15bb68672ccd4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2d960d5027474c72ce13d166edcafdf6\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2d960d5027474c72ce13d166edcafdf6\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\00f3bf82d50a42a74282ed2d1580e07b\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\00f3bf82d50a42a74282ed2d1580e07b\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\51e0bcb0e45c7a76ed0ac422f17eaddb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\51e0bcb0e45c7a76ed0ac422f17eaddb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\61b5b4afbc1c50820d0d4e96196a7ec8\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\61b5b4afbc1c50820d0d4e96196a7ec8\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e3b1978f66e0067905bbcaf9f748ffe7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e3b1978f66e0067905bbcaf9f748ffe7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f39dde792d91c73c41e5a3670f4ef2ea\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f39dde792d91c73c41e5a3670f4ef2ea\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b4a30558d63e620b52f1e254731599c6\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b4a30558d63e620b52f1e254731599c6\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		ADDED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+		INJECTED from C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\AndroidManifest.xml
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.5.4] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a8c140fb824fedddd96b6eaee5ecd490\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\60351730b711adf62f365a4df090c730\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+permission#app.halfmouth.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+uses-permission#app.halfmouth.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92

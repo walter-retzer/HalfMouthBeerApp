@@ -1,0 +1,51 @@
+app.halfmouth.shared-androidMain-0 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\generated\moko\androidMain\res
+app.halfmouth.shared-pngs-1 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\generated\res\pngs\release
+app.halfmouth.shared-resValues-2 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\generated\res\resValues\release
+app.halfmouth.shared-mergeReleaseResources-3 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+app.halfmouth.shared-mergeReleaseResources-4 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+app.halfmouth.shared-merged_res-5 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\intermediates\merged_res\release
+app.halfmouth.shared-androidMain-6 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\androidMain\res
+app.halfmouth.shared-androidRelease-7 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\androidRelease\res
+app.halfmouth.shared-main-8 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\main\res
+app.halfmouth.shared-release-9 C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\release\res
+app.halfmouth.shared-foundation-1.4.0-10 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\05fe90dda519fae25030f4e6d87c8319\transformed\foundation-1.4.0\res
+app.halfmouth.shared-activity-compose-1.8.0-11 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\06dd9cd24fa641dce1901909b08f3dc1\transformed\activity-compose-1.8.0\res
+app.halfmouth.shared-lifecycle-livedata-2.6.1-12 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0a5d398ba688c02c4b603979dc77b5ff\transformed\lifecycle-livedata-2.6.1\res
+app.halfmouth.shared-lifecycle-runtime-ktx-2.6.1-13 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\0cbf76b03ec7eb7808f8c006604b99f2\transformed\lifecycle-runtime-ktx-2.6.1\res
+app.halfmouth.shared-profileinstaller-1.3.0-14 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\102bfefd1547407ce927eafd0287f4ca\transformed\profileinstaller-1.3.0\res
+app.halfmouth.shared-material-icons-extended-1.4.0-15 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2549508cf747b56cda2b0235246ba8ce\transformed\material-icons-extended-1.4.0\res
+app.halfmouth.shared-lifecycle-process-2.6.1-16 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\29baa0942a2949acc43b3fb99b9b5c20\transformed\lifecycle-process-2.6.1\res
+app.halfmouth.shared-emoji2-1.3.0-17 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2ae974e7eaefefb9b2b27dcb918eab6e\transformed\emoji2-1.3.0\res
+app.halfmouth.shared-savedstate-1.2.1-18 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\2c2fb7f90ef15f9c0919dfd5caddaaae\transformed\savedstate-1.2.1\res
+app.halfmouth.shared-ui-geometry-1.4.0-19 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\348e9aeae39d51537765e9977bf1c4e4\transformed\ui-geometry-1.4.0\res
+app.halfmouth.shared-fragment-1.3.6-20 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\39df6e8a72c7d3df84be0a287cb5c8cf\transformed\fragment-1.3.6\res
+app.halfmouth.shared-material3-1.0.1-21 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62177844ae64a899571f5826f389064e\transformed\material3-1.0.1\res
+app.halfmouth.shared-activity-1.8.0-22 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\62dd39cdd5ddef089af99a529c31895b\transformed\activity-1.8.0\res
+app.halfmouth.shared-ui-1.4.0-23 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\69c5769db88f472d927375ff503e0431\transformed\ui-1.4.0\res
+app.halfmouth.shared-material-ripple-1.4.0-24 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6c068fc2fcbdcfc84fc7e16db2ce1d9b\transformed\material-ripple-1.4.0\res
+app.halfmouth.shared-activity-ktx-1.8.0-25 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\6d8e43524b7ab635788307dd26ab4bf2\transformed\activity-ktx-1.8.0\res
+app.halfmouth.shared-lifecycle-viewmodel-savedstate-2.6.1-26 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\763d38df8413125f195e7eae011254d8\transformed\lifecycle-viewmodel-savedstate-2.6.1\res
+app.halfmouth.shared-animation-core-1.2.1-27 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\77b135502b5e059906cd8f65b56d571b\transformed\animation-core-1.2.1\res
+app.halfmouth.shared-savedstate-ktx-1.2.1-28 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\7ce304599d09fe0ad4331dbbe75aa979\transformed\savedstate-ktx-1.2.1\res
+app.halfmouth.shared-lifecycle-viewmodel-ktx-2.6.1-29 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\94fe4667a5ad646bfa479cb2b0ec4ebf\transformed\lifecycle-viewmodel-ktx-2.6.1\res
+app.halfmouth.shared-core-ktx-1.12.0-30 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\9e2fba8d9e8a3c83027a052d46dd4289\transformed\core-ktx-1.12.0\res
+app.halfmouth.shared-lifecycle-runtime-2.6.1-31 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a0631fe36d1e2b96c2c0fdd6c3a1ecb5\transformed\lifecycle-runtime-2.6.1\res
+app.halfmouth.shared-material-icons-core-1.4.0-32 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a59e0bf7805b9e99992e44047d34dd1d\transformed\material-icons-core-1.4.0\res
+app.halfmouth.shared-runtime-1.4.0-33 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\a63641f58f009f30d5e0f9326fa3ec2c\transformed\runtime-1.4.0\res
+app.halfmouth.shared-customview-poolingcontainer-1.0.0-34 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ab35fc7f416a3871ccf0747570b29467\transformed\customview-poolingcontainer-1.0.0\res
+app.halfmouth.shared-animation-1.2.1-35 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b462e8269cb447b6f14044e29b5270db\transformed\animation-1.2.1\res
+app.halfmouth.shared-ui-text-1.4.0-36 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b66fa1e98028c1d6f50a64a43560e4d6\transformed\ui-text-1.4.0\res
+app.halfmouth.shared-core-1.12.0-37 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\b758b4e24ae934a00d164a4521bbd831\transformed\core-1.12.0\res
+app.halfmouth.shared-appcompat-1.6.1-38 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c42dd79ec20e4f38dafc5eff1ebafba5\transformed\appcompat-1.6.1\res
+app.halfmouth.shared-appcompat-resources-1.6.1-39 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\c46c257cd02400971af975bf558abd3b\transformed\appcompat-resources-1.6.1\res
+app.halfmouth.shared-annotation-experimental-1.3.0-40 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\d127114298cb6b8891e15bb68672ccd4\transformed\annotation-experimental-1.3.0\res
+app.halfmouth.shared-lifecycle-livedata-core-2.6.1-41 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\dd8681712fb068a13f9b6b636070d2ef\transformed\lifecycle-livedata-core-2.6.1\res
+app.halfmouth.shared-ui-unit-1.4.0-42 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\df291378e9045b7d0a5906752fa5d0c2\transformed\ui-unit-1.4.0\res
+app.halfmouth.shared-ui-util-1.4.0-43 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\e396e65c533b6a9a2bab5a9308345c1c\transformed\ui-util-1.4.0\res
+app.halfmouth.shared-ui-graphics-1.4.0-44 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\ea48788bd895568d40bfb26bc75c3fa2\transformed\ui-graphics-1.4.0\res
+app.halfmouth.shared-emoji2-views-helper-1.3.0-45 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f0bbd490340bc5f8622310041698f612\transformed\emoji2-views-helper-1.3.0\res
+app.halfmouth.shared-core-runtime-2.2.0-46 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f39dde792d91c73c41e5a3670f4ef2ea\transformed\core-runtime-2.2.0\res
+app.halfmouth.shared-foundation-layout-1.4.0-47 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f431d5dd2d1070c6f20c704bc72cb973\transformed\foundation-layout-1.4.0\res
+app.halfmouth.shared-startup-runtime-1.1.1-48 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\f4d226a9a87ea5ad742c7822d1f6e2ba\transformed\startup-runtime-1.1.1\res
+app.halfmouth.shared-runtime-saveable-1.4.0-49 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fb0074ce3154b1b84014338c97ed6e89\transformed\runtime-saveable-1.4.0\res
+app.halfmouth.shared-lifecycle-viewmodel-2.6.1-50 C:\PROJETOS APPs\Pequeno Explorador - Modulo Principal\caches\transforms-3\fe2d3268e42ede0cdaa55a00cb4e00b4\transformed\lifecycle-viewmodel-2.6.1\res

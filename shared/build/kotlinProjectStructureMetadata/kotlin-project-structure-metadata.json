@@ -1,0 +1,96 @@
+{
+  "projectStructure": {
+    "formatVersion": "0.3.3",
+    "isPublishedAsRoot": "true",
+    "variants": [
+      {
+        "name": "debugApiElements",
+        "sourceSet": [
+          "commonMain"
+        ]
+      },
+      {
+        "name": "debugRuntimeElements",
+        "sourceSet": [
+          "commonMain"
+        ]
+      },
+      {
+        "name": "releaseApiElements",
+        "sourceSet": [
+          "commonMain"
+        ]
+      },
+      {
+        "name": "releaseRuntimeElements",
+        "sourceSet": [
+          "commonMain"
+        ]
+      },
+      {
+        "name": "iosArm64ApiElements",
+        "sourceSet": [
+          "commonMain",
+          "iosMain"
+        ]
+      },
+      {
+        "name": "iosSimulatorArm64ApiElements",
+        "sourceSet": [
+          "commonMain",
+          "iosMain"
+        ]
+      },
+      {
+        "name": "iosX64ApiElements",
+        "sourceSet": [
+          "commonMain",
+          "iosMain"
+        ]
+      }
+    ],
+    "sourceSets": [
+      {
+        "name": "commonMain",
+        "dependsOn": [],
+        "moduleDependency": [
+          "dev.icerock.moko:resources",
+          "dev.icerock.moko:mvvm-core",
+          "dev.icerock.moko:mvvm-compose",
+          "dev.icerock.moko:mvvm-flow",
+          "dev.icerock.moko:mvvm-flow-compose",
+          "com.squareup.sqldelight:runtime",
+          "org.jetbrains.kotlin:kotlin-stdlib-common"
+        ],
+        "binaryLayout": "klib"
+      },
+      {
+        "name": "iosMain",
+        "dependsOn": [
+          "commonMain"
+        ],
+        "moduleDependency": [
+          "dev.icerock.moko:resources",
+          "dev.icerock.moko:mvvm-core",
+          "dev.icerock.moko:mvvm-compose",
+          "dev.icerock.moko:mvvm-flow",
+          "dev.icerock.moko:mvvm-flow-compose",
+          "com.squareup.sqldelight:runtime",
+          "org.jetbrains.kotlin:kotlin-stdlib-common",
+          "org.jetbrains.compose.runtime:runtime",
+          "org.jetbrains.compose.foundation:foundation",
+          "org.jetbrains.compose.material3:material3",
+          "org.jetbrains.compose.material:material-icons-extended",
+          "org.jetbrains.compose.components:components-resources",
+          "com.squareup.sqldelight:coroutines-extensions",
+          "org.jetbrains.kotlinx:kotlinx-datetime",
+          "org.jetbrains.kotlinx:atomicfu",
+          "com.squareup.sqldelight:native-driver"
+        ],
+        "sourceSetCInteropMetadataDirectory": "iosMain-cinterop",
+        "binaryLayout": "klib",
+        "hostSpecific": "true"
+      }
+    ]
+  }
+}

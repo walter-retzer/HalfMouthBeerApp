@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="5" platform="JVM 17" allPlatforms="JVM [17]" useProjectSettings="false" isTestModule="true" externalProjectId=":shared" isHmppProject="true" pureKotlinSourceFolders="C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\build\generated\moko\androidMain\src;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\iosX64Main\kotlin;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\androidDebug\kotlin;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\debug\kotlin;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\debug\java;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\iosSimulatorArm64Main\kotlin;C:\CERVEJARIA HALF MOUTH KMM PROJECT\shared\src\iosArm64Main\kotlin">
+        <dependsOnModuleNames>:shared:commonTest</dependsOnModuleNames>
+        <sourceSets>
+          <sourceSet>HalfMouth.shared.commonTest</sourceSet>
+        </sourceSets>
+        <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <externalSystemTestTasks>
+          <externalSystemTestTask>testDebugUnitTest|:shared|android|androidJvm</externalSystemTestTask>
+        </externalSystemTestTasks>
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <flagArguments>
+            <flagArg name="noReflect" arg="true" />
+            <flagArg name="noStdlib" arg="true" />
+            <flagArg name="multiPlatform" arg="true" />
+          </flagArguments>
+          <stringArguments>
+            <stringArg name="classpath">
+              <args>
+                <arg>$MODULE_DIR$/../../../shared/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-test-junit/1.8.10/d30797f76f5f4619531a4aee2024bc1988c3b4f5/kotlin-test-junit-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-test/1.8.10/5fd889abbc164b0a080a7a3314627bd796315421/kotlin-test-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/692ccdc4f7f8a62c06d1d3deabbe803b/transformed/mvvm-compose-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/adfa4705f45c1ce44d1d2c5a5f1b1121/transformed/mvvm-flow-compose-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/82926e31af514582857e3e790852b23a/transformed/mvvm-flow-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/com.squareup.sqldelight/coroutines-extensions-jvm/1.5.5/111b7107b41072dad8be3026416cbb6705338b77/sqldelight-coroutines-extensions-jvm-1.5.5.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/8b9e9382374af37c7ee2ca534587ced5/transformed/android-driver-1.5.5-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/341c661a20522846a810cace8d11fb03/transformed/resources-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/a3967854717cfe835767be824168785a/transformed/mvvm-core-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/com.squareup.sqldelight/runtime-jvm/1.5.5/614a8ff3a62b04783276ce28f263601fffe01680/runtime-jvm-1.5.5.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/27a4cc476e2bb9fa15fcac03921a9218/transformed/library-release-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/ae8644973f56cc5a4b820ecb487863f8/transformed/appcompat-1.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/37594c08cfb60f53e3e42cce7700f638/transformed/fragment-1.3.6-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f5c5e9c4d8922b3f519d2174b6822fb5/transformed/activity-ktx-1.8.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/c04c6bcdc46f0f4e2bcfb5b6d0f67784/transformed/activity-1.8.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/7cebdc380029609acc998fd35acfac48/transformed/activity-compose-1.8.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/4f923beae9bc111caedaa3a78701c207/transformed/material3-1.0.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/0282fc0bbdec80dab9aedadcafa3237f/transformed/material-icons-core-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/72d9af5949ac258d54ae145bfc12115d/transformed/material-icons-extended-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f13d8ff622f3705bba790af8f4a56e5f/transformed/material-ripple-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/cce1f8fbd6c7d7b968d7f318be1a22b7/transformed/animation-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/31b474c1bf0ea21667389a0b717b1131/transformed/foundation-layout-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/dec54912eff48395d6f281c8e302dbea/transformed/foundation-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/ae7f449626728e6c1b20d699d4396044/transformed/ui-unit-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/9437a0497852e24fb61206fc63b4c2f8/transformed/ui-geometry-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/b8fc4b2e895a4da2edefd77bc5619a9a/transformed/ui-text-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/525fd302abf8bb51ee82b948df1c9d0e/transformed/ui-graphics-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/9a5a13830a64607ba2b35e271c3ff179/transformed/ui-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/4d90b2bb50e7044f8001f0b6816bb3da/transformed/runtime-saveable-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/b945bced822cf4b621589e92298f94b0/transformed/runtime-1.4.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/fe9d379a9145bfb886fd26a706ce2e61/transformed/appcompat-resources-1.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/2d6411760ccd32f227ae39ca6b4eec32/transformed/drawerlayout-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/318b834cee87f38945a838b55609c312/transformed/vectordrawable-animated-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/380148ef272adc3ab26a514c46af50e2/transformed/vectordrawable-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/3a1aa975c8a7c84aadc544075c041efb/transformed/viewpager-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/707bf6769fba297bba05ff031ccdee41/transformed/customview-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/0bc18e73a932ed04a41886b585e7b376/transformed/loader-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/27d0deaab41303d459e48f55b5694e54/transformed/lifecycle-livedata-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.6.1/10f354fdb64868baecd67128560c5a0d6312c495/lifecycle-common-2.6.1.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/5efb67376991163ea692413deb5292c4/transformed/lifecycle-livedata-core-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/2f2f8aeb8307730a6eb690090ad2b8a1/transformed/lifecycle-viewmodel-ktx-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f3d666ec281204d439a0ccf807b7f39c/transformed/lifecycle-viewmodel-savedstate-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/681fc3bf0031d6f3f7bc4445c57d61b7/transformed/core-ktx-1.12.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/4f7a9f18c5004ce9dd573e9584213168/transformed/core-1.12.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/e2717f4054b6982bc6b79dde8aa720cd/transformed/lifecycle-runtime-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/b7c6390dde57eb2231f695fcde856f54/transformed/lifecycle-viewmodel-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/931c862c2124ea2696aea2c66f31deb8/transformed/lifecycle-runtime-ktx-2.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f021c7823eb30971977aea0a9e8eaa70/transformed/animation-core-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.4/f955fc8b2ad196e2f4429598440e15f7492eeb2b/kotlinx-coroutines-android-1.6.4.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/445f64ad2893bd9072f44b95a8727cd8/transformed/parcelize-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f7800f46b646990748dab08d6e36a112/transformed/graphics-debug-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.20/73576ddf378c5b4f1f6b449fe6b119b8183fc078/kotlin-stdlib-jdk8-1.8.20.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.8.20/3aa51faf20aae8b31e1a4bc54f8370673d7b7df4/kotlin-stdlib-jdk7-1.8.20.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-datetime-jvm/0.4.0/2224732fcb9b6116fbeb0926dd108604e578356b/kotlinx-datetime-jvm-0.4.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/76d8688a1a88f8985515f32fce8ba08b/transformed/savedstate-ktx-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/d016f5c44d03447ce203e35c016acb06/transformed/savedstate-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/3fb13d724b5db0944358b87c4bef6023/transformed/annotation-experimental-1.3.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/b7fe38c96ca5702e5b8d0fa8854f9fa5/transformed/sqlite-2.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/5bada77f26a3dff3fa92b1f949b94ec9/transformed/cursoradapter-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/f3a708321734d6c4e48880b5bca49396/transformed/versionedparcelable-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/d9aa07aefc3491577da95c2e0782fe1e/transformed/core-runtime-2.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.2.0/5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3/core-common-2.2.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/transforms-3/c9865dc7b558a920bfa16e3b395e0188/transformed/interpolator-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/androidx.annotation/annotation-jvm/1.6.0/a7257339a052df0f91433cf9651231bbb802b502/annotation-jvm-1.6.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.8.22/636bf8b320e7627482771bbac9ed7246773c02bd/kotlin-stdlib-1.8.22.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu-jvm/0.20.2/1217fcc45dfdff4330beff9238ef5d0862f48a25/atomicfu-jvm-0.20.2.jar</arg>
+                <arg>$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-34/android.jar</arg>
+                <arg>$USER_HOME$/AppData/Local/Android/Sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
+              </args>
+            </stringArg>
+            <stringArg name="destination" arg="$MODULE_DIR$/../../../shared/build/tmp/kotlin-classes/debugUnitTest" />
+            <stringArg name="jvmTarget" arg="17" />
+            <stringArg name="moduleName" arg="shared_debug" />
+            <stringArg name="apiVersion" arg="1.8" />
+            <stringArg name="languageVersion" arg="1.8" />
+          </stringArguments>
+          <arrayArguments>
+            <arrayArg name="friendPaths">
+              <args>
+                <arg>$MODULE_DIR$/../../../shared/build/tmp/kotlin-classes/debug</arg>
+                <arg>$MODULE_DIR$/../../../shared/build/intermediates/javac/debug/classes</arg>
+                <arg>$MODULE_DIR$/../../../shared/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
+              </args>
+            </arrayArg>
+            <arrayArg name="pluginClasspaths">
+              <args>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.compose.compiler/compiler/1.4.2/8623003f548cc468b73e43ae1075724620dc8f4a/compiler-1.4.2.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.8.10/85d7bed036617120f09209e52f38cae13809176f/kotlin-scripting-jvm-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.8.10/605352a419127937229ab574b50146a4bb4122fa/kotlin-scripting-common-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.8.10/6d5560a229477df9406943d5feda5618e98eb64c/kotlin-stdlib-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.8.10/a61b182458550492c12aee66157d7b524a63a5ec/kotlin-stdlib-common-1.8.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../../PROJETOS APPs/Pequeno Explorador - Modulo Principal/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.8.10/b13ea9c7e46d589139e56086a878763290e20bd5/kotlin-script-runtime-1.8.10.jar</arg>
+              </args>
+            </arrayArg>
+            <arrayArg name="pluginOptions" />
+          </arrayArguments>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+</module>

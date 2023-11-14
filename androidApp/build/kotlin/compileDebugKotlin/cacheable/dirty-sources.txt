@@ -1,0 +1,2 @@
+C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\java\app\halfmouth\android\MainActivity.kt
+C:\CERVEJARIA HALF MOUTH KMM PROJECT\androidApp\src\main\java\app\halfmouth\android\MyApplicationTheme.kt
