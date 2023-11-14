@@ -11,7 +11,7 @@ Porém, ainda temos a necessidade de escrever códigos de UI específicos de aco
 O KMM é flexível o suficiente para permitir que o desenvolvedor diferencie a implementação de API específica do Android e iOS sempre que necessário. 
 Ele usa o mecanismo expect/actual para conseguir isso.
 
-[KMM-image](https://miro.medium.com/v2/resize:fit:1400/0*QI8feaK3gPPB6imo)
+![KMM-image](images/expect-actual.png)
 
 Esse mecanismo é parecido com uma interface, onde o módulo compartilhado define uma declaração com a palavra chave expect e os módulos de cada plataforma proveem a declaração com a palavra chave actual escritos em Kotlin (e posteriormente compilados para Swift no caso do iOS).
 Depois que o módulo compartilhado é criado, o resultado final do módulo compartilhado é o arquivo .framework para iOS e o arquivo .jar para Android. 
