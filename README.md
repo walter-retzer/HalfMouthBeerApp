@@ -2,7 +2,7 @@
 Projeto utilizando Kotlin Multiplatform Mobile(KMM) para exibir informações remotas de monitoramento de 
 equipamentos da crevejaria artesanal HalfMouth.
 
-![APP-image](telainicial.png)
+![KMM-image](images/telainicial.png)
 
 ## O que é Kotlin Multiplatform Mobile (KMM)
 Trata-se de uma feature do Kotlin, criada pela JetBrains, que permite compartilhar código comum entre múltiplas plataformas (JavaScript, iOS, Android, desktop, etc).
