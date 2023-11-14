@@ -1,4 +1,4 @@
-package app.halfmouth
+package app.halfmouth.core
 
 import dev.icerock.moko.resources.StringResource
 
