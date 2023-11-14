@@ -1,4 +1,4 @@
-package app.halfmouth
+package app.halfmouth.core
 
 import android.content.Context
 import dev.icerock.moko.resources.StringResource
