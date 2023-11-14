@@ -1,4 +1,4 @@
-package app.halfmouth
+package app.halfmouth.core
 
 interface Platform {
     val name: String
