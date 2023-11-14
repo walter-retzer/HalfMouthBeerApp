@@ -99,7 +99,7 @@ android {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "app.halfmouth.android"
+    multiplatformResourcesPackage = "app.halfmouth"
     multiplatformResourcesClassName = "SharedRes"
 }
 
@@ -111,4 +111,3 @@ dependencies {
     commonMainApi("dev.icerock.moko:mvvm-flow:0.16.1")
     commonMainApi("dev.icerock.moko:mvvm-flow-compose:0.16.1")
 }
-

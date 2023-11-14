@@ -1,5 +1,6 @@
 package app.halfmouth.android
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,10 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import app.halfmouth.SharedRes
 import app.halfmouth.Strings
 import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -34,12 +37,12 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
-                            painter = painterResource(id = app.halfmouth.android.R.drawable.halfmouth),
+                            painter = painterResource(id = app.halfmouth.R.drawable.logohalfmouth),
                             contentDescription = null
                         )
                         Text(
                             text = stringResource(
-                                id = SharedRes.strings.HalfMouth
+                                id = SharedRes.strings.halfmouth
                             )
                         )
                     }
