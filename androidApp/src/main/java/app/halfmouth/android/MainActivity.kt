@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val requestValuesOnThingSpeak = produceState(
                 initialValue = initialValue,
-                producer = { value = service.getThingSpeakValues("5") }
+                producer = { value = service.getThingSpeakValues("50") }
             )
 
             MyApplicationTheme {
@@ -95,9 +95,18 @@ class MainActivity : ComponentActivity() {
                                         .fillMaxSize()
                                         .padding(16.dp)
                                 ) {
-                                    Text(text = it?.field1.toString(), fontSize = 16.sp)
+                                    if (it?.field1.isNullOrEmpty()) return@items
+                                    Text(text = "Valor: "+ it?.field1.toString(), fontSize = 16.sp)
                                     Spacer(modifier = Modifier.height(4.dp))
-                                    Text(text = it?.created_at ?: "", fontSize = 12.sp)
+                                    Text(
+                                        text = "Data: " + it?.created_at.toString(),
+                                        fontSize = 12.sp
+                                    )
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(
+                                        text = "Instrumento: " + requestValuesOnThingSpeak.value.channel?.field1,
+                                        fontSize = 12.sp
+                                    )
                                 }
                             }
                         }
@@ -111,7 +120,7 @@ class MainActivity : ComponentActivity() {
                                 onClick = {},
                                 shape = RoundedCornerShape(32.dp),
                                 modifier = Modifier,
-                                ) {
+                            ) {
                                 Icon(
                                     imageVector = Icons.Default.Home,
                                     contentDescription = "Home"
