@@ -13,6 +13,7 @@ buildscript {
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.5")
         classpath("dev.icerock.moko:resources-generator:0.22.3")
         classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.20.2")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.5.21")
     }
 }
 

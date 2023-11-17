@@ -11,8 +11,12 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -26,6 +30,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
@@ -34,9 +39,12 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import app.halfmouth.ThemeApp
 import app.halfmouth.SharedRes
+import app.halfmouth.ThemeApp
+import app.halfmouth.android.data.api.PostService
+import app.halfmouth.android.data.remote.PostResponse
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
@@ -44,10 +52,21 @@ import app.halfmouth.theme.TypographyDefault
 import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
+
+    private val service = PostService.create()
+
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+            val post = produceState<List<PostResponse>>(
+                initialValue = emptyList(),
+                producer = {
+                    value = service.getPost()
+                }
+            )
+
             MyApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -67,31 +86,46 @@ class MainActivity : ComponentActivity() {
                                 id = SharedRes.strings.halfmouth
                             )
                         )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxSize(),
-                        contentAlignment = Alignment.BottomEnd,
-                    ) {
-                        FloatingActionButton(
-                            onClick = {},
-                            shape = RoundedCornerShape(32.dp),
-                            modifier = Modifier,
+                        LazyColumn {
+                            items(post.value) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(16.dp)
 
+                                ) {
+                                    Text(text = it.title, fontSize = 16.sp)
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(text = it.body, fontSize = 12.sp)
+                                }
+                            }
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .fillMaxSize(),
+                            contentAlignment = Alignment.BottomEnd,
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Home,
-                                contentDescription = "Home"
-                            )
+                            FloatingActionButton(
+                                onClick = {},
+                                shape = RoundedCornerShape(32.dp),
+                                modifier = Modifier,
+
+                                ) {
+                                Icon(
+                                    imageVector = Icons.Default.Home,
+                                    contentDescription = "Home"
+                                )
+                            }
                         }
                     }
                 }
+                ThemeApp(
+                    darkTheme = isSystemInDarkTheme(),
+                    dynamicColor = true,
+                )
             }
-            ThemeApp(
-                darkTheme = isSystemInDarkTheme(),
-                dynamicColor = true,
-            )
         }
     }
 }
@@ -113,12 +147,13 @@ fun MyApplicationTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
 
     val view = LocalView.current
-    if(!view.isInEditMode) {
+    if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
