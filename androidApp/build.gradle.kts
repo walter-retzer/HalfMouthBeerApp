@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.compose")
+    id("kotlin-android")
+    id("org.jetbrains.kotlin.plugin.serialization")
     kotlin("android")
 }
 
@@ -49,4 +51,12 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation("androidx.compose.material3:material3:1.1.2")
     debugImplementation(libs.compose.ui.tooling)
+
+    implementation("io.ktor:ktor-client-core:1.6.3")
+    implementation("io.ktor:ktor-client-android:1.6.3")
+    implementation("io.ktor:ktor-client-serialization:1.6.3")
+    implementation("io.ktor:ktor-client-logging:1.6.3")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 }
