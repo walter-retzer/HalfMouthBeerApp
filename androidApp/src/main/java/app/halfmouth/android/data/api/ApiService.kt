@@ -1,7 +1,6 @@
 package app.halfmouth.android.data.api
 
-import app.halfmouth.android.data.remote.PostRequest
-import app.halfmouth.android.data.remote.PostResponse
+import app.halfmouth.android.data.remote.ThingSpeakResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.json.JsonFeature
@@ -9,14 +8,13 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 
-interface PostService {
+interface ApiService {
 
-    suspend fun getPost(): List<PostResponse>
-    suspend fun createPost(postRequest: PostRequest): PostResponse?
+    suspend fun getThingSpeakValues(results: String): ThingSpeakResponse
 
     companion object {
-        fun create(): PostService {
-            return PostServiceImpl(
+        fun create(): ApiService {
+            return ApiServiceImpl(
                 client = HttpClient(Android) {
                     install(Logging) {
                         level = LogLevel.ALL
