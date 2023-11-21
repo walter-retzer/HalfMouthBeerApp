@@ -39,5 +39,20 @@ data class FeedsThingSpeak(
     val field5: String? = null,
     val field6: String? = null,
     val field7: String? = null,
-    val field8: String? = null
+    val field8: String? = null,
+    var field1Name: String? = null,
+    var field2Name: String? = null,
+    var field3Name: String? = null,
+    var field4Name: String? = null,
+    var field5Name: String? = null,
+    var field6Name: String? = null,
+    var field7Name: String? = null,
+    var field8Name: String? = null,
+)
+
+@Serializable
+data class Feeds(
+    var fieldName: String? = null,
+    var fieldValue: String? = null,
+    var fieldData: String? = null,
 )
