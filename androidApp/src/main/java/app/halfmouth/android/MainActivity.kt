@@ -49,6 +49,11 @@ import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
 import app.halfmouth.theme.TypographyDefault
+import com.github.tehras.charts.line.LineChart
+import com.github.tehras.charts.line.LineChartData
+import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
+import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
+import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
@@ -88,6 +93,7 @@ class MainActivity : ComponentActivity() {
                                 id = SharedRes.strings.halfmouth
                             )
                         )
+                        LineChartCompose()
                         LazyColumn {
                             items(requestValuesOnThingSpeak.value.feeds) {
                                 Column(
@@ -136,6 +142,29 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Composable
+fun LineChartCompose() {
+    LineChart(
+        linesChartData = listOf(
+            LineChartData(
+                points = listOf(
+                    LineChartData.Point(-5.5f, "Label 1"),
+                    LineChartData.Point(-3.8f, "Label 2"),
+                    LineChartData.Point(-2.5f, "Label 3"),
+                    LineChartData.Point(-1.4f, "Label 4")
+                ),
+                lineDrawer = SolidLineDrawer(),
+            )
+        ),
+        modifier = Modifier
+            .height(150.dp),
+        animation = simpleChartAnimation(),
+        pointDrawer = FilledCircularPointDrawer(),
+        horizontalOffset = 5f,
+        labels = listOf("08:00", "08:05", "08:10", "08:15")
+    )
 }
 
 @Composable
