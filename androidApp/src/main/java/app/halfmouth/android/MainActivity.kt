@@ -9,28 +9,20 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material.LocalAbsoluteElevation
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -51,6 +43,7 @@ import androidx.core.view.WindowCompat
 import app.halfmouth.SharedRes
 import app.halfmouth.ThemeApp
 import app.halfmouth.android.data.api.ApiService
+import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
@@ -109,331 +102,115 @@ class MainActivity : ComponentActivity() {
                                 .padding(4.dp)
                         )
                         LazyColumn {
-                            items(requestValuesOnThingSpeak.value.feeds) {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(4.dp)
-                                ) {
-                                    if (it?.field1.isNullOrEmpty()) return@items
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.icon_thermostat),
-                                            contentDescription = null
-                                        )
-                                        Text(
-                                            text = requestValuesOnThingSpeak.value.channel?.field1.toString(),
-                                            fontSize = 20.sp
-                                        )
+                            val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                            var newList = mutableListOf<Feeds>()
+                            listReceive.forEach {
+                                if (it.feeds.isNullOrEmpty().not()) {
+                                    val i1 = if (it.feeds.first()?.field1 == null) 1 else 0
+                                    val i2 = if (it.feeds.first()?.field5 == null) 1 else 0
+                                    newList = mutableListOf(
+                                        Feeds(
+                                            fieldName = it.channel?.field1,
+                                            fieldValue = it.feeds[i1]?.field1,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field2,
+                                            fieldValue = it.feeds[i1]?.field2,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field3,
+                                            fieldValue = it.feeds[i1]?.field3,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field4,
+                                            fieldValue = it.feeds[i1]?.field4,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field5,
+                                            fieldValue = it.feeds[i2]?.field5,
+                                            fieldData = it.feeds[i2]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field6,
+                                            fieldValue = it.feeds[i1]?.field6,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field7,
+                                            fieldValue = it.feeds[i1]?.field7,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field8,
+                                            fieldValue = it.feeds[i2]?.field8,
+                                            fieldData = it.feeds[i2]?.created_at
+                                        ),
+                                    )
 
-                                        it?.field1.let {
-                                            val number = it.toString().toFloat()
-                                            val filterNumber = "%.2f".format(number)
-                                            Text(
-                                                text = " = $filterNumber°C",
-                                                fontSize = 20.sp
-                                            )
+                                    items(newList) {
+                                        Column(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                                .padding(4.dp)
+                                        ) {
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 16.dp,
+                                                        top = 16.dp,
+                                                        end = 0.dp,
+                                                        bottom = 4.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                            ) {
+                                                val drawable =
+                                                    if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_water
+                                                    else R.drawable.icon_thermostat
+                                                Image(
+                                                    painter = painterResource(
+                                                        id = drawable
+                                                    ),
+                                                    contentDescription = null
+                                                )
+                                                Text(
+                                                    text = it.fieldName.toString(),
+                                                    fontSize = 20.sp
+                                                )
+                                                val text =
+                                                    when (it.fieldValue) {
+                                                        "0.00000" -> " = 0"
+                                                        "1.00000" -> " = 1"
+                                                        else -> " = ${it.fieldValue} °C"
+                                                    }
+                                                Text(
+                                                    text = text,
+                                                    fontSize = 20.sp
+                                                )
+                                            }
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 20.dp,
+                                                        top = 4.dp,
+                                                        end = 16.dp,
+                                                        bottom = 4.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                            ) {
+                                                Text(
+                                                    text = "Data: " + it.fieldData.toString(),
+                                                    fontSize = 12.sp
+                                                )
+                                            }
                                         }
                                     }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 20.dp,
-                                                top = 4.dp,
-                                                end = 16.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it?.created_at.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-                                    if (it?.field2.isNullOrEmpty()) return@items
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.icon_thermostat),
-                                            contentDescription = null
-                                        )
-                                        Text(
-                                            text = requestValuesOnThingSpeak.value.channel?.field2.toString(),
-                                            fontSize = 20.sp
-                                        )
-                                        val number = it?.field2.toString().toFloat()
-                                        val filterNumber = "%.2f".format(number)
-                                        Text(
-                                            text = " = $filterNumber°C",
-                                            fontSize = 20.sp
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it?.created_at.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-
-                                    if (it?.field3.isNullOrEmpty()) return@items
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.icon_thermostat),
-                                            contentDescription = null
-                                        )
-                                        Text(
-                                            text = requestValuesOnThingSpeak.value.channel?.field3.toString(),
-                                            fontSize = 20.sp
-                                        )
-                                        val number = it?.field3.toString().toFloat()
-                                        val filterNumber = "%.2f".format(number)
-                                        Text(
-                                            text = " = $filterNumber°C",
-                                            fontSize = 20.sp
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it?.created_at.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-
-                                    if (it?.field4.isNullOrEmpty()) return@items
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.icon_thermostat),
-                                            contentDescription = null
-                                        )
-                                        Text(
-                                            text = requestValuesOnThingSpeak.value.channel?.field4.toString(),
-                                            fontSize = 20.sp
-                                        )
-                                        val number = it?.field4.toString().toFloat()
-                                        val filterNumber = "%.2f".format(number)
-                                        Text(
-                                            text = " = $filterNumber°C",
-                                            fontSize = 20.sp
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it?.created_at.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-
-                                    // if (it?.field5.isNullOrEmpty()) return@items
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.icon_thermostat),
-                                            contentDescription = null
-                                        )
-                                        Text(
-                                            text = requestValuesOnThingSpeak.value.channel?.field5.toString(),
-                                            fontSize = 20.sp
-                                        )
-                                        it?.field5.let {
-                                            val number = it.toString().toFloat()
-                                            val filterNumber = "%.2f".format(number)
-                                            Text(
-                                                text = " = $filterNumber°C",
-                                                fontSize = 20.sp
-                                            )
-                                        }
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it?.created_at.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-//
-//
-//                                    if (it?.field6.isNullOrEmpty()) return@items
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(
-//                                                start = 16.dp,
-//                                                top = 16.dp,
-//                                                end = 0.dp,
-//                                                bottom = 4.dp
-//                                            )
-//                                            .fillMaxSize(),
-//                                    ) {
-//                                        Image(
-//                                            painter = painterResource(id = R.drawable.icon_thermostat),
-//                                            contentDescription = null
-//                                        )
-//                                        Text(
-//                                            text = requestValuesOnThingSpeak.value.channel?.field6.toString(),
-//                                            fontSize = 20.sp
-//                                        )
-//                                        val number = it?.field6.toString().toFloat()
-//                                        val filterNumber = "%.2f".format(number)
-//                                        Text(
-//                                            text = " = $filterNumber°C",
-//                                            fontSize = 20.sp
-//                                        )
-//                                    }
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-//                                            .fillMaxSize(),
-//                                        horizontalArrangement = Arrangement.SpaceBetween,
-//                                    ) {
-//                                        Text(
-//                                            text = "Data: " + it?.created_at.toString(),
-//                                            fontSize = 12.sp
-//                                        )
-//                                    }
-//
-//
-//                                    if (it?.field7.isNullOrEmpty()) return@items
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(
-//                                                start = 16.dp,
-//                                                top = 16.dp,
-//                                                end = 0.dp,
-//                                                bottom = 4.dp
-//                                            )
-//                                            .fillMaxSize(),
-//                                    ) {
-//                                        Image(
-//                                            painter = painterResource(id = R.drawable.icon_thermostat),
-//                                            contentDescription = null
-//                                        )
-//                                        Text(
-//                                            text = requestValuesOnThingSpeak.value.channel?.field7.toString(),
-//                                            fontSize = 20.sp
-//                                        )
-//                                        val number = it?.field7.toString().toFloat()
-//                                        val filterNumber = "%.2f".format(number)
-//                                        Text(
-//                                            text = " = $filterNumber°C",
-//                                            fontSize = 20.sp
-//                                        )
-//                                    }
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-//                                            .fillMaxSize(),
-//                                        horizontalArrangement = Arrangement.SpaceBetween,
-//                                    ) {
-//                                        Text(
-//                                            text = "Data: " + it?.created_at.toString(),
-//                                            fontSize = 12.sp
-//                                        )
-//                                    }
-//
-//
-//                                    if (it?.field8.isNullOrEmpty()) return@items
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(
-//                                                start = 16.dp,
-//                                                top = 16.dp,
-//                                                end = 0.dp,
-//                                                bottom = 4.dp
-//                                            )
-//                                            .fillMaxSize(),
-//                                    ) {
-//                                        Image(
-//                                            painter = painterResource(id = R.drawable.icon_thermostat),
-//                                            contentDescription = null
-//                                        )
-//                                        Text(
-//                                            text = requestValuesOnThingSpeak.value.channel?.field8.toString(),
-//                                            fontSize = 20.sp
-//                                        )
-//                                        val number = it?.field8.toString().toFloat()
-//                                        val filterNumber = "%.2f".format(number)
-//                                        Text(
-//                                            text = " = $filterNumber°C",
-//                                            fontSize = 20.sp
-//                                        )
-//                                    }
-//                                    Row(
-//                                        modifier = Modifier
-//                                            .padding(start = 20.dp, top = 4.dp, end = 16.dp)
-//                                            .fillMaxSize(),
-//                                        horizontalArrangement = Arrangement.SpaceBetween,
-//                                    ) {
-//                                        Text(
-//                                            text = "Data: " + it?.created_at.toString(),
-//                                            fontSize = 12.sp
-//                                        )
-//                                    }
                                 }
                             }
                         }
