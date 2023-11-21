@@ -43,8 +43,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import app.halfmouth.SharedRes
 import app.halfmouth.ThemeApp
-import app.halfmouth.android.data.api.PostService
-import app.halfmouth.android.data.remote.PostResponse
+import app.halfmouth.android.data.api.ApiService
+import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
@@ -53,18 +53,20 @@ import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
 
-    private val service = PostService.create()
+    private val service = ApiService.create()
+    private val initialValue = ThingSpeakResponse(
+        channel = null,
+        feeds = emptyList()
+    )
 
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
 
-            val post = produceState<List<PostResponse>>(
-                initialValue = emptyList(),
-                producer = {
-                    value = service.getPost()
-                }
+        setContent {
+            val requestValuesOnThingSpeak = produceState(
+                initialValue = initialValue,
+                producer = { value = service.getThingSpeakValues("50") }
             )
 
             MyApplicationTheme {
@@ -87,20 +89,27 @@ class MainActivity : ComponentActivity() {
                             )
                         )
                         LazyColumn {
-                            items(post.value) {
+                            items(requestValuesOnThingSpeak.value.feeds) {
                                 Column(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .padding(16.dp)
-
                                 ) {
-                                    Text(text = it.title, fontSize = 16.sp)
+                                    if (it?.field1.isNullOrEmpty()) return@items
+                                    Text(text = "Valor: "+ it?.field1.toString(), fontSize = 16.sp)
                                     Spacer(modifier = Modifier.height(4.dp))
-                                    Text(text = it.body, fontSize = 12.sp)
+                                    Text(
+                                        text = "Data: " + it?.created_at.toString(),
+                                        fontSize = 12.sp
+                                    )
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(
+                                        text = "Instrumento: " + requestValuesOnThingSpeak.value.channel?.field1,
+                                        fontSize = 12.sp
+                                    )
                                 }
                             }
                         }
-
                         Box(
                             modifier = Modifier
                                 .padding(16.dp)
@@ -111,8 +120,7 @@ class MainActivity : ComponentActivity() {
                                 onClick = {},
                                 shape = RoundedCornerShape(32.dp),
                                 modifier = Modifier,
-
-                                ) {
+                            ) {
                                 Icon(
                                     imageVector = Icons.Default.Home,
                                     contentDescription = "Home"
@@ -134,7 +142,6 @@ class MainActivity : ComponentActivity() {
 fun stringResource(id: StringResource, vararg args: Any): String {
     return Strings(LocalContext.current).get(id, args.toList())
 }
-
 
 @Composable
 fun MyApplicationTheme(
