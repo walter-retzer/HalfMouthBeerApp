@@ -9,22 +9,20 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -33,6 +31,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -44,11 +43,17 @@ import androidx.core.view.WindowCompat
 import app.halfmouth.SharedRes
 import app.halfmouth.ThemeApp
 import app.halfmouth.android.data.api.ApiService
+import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
 import app.halfmouth.theme.TypographyDefault
+import com.github.tehras.charts.line.LineChart
+import com.github.tehras.charts.line.LineChartData
+import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
+import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
+import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
@@ -66,7 +71,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val requestValuesOnThingSpeak = produceState(
                 initialValue = initialValue,
-                producer = { value = service.getThingSpeakValues("50") }
+                producer = { value = service.getThingSpeakValues("2") }
             )
 
             MyApplicationTheme {
@@ -88,45 +93,146 @@ class MainActivity : ComponentActivity() {
                                 id = SharedRes.strings.halfmouth
                             )
                         )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Divider(
+                            color = Color.Gray,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(1.dp)
+                                .padding(4.dp)
+                        )
                         LazyColumn {
-                            items(requestValuesOnThingSpeak.value.feeds) {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(16.dp)
-                                ) {
-                                    if (it?.field1.isNullOrEmpty()) return@items
-                                    Text(text = "Valor: "+ it?.field1.toString(), fontSize = 16.sp)
-                                    Spacer(modifier = Modifier.height(4.dp))
-                                    Text(
-                                        text = "Data: " + it?.created_at.toString(),
-                                        fontSize = 12.sp
+                            val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                            var newList = mutableListOf<Feeds>()
+                            listReceive.forEach {
+                                if (it.feeds.isNullOrEmpty().not()) {
+                                    val i1 = if (it.feeds.first()?.field1 == null) 1 else 0
+                                    val i2 = if (it.feeds.first()?.field5 == null) 1 else 0
+                                    newList = mutableListOf(
+                                        Feeds(
+                                            fieldName = it.channel?.field1,
+                                            fieldValue = it.feeds[i1]?.field1,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field2,
+                                            fieldValue = it.feeds[i1]?.field2,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field3,
+                                            fieldValue = it.feeds[i1]?.field3,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field4,
+                                            fieldValue = it.feeds[i1]?.field4,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field5,
+                                            fieldValue = it.feeds[i2]?.field5,
+                                            fieldData = it.feeds[i2]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field6,
+                                            fieldValue = it.feeds[i1]?.field6,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field7,
+                                            fieldValue = it.feeds[i1]?.field7,
+                                            fieldData = it.feeds[i1]?.created_at
+                                        ),
+                                        Feeds(
+                                            fieldName = it.channel?.field8,
+                                            fieldValue = it.feeds[i2]?.field8,
+                                            fieldData = it.feeds[i2]?.created_at
+                                        ),
                                     )
-                                    Spacer(modifier = Modifier.height(4.dp))
-                                    Text(
-                                        text = "Instrumento: " + requestValuesOnThingSpeak.value.channel?.field1,
-                                        fontSize = 12.sp
-                                    )
+
+                                    items(newList) {
+                                        Column(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                                .padding(4.dp)
+                                        ) {
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 16.dp,
+                                                        top = 16.dp,
+                                                        end = 0.dp,
+                                                        bottom = 4.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                            ) {
+                                                val drawable =
+                                                    if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_water
+                                                    else R.drawable.icon_thermostat
+                                                Image(
+                                                    painter = painterResource(
+                                                        id = drawable
+                                                    ),
+                                                    contentDescription = null
+                                                )
+                                                Text(
+                                                    text = it.fieldName.toString(),
+                                                    fontSize = 20.sp
+                                                )
+                                                val text =
+                                                    when (it.fieldValue) {
+                                                        "0.00000" -> " = 0"
+                                                        "1.00000" -> " = 1"
+                                                        else -> " = ${it.fieldValue} °C"
+                                                    }
+                                                Text(
+                                                    text = text,
+                                                    fontSize = 20.sp
+                                                )
+                                            }
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 20.dp,
+                                                        top = 4.dp,
+                                                        end = 16.dp,
+                                                        bottom = 4.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                            ) {
+                                                Text(
+                                                    text = "Data: " + it.fieldData.toString(),
+                                                    fontSize = 12.sp
+                                                )
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
-                        Box(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .fillMaxSize(),
-                            contentAlignment = Alignment.BottomEnd,
-                        ) {
-                            FloatingActionButton(
-                                onClick = {},
-                                shape = RoundedCornerShape(32.dp),
-                                modifier = Modifier,
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Home,
-                                    contentDescription = "Home"
-                                )
-                            }
-                        }
+
+
+//                        Box(
+//                            modifier = Modifier
+//                                .padding(16.dp)
+//                                .fillMaxSize(),
+//                            contentAlignment = Alignment.BottomEnd,
+//                        ) {
+//                            FloatingActionButton(
+//                                onClick = {},
+//                                shape = RoundedCornerShape(32.dp),
+//                                modifier = Modifier,
+//                            ) {
+//                                Icon(
+//                                    imageVector = Icons.Default.Home,
+//                                    contentDescription = "Home"
+//                                )
+//                            }
+//                        }
                     }
                 }
                 ThemeApp(
@@ -136,6 +242,29 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Composable
+fun LineChartCompose() {
+    LineChart(
+        linesChartData = listOf(
+            LineChartData(
+                points = listOf(
+                    LineChartData.Point(-5.5f, "Label 1"),
+                    LineChartData.Point(-3.8f, "Label 2"),
+                    LineChartData.Point(-2.5f, "Label 3"),
+                    LineChartData.Point(-1.4f, "Label 4")
+                ),
+                lineDrawer = SolidLineDrawer(),
+            )
+        ),
+        modifier = Modifier
+            .height(150.dp),
+        animation = simpleChartAnimation(),
+        pointDrawer = FilledCircularPointDrawer(),
+        horizontalOffset = 5f,
+        labels = listOf("08:00", "08:05", "08:10", "08:15")
+    )
 }
 
 @Composable
