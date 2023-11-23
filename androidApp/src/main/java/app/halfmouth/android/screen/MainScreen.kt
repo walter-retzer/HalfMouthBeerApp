@@ -6,7 +6,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -29,15 +28,17 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,11 +52,14 @@ import androidx.navigation.compose.rememberNavController
 import app.halfmouth.ThemeApp
 import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
+import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
+import app.halfmouth.theme.BackgroundDark
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
 import app.halfmouth.theme.TypographyDefault
+import app.halfmouth.theme.YellowContainerLight
 import app.halfmouth.theme.YellowSecondaryContainerLight
 import app.halfmouth.theme.YellowSecondaryLight
 import dev.icerock.moko.resources.StringResource
@@ -69,9 +73,41 @@ fun MainScreen(navController: NavController) {
         channel = null,
         feeds = emptyList()
     )
-    val requestValuesOnThingSpeak = produceState(
-        initialValue = initialValue,
-        producer = { value = service.getThingSpeakValues("2") }
+//    val requestValuesOnThingSpeak = produceState(
+//        initialValue = initialValue,
+//        producer = { value = service.getThingSpeakValues("2") }
+//    )
+
+    val mutableListThing = mutableListOf(
+        ThingSpeakResponse(
+            channel = null,
+            feeds = listOf(
+                FeedsThingSpeak(
+                    created_at = "",
+                    entry_id = 1,
+                    field1 = "25.000000",
+                    field2 = "25.000000",
+                    field3 = "25.000000",
+                    field4 = "25.000000",
+                    field5 = "25.000000",
+                    field6 = "25.000000",
+                    field8 = "25.000000",
+                    field7 = "25.000000",
+                ),
+                FeedsThingSpeak(
+                    created_at = "",
+                    entry_id = 1,
+                    field1 = "25.000000",
+                    field2 = "25.000000",
+                    field3 = "25.000000",
+                    field4 = "25.000000",
+                    field5 = "25.000000",
+                    field6 = "25.000000",
+                    field8 = "25.000000",
+                    field7 = "25.000000",
+                ),
+            )
+        )
     )
 
     MyApplicationTheme {
@@ -81,18 +117,42 @@ fun MainScreen(navController: NavController) {
                 BottomBar(navController = rememberNavController()) { }
             }
         ) {
-            Box(modifier = Modifier.padding(it)) {
+            Column(modifier = Modifier.padding(it)) {
+
                 Row(
-                    verticalAlignment = Alignment.Top,
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
-                        .background(YellowSecondaryContainerLight),
+                        .background(YellowContainerLight)
                 ) {
-
+                    Text(
+                        text = "Equipamentos",
+                        textAlign = TextAlign.Center,
+                        style = TextStyle(
+                            color = Color.White,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    )
                 }
-                LazyColumn {
-                    val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+
+
+//                Column(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(Color.White)
+//                ) {
+
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp)
+                ) {
+                    // val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                    val listReceive = mutableListThing
                     var newList = mutableListOf<Feeds>()
                     listReceive.forEach {
                         if (it.feeds.isNullOrEmpty().not()) {
@@ -144,7 +204,7 @@ fun MainScreen(navController: NavController) {
                             items(newList) {
                                 Column(
                                     modifier = Modifier
-                                        .fillMaxSize()
+                                        .fillMaxWidth()
                                         .padding(4.dp)
                                 ) {
                                     Row(
@@ -199,18 +259,59 @@ fun MainScreen(navController: NavController) {
                                             fontSize = 12.sp
                                         )
                                     }
+
+
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(
+                                                start = 20.dp,
+                                                top = 4.dp,
+                                                end = 16.dp,
+                                                bottom = 4.dp
+                                            )
+                                            .fillMaxSize(),
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                    ) {
+                                        Text(
+                                            text = "Data: " + it.fieldData.toString(),
+                                            fontSize = 12.sp
+                                        )
+                                    }
+
+
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(
+                                                start = 20.dp,
+                                                top = 4.dp,
+                                                end = 16.dp,
+                                                bottom = 4.dp
+                                            )
+                                            .fillMaxSize(),
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                    ) {
+                                        Text(
+                                            text = "Data: " + it.fieldData.toString(),
+                                            fontSize = 12.sp
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
-//                }
+
+
+//}
+
             }
         }
+
+
     }
     ThemeApp(
         darkTheme = isSystemInDarkTheme(),
-        dynamicColor = true,
+        dynamicColor = false,
     )
 }
 
@@ -225,7 +326,7 @@ fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val dynamicColor = true
+    val dynamicColor = false
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -291,7 +392,7 @@ fun RowScope.AddItem(
     BottomNavigationItem(
         modifier = Modifier
             .then(Modifier.weight(1.0f))
-            .background(YellowSecondaryLight),
+            .background(YellowContainerLight),
         label = {
             Text(
                 text = screen.title,
@@ -301,7 +402,10 @@ fun RowScope.AddItem(
             )
         },
         icon = {
-            Icon(imageVector = ImageVector.vectorResource(screen.icon), contentDescription = null)
+            Icon(
+                imageVector = ImageVector.vectorResource(screen.icon),
+                contentDescription = null
+            )
         },
         selectedContentColor = YellowSecondaryContainerLight,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
