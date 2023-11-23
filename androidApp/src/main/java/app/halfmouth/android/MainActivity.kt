@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +19,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -40,11 +43,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
 import app.halfmouth.SharedRes
 import app.halfmouth.ThemeApp
 import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.ThingSpeakResponse
+import app.halfmouth.android.navigation.Navigation
+import app.halfmouth.android.screen.Screen
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
@@ -55,6 +61,7 @@ import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
 import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
 import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 import dev.icerock.moko.resources.StringResource
+
 
 class MainActivity : ComponentActivity() {
 
@@ -74,175 +81,167 @@ class MainActivity : ComponentActivity() {
                 producer = { value = service.getThingSpeakValues("2") }
             )
 
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Image(
-                            painter = painterResource(id = app.halfmouth.R.drawable.logohalfmouth),
-                            contentDescription = null
-                        )
-                        Text(
-                            text = stringResource(
-                                id = SharedRes.strings.halfmouth
-                            )
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Divider(
-                            color = Color.Gray,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(1.dp)
-                                .padding(4.dp)
-                        )
-                        LazyColumn {
-                            val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                            var newList = mutableListOf<Feeds>()
-                            listReceive.forEach {
-                                if (it.feeds.isNullOrEmpty().not()) {
-                                    val i1 = if (it.feeds.first()?.field1 == null) 1 else 0
-                                    val i2 = if (it.feeds.first()?.field5 == null) 1 else 0
-                                    newList = mutableListOf(
-                                        Feeds(
-                                            fieldName = it.channel?.field1,
-                                            fieldValue = it.feeds[i1]?.field1,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field2,
-                                            fieldValue = it.feeds[i1]?.field2,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field3,
-                                            fieldValue = it.feeds[i1]?.field3,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field4,
-                                            fieldValue = it.feeds[i1]?.field4,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field5,
-                                            fieldValue = it.feeds[i2]?.field5,
-                                            fieldData = it.feeds[i2]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field6,
-                                            fieldValue = it.feeds[i1]?.field6,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field7,
-                                            fieldValue = it.feeds[i1]?.field7,
-                                            fieldData = it.feeds[i1]?.created_at
-                                        ),
-                                        Feeds(
-                                            fieldName = it.channel?.field8,
-                                            fieldValue = it.feeds[i2]?.field8,
-                                            fieldData = it.feeds[i2]?.created_at
-                                        ),
-                                    )
+            Navigation()
 
-                                    items(newList) {
-                                        Column(
-                                            modifier = Modifier
-                                                .fillMaxSize()
-                                                .padding(4.dp)
-                                        ) {
-                                            Row(
-                                                modifier = Modifier
-                                                    .padding(
-                                                        start = 16.dp,
-                                                        top = 16.dp,
-                                                        end = 0.dp,
-                                                        bottom = 4.dp
-                                                    )
-                                                    .fillMaxSize(),
-                                            ) {
-                                                val drawable =
-                                                    if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
-                                                    else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
-                                                    else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_water
-                                                    else R.drawable.icon_thermostat
-                                                Image(
-                                                    painter = painterResource(
-                                                        id = drawable
-                                                    ),
-                                                    contentDescription = null
-                                                )
-                                                Text(
-                                                    text = it.fieldName.toString(),
-                                                    fontSize = 20.sp
-                                                )
-                                                val text =
-                                                    when (it.fieldValue) {
-                                                        "0.00000" -> " = 0"
-                                                        "1.00000" -> " = 1"
-                                                        else -> " = ${it.fieldValue} °C"
-                                                    }
-                                                Text(
-                                                    text = text,
-                                                    fontSize = 20.sp
-                                                )
-                                            }
-                                            Row(
-                                                modifier = Modifier
-                                                    .padding(
-                                                        start = 20.dp,
-                                                        top = 4.dp,
-                                                        end = 16.dp,
-                                                        bottom = 4.dp
-                                                    )
-                                                    .fillMaxSize(),
-                                                horizontalArrangement = Arrangement.SpaceBetween,
-                                            ) {
-                                                Text(
-                                                    text = "Data: " + it.fieldData.toString(),
-                                                    fontSize = 12.sp
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-
-//                        Box(
-//                            modifier = Modifier
-//                                .padding(16.dp)
-//                                .fillMaxSize(),
-//                            contentAlignment = Alignment.BottomEnd,
-//                        ) {
-//                            FloatingActionButton(
-//                                onClick = {},
-//                                shape = RoundedCornerShape(32.dp),
-//                                modifier = Modifier,
-//                            ) {
-//                                Icon(
-//                                    imageVector = Icons.Default.Home,
-//                                    contentDescription = "Home"
+//            MyApplicationTheme {
+//                Surface(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .fillMaxSize()
+//                        .verticalScroll(rememberScrollState()),
+//                    color = MaterialTheme.colors.background
+//                ) {
+//
+//                }
+//                Column(
+//                    modifier = Modifier.fillMaxSize(),
+//                    verticalArrangement = Arrangement.Center,
+//                    horizontalAlignment = Alignment.CenterHorizontally
+//                ) {
+//                    val navController = rememberNavController()
+//                    Image(
+//                        painter = painterResource(id = app.halfmouth.R.drawable.logohalfmouth),
+//                        contentDescription = null,
+//                        modifier = Modifier.clickable(onClick = {
+//                            navController.navigate(Screen.ChartScreen.route)
+//                        })
+//                    )
+//                    Text(
+//                        text = stringResource(
+//                            id = SharedRes.strings.halfmouth
+//                        )
+//                    )
+//                    Spacer(modifier = Modifier.height(4.dp))
+//                    Divider(
+//                        color = Color.Gray,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .height(1.dp)
+//                            .padding(4.dp)
+//                    )
+//                    LazyColumn {
+//                        val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+//                        var newList = mutableListOf<Feeds>()
+//                        listReceive.forEach {
+//                            if (it.feeds.isNullOrEmpty().not()) {
+//                                val i1 = if (it.feeds.first()?.field1 == null) 1 else 0
+//                                val i2 = if (it.feeds.first()?.field5 == null) 1 else 0
+//                                newList = mutableListOf(
+//                                    Feeds(
+//                                        fieldName = it.channel?.field1,
+//                                        fieldValue = it.feeds[i1]?.field1,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field2,
+//                                        fieldValue = it.feeds[i1]?.field2,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field3,
+//                                        fieldValue = it.feeds[i1]?.field3,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field4,
+//                                        fieldValue = it.feeds[i1]?.field4,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field5,
+//                                        fieldValue = it.feeds[i2]?.field5,
+//                                        fieldData = it.feeds[i2]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field6,
+//                                        fieldValue = it.feeds[i1]?.field6,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field7,
+//                                        fieldValue = it.feeds[i1]?.field7,
+//                                        fieldData = it.feeds[i1]?.created_at
+//                                    ),
+//                                    Feeds(
+//                                        fieldName = it.channel?.field8,
+//                                        fieldValue = it.feeds[i2]?.field8,
+//                                        fieldData = it.feeds[i2]?.created_at
+//                                    ),
 //                                )
+//
+//                                items(newList) {
+//                                    Column(
+//                                        modifier = Modifier
+//                                            .fillMaxSize()
+//                                            .padding(4.dp)
+//                                    ) {
+//                                        Row(
+//                                            modifier = Modifier
+//                                                .padding(
+//                                                    start = 16.dp,
+//                                                    top = 16.dp,
+//                                                    end = 0.dp,
+//                                                    bottom = 4.dp
+//                                                )
+//                                                .fillMaxSize(),
+//                                        ) {
+//                                            val drawable =
+//                                                if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
+//                                                else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
+//                                                else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_water
+//                                                else R.drawable.icon_thermostat
+//                                            Image(
+//                                                painter = painterResource(
+//                                                    id = drawable
+//                                                ),
+//                                                contentDescription = null,
+//                                            )
+//                                            Text(
+//                                                text = it.fieldName.toString(),
+//                                                fontSize = 20.sp
+//                                            )
+//                                            val text =
+//                                                when (it.fieldValue) {
+//                                                    "0.00000" -> " = 0"
+//                                                    "1.00000" -> " = 1"
+//                                                    else -> " = ${it.fieldValue} °C"
+//                                                }
+//                                            Text(
+//                                                text = text,
+//                                                fontSize = 20.sp
+//                                            )
+//                                        }
+//                                        Row(
+//                                            modifier = Modifier
+//                                                .padding(
+//                                                    start = 20.dp,
+//                                                    top = 4.dp,
+//                                                    end = 16.dp,
+//                                                    bottom = 4.dp
+//                                                )
+//                                                .fillMaxSize(),
+//                                            horizontalArrangement = Arrangement.SpaceBetween,
+//                                        ) {
+//                                            Text(
+//                                                text = "Data: " + it.fieldData.toString(),
+//                                                fontSize = 12.sp
+//                                            )
+//                                        }
+//                                    }
+//                                }
 //                            }
 //                        }
-                    }
-                }
-                ThemeApp(
-                    darkTheme = isSystemInDarkTheme(),
-                    dynamicColor = true,
-                )
-            }
+//                    }
+//                }
+//            }
+//            ThemeApp(
+//                darkTheme = isSystemInDarkTheme(),
+//                dynamicColor = true,
+//            )
         }
     }
 }
+
 
 @Composable
 fun LineChartCompose() {
