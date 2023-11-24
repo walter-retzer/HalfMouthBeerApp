@@ -166,6 +166,7 @@ fun MainScreen(navController: NavController) {
                             color = YellowContainerLight,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif
                         )
                     )
                 }
@@ -236,7 +237,7 @@ fun MainScreen(navController: NavController) {
                                         ),
                                     shape = RoundedCornerShape(16.dp),
                                     elevation = 4.dp,
-                                    backgroundColor = OutlineDark
+                                    backgroundColor = OnBackgroundDark
                                 ) {
 
                                     Row(
@@ -256,8 +257,7 @@ fun MainScreen(navController: NavController) {
                                             contentDescription = null,
                                             modifier = Modifier.padding(5.dp),
                                             alignment = Alignment.BottomEnd,
-
-                                            )
+                                        )
                                     }
 
                                     Column(
@@ -325,10 +325,10 @@ fun MainScreen(navController: NavController) {
                                         Row(
                                             modifier = Modifier
                                                 .padding(
-                                                    start = 20.dp,
-                                                    top = 4.dp,
+                                                    start = 24.dp,
+                                                    top = 0.dp,
                                                     end = 16.dp,
-                                                    bottom = 4.dp
+                                                    bottom = 8.dp
                                                 )
                                                 .fillMaxSize(),
                                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -337,7 +337,7 @@ fun MainScreen(navController: NavController) {
                                                 text = "Data: " + it.fieldData.toString(),
                                                 style = TextStyle(
                                                     color = OnSurfaceVariantLight,
-                                                    fontSize = 12.sp,
+                                                    fontSize = 14.sp,
                                                     fontWeight = FontWeight.Normal,
                                                 )
                                             )
