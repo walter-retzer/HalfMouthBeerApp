@@ -28,6 +28,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,13 +56,11 @@ import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
-import app.halfmouth.theme.BackgroundDark
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
+import app.halfmouth.theme.OnSurfaceVariantLight
 import app.halfmouth.theme.TypographyDefault
-import app.halfmouth.theme.YellowContainerLight
 import app.halfmouth.theme.YellowSecondaryContainerLight
-import app.halfmouth.theme.YellowSecondaryLight
 import dev.icerock.moko.resources.StringResource
 
 
@@ -73,10 +72,10 @@ fun MainScreen(navController: NavController) {
         channel = null,
         feeds = emptyList()
     )
-//    val requestValuesOnThingSpeak = produceState(
-//        initialValue = initialValue,
-//        producer = { value = service.getThingSpeakValues("2") }
-//    )
+    val requestValuesOnThingSpeak = produceState(
+        initialValue = initialValue,
+        producer = { value = service.getThingSpeakValues("2") }
+    )
 
     val mutableListThing = mutableListOf(
         ThingSpeakResponse(
@@ -124,80 +123,72 @@ fun MainScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(100.dp)
-                        .background(YellowContainerLight)
+                        .height(80.dp)
+                        .background(YellowSecondaryContainerLight)
                 ) {
                     Text(
                         text = "Equipamentos",
                         textAlign = TextAlign.Center,
                         style = TextStyle(
-                            color = Color.White,
+                            color = OnSurfaceVariantLight,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                         )
                     )
                 }
 
-
-//                Column(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .background(Color.White)
-//                ) {
-
-
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp)
                 ) {
-                    // val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                    val listReceive = mutableListThing
+                    val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                    // val listReceive = mutableListThing
                     var newList = mutableListOf<Feeds>()
-                    listReceive.forEach {
-                        if (it.feeds.isNullOrEmpty().not()) {
-                            val i1 = if (it.feeds.first()?.field1 == null) 1 else 0
-                            val i2 = if (it.feeds.first()?.field5 == null) 1 else 0
+                    listReceive.forEach { response ->
+                        if (response.feeds.isNullOrEmpty().not()) {
+                            val i1 = if (response.feeds.first()?.field1 == null) 1 else 0
+                            val i2 = if (response.feeds.first()?.field5 == null) 1 else 0
                             newList = mutableListOf(
                                 Feeds(
-                                    fieldName = it.channel?.field1,
-                                    fieldValue = it.feeds[i1]?.field1,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field1,
+                                    fieldValue = response.feeds[i1]?.field1,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field2,
-                                    fieldValue = it.feeds[i1]?.field2,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field2,
+                                    fieldValue = response.feeds[i1]?.field2,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field3,
-                                    fieldValue = it.feeds[i1]?.field3,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field3,
+                                    fieldValue = response.feeds[i1]?.field3,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field4,
-                                    fieldValue = it.feeds[i1]?.field4,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field4,
+                                    fieldValue = response.feeds[i1]?.field4,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field5,
-                                    fieldValue = it.feeds[i2]?.field5,
-                                    fieldData = it.feeds[i2]?.created_at
+                                    fieldName = response.channel?.field5,
+                                    fieldValue = response.feeds[i2]?.field5,
+                                    fieldData = response.feeds[i2]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field6,
-                                    fieldValue = it.feeds[i1]?.field6,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field6,
+                                    fieldValue = response.feeds[i1]?.field6,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field7,
-                                    fieldValue = it.feeds[i1]?.field7,
-                                    fieldData = it.feeds[i1]?.created_at
+                                    fieldName = response.channel?.field7,
+                                    fieldValue = response.feeds[i1]?.field7,
+                                    fieldData = response.feeds[i1]?.created_at
                                 ),
                                 Feeds(
-                                    fieldName = it.channel?.field8,
-                                    fieldValue = it.feeds[i2]?.field8,
-                                    fieldData = it.feeds[i2]?.created_at
+                                    fieldName = response.channel?.field8,
+                                    fieldValue = response.feeds[i2]?.field8,
+                                    fieldData = response.feeds[i2]?.created_at
                                 ),
                             )
 
@@ -220,7 +211,7 @@ fun MainScreen(navController: NavController) {
                                         val drawable =
                                             if (it.fieldName.toString() == "CAMARA FRIA") app.halfmouth.android.R.drawable.icon_freezer
                                             else if (it.fieldName.toString() == "CHILLER") app.halfmouth.android.R.drawable.icon_freezer
-                                            else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") app.halfmouth.android.R.drawable.icon_water
+                                            else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") app.halfmouth.android.R.drawable.icon_pump
                                             else app.halfmouth.android.R.drawable.icon_thermostat
                                         Image(
                                             painter = painterResource(
@@ -230,7 +221,11 @@ fun MainScreen(navController: NavController) {
                                         )
                                         Text(
                                             text = it.fieldName.toString(),
-                                            fontSize = 20.sp
+                                            style = TextStyle(
+                                                color = OnSurfaceVariantLight,
+                                                fontSize = 20.sp,
+                                                fontWeight = FontWeight.Bold,
+                                            )
                                         )
                                         val text =
                                             when (it.fieldValue) {
@@ -240,7 +235,11 @@ fun MainScreen(navController: NavController) {
                                             }
                                         Text(
                                             text = text,
-                                            fontSize = 20.sp
+                                            style = TextStyle(
+                                                color = OnSurfaceVariantLight,
+                                                fontSize = 20.sp,
+                                                fontWeight = FontWeight.Bold,
+                                            )
                                         )
                                     }
                                     Row(
@@ -256,43 +255,11 @@ fun MainScreen(navController: NavController) {
                                     ) {
                                         Text(
                                             text = "Data: " + it.fieldData.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 20.dp,
-                                                top = 4.dp,
-                                                end = 16.dp,
-                                                bottom = 4.dp
+                                            style = TextStyle(
+                                                color = OnSurfaceVariantLight,
+                                                fontSize = 12.sp,
+                                                fontWeight = FontWeight.Normal,
                                             )
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it.fieldData.toString(),
-                                            fontSize = 12.sp
-                                        )
-                                    }
-
-
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 20.dp,
-                                                top = 4.dp,
-                                                end = 16.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it.fieldData.toString(),
-                                            fontSize = 12.sp
                                         )
                                     }
                                 }
@@ -300,18 +267,13 @@ fun MainScreen(navController: NavController) {
                         }
                     }
                 }
-
-
-//}
-
             }
         }
-
-
     }
+
     ThemeApp(
         darkTheme = isSystemInDarkTheme(),
-        dynamicColor = false,
+        dynamicColor = true,
     )
 }
 
@@ -326,7 +288,7 @@ fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val dynamicColor = false
+    val dynamicColor = true
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -341,7 +303,7 @@ fun MyApplicationTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = Color.Black.toArgb()
             WindowCompat.getInsetsController(
                 window,
                 view
@@ -392,7 +354,7 @@ fun RowScope.AddItem(
     BottomNavigationItem(
         modifier = Modifier
             .then(Modifier.weight(1.0f))
-            .background(YellowContainerLight),
+            .background(YellowSecondaryContainerLight),
         label = {
             Text(
                 text = screen.title,
@@ -407,9 +369,9 @@ fun RowScope.AddItem(
                 contentDescription = null
             )
         },
-        selectedContentColor = YellowSecondaryContainerLight,
+        selectedContentColor = OnSurfaceVariantLight,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
-        unselectedContentColor = YellowSecondaryContainerLight,
+        unselectedContentColor = OnSurfaceVariantLight,
         onClick = {},
         alwaysShowLabel = true
     )
