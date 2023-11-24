@@ -11,11 +11,15 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val service = ApiService.create()
+
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
+    private val _enableSwipeRefresh = MutableStateFlow(false)
+    val enableSwipeRefresh = _enableSwipeRefresh.asStateFlow()
+
     init {
-        loadStuff()
+        loadFirstShimmer()
     }
 
     fun request() {
@@ -24,13 +28,18 @@ class MainViewModel : ViewModel() {
         }
     }
 
-
+    private fun loadFirstShimmer() {
+        viewModelScope.launch {
+            _enableSwipeRefresh.value = true
+            delay(5000L)
+            _enableSwipeRefresh.value = false
+        }
+    }
 
     fun loadStuff() {
         viewModelScope.launch {
-            //service.getThingSpeakValues("2")
             _isLoading.value = true
-            delay(30000L)
+            delay(5000L)
             _isLoading.value = false
         }
     }
