@@ -3,6 +3,7 @@ package app.halfmouth.android.screen
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -74,7 +75,6 @@ import dev.icerock.moko.resources.StringResource
 @Composable
 fun MainScreen(navController: NavController) {
 
-    val service = ApiService.create()
     val viewModel = viewModel<MainViewModel>()
     val isLoading by viewModel.isLoading.collectAsState()
     val enableSwipeRefresh by viewModel.enableSwipeRefresh.collectAsState()
@@ -82,7 +82,7 @@ fun MainScreen(navController: NavController) {
 
     MyApplicationTheme {
         LoadScreen(
-            service,
+            navController,
             viewModel,
             swipeRefreshState,
             isLoading,
@@ -99,7 +99,7 @@ fun MainScreen(navController: NavController) {
 
 @Composable
 fun LoadScreen(
-    service: ApiService,
+    navController: NavController,
     viewModel: MainViewModel,
     swipeRefreshState: SwipeRefreshState,
     isLoading: Boolean,
@@ -107,7 +107,7 @@ fun LoadScreen(
 ) {
     val listReceive = mutableListOf(viewModel.response.value)
 
-    val mutableListThing = mutableListOf(
+    val mutableListMock = mutableListOf(
         ThingSpeakResponse(
             channel = null,
             feeds = listOf(
@@ -184,7 +184,7 @@ fun LoadScreen(
                         .background(Color.Black)
                 ) {
                     Text(
-                        text = "Equipamentos",
+                        text = "Produção",
                         textAlign = TextAlign.Center,
                         style = TextStyle(
                             color = YellowContainerLight,
@@ -279,7 +279,10 @@ fun LoadScreen(
                                                     id = R.drawable.icon_chart
                                                 ),
                                                 contentDescription = null,
-                                                modifier = Modifier.padding(5.dp),
+                                                modifier = Modifier.padding(5.dp)
+                                                    .clickable(onClick = {
+                                                    navController.navigate(ScreenRoute.ChartScreen.route)
+                                                }),
                                                 alignment = Alignment.BottomEnd,
                                             )
                                         }
