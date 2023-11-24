@@ -48,14 +48,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import app.halfmouth.android.R
-import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
+import app.halfmouth.android.utils.formattedDate
 import app.halfmouth.android.viewmodel.MainViewModel
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
@@ -279,10 +280,11 @@ fun LoadScreen(
                                                     id = R.drawable.icon_chart
                                                 ),
                                                 contentDescription = null,
-                                                modifier = Modifier.padding(5.dp)
+                                                modifier = Modifier
+                                                    .padding(5.dp)
                                                     .clickable(onClick = {
-                                                    navController.navigate(ScreenRoute.ChartScreen.route)
-                                                }),
+                                                        navController.navigate(ScreenRoute.ChartScreen.route)
+                                                    }),
                                                 alignment = Alignment.BottomEnd,
                                             )
                                         }
@@ -360,14 +362,19 @@ fun LoadScreen(
                                                     .fillMaxSize(),
                                                 horizontalArrangement = Arrangement.SpaceBetween,
                                             ) {
-                                                Text(
-                                                    text = "Data: " + it.fieldData.toString(),
-                                                    style = TextStyle(
-                                                        color = OnSurfaceVariantLight,
-                                                        fontSize = 14.sp,
-                                                        fontWeight = FontWeight.Normal,
+                                                if (it.fieldData != null) {
+                                                    val date =
+                                                        it.fieldData.toString().formattedDate()
+                                                    Text(
+                                                        text = "Data: $date",
+                                                        style = TextStyle(
+                                                            color = OnSurfaceVariantLight,
+                                                            fontSize = 14.sp,
+                                                            fontWeight = FontWeight.Normal,
+                                                        )
                                                     )
-                                                )
+                                                }
+
                                             }
                                         }
                                     }
@@ -475,7 +482,28 @@ fun RowScope.AddItem(
         selectedContentColor = YellowContainerLight,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
         unselectedContentColor = YellowContainerLight,
-        onClick = {},
+        onClick = {
+            onNavigate(checkAddFloatingButtonByDestination(screen.route))
+            navigateToScreen(screen, navController)
+        },
         alwaysShowLabel = true
     )
+}
+
+private fun checkAddFloatingButtonByDestination(route: String?): Boolean {
+    return when (route) {
+        ScreenRoute.MainScreen.route -> true
+        ScreenRoute.EquipmentsScreen.route -> true
+        null -> true
+        else -> false
+    }
+}
+
+private fun navigateToScreen(screen: ScreenRoute, navController: NavHostController) {
+    val route = screen.route
+    navController.navigate(route) {
+        popUpTo(navController.graph.findStartDestination().id)
+        launchSingleTop = true
+        restoreState = true
+    }
 }
