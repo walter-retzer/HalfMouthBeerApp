@@ -1,14 +1,11 @@
 package app.halfmouth.android.screen
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -27,62 +24,44 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.DarkGray
-import androidx.compose.ui.graphics.Color.Companion.Red
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import app.halfmouth.ThemeApp
 import app.halfmouth.android.R
 import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
-import app.halfmouth.theme.BackgroundLight
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
 import app.halfmouth.theme.OnBackgroundDark
-import app.halfmouth.theme.OnSurfaceDark
-import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.OnSurfaceVariantLight
-import app.halfmouth.theme.OutlineDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.TypographyDefault
 import app.halfmouth.theme.YellowContainerLight
-import app.halfmouth.theme.YellowPrimaryDark
-import app.halfmouth.theme.YellowSecondaryContainerDark
-import app.halfmouth.theme.YellowSecondaryContainerLight
-import app.halfmouth.theme.YellowTertiaryContainerDark
 import dev.icerock.moko.resources.StringResource
 
 
@@ -153,11 +132,6 @@ fun MainScreen(navController: NavController) {
                         .fillMaxWidth()
                         .height(80.dp)
                         .background(Color.Black)
-//                        .border(
-//                            width = 31.dp,
-//                            color = Color.Black,
-//                            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
-//                        )
                 ) {
                     Text(
                         text = "Equipamentos",
