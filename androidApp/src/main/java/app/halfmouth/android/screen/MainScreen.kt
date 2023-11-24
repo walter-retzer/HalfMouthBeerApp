@@ -75,10 +75,14 @@ import app.halfmouth.theme.OnBackgroundDark
 import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.OnSurfaceVariantLight
+import app.halfmouth.theme.OutlineDark
+import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.TypographyDefault
 import app.halfmouth.theme.YellowContainerLight
 import app.halfmouth.theme.YellowPrimaryDark
+import app.halfmouth.theme.YellowSecondaryContainerDark
 import app.halfmouth.theme.YellowSecondaryContainerLight
+import app.halfmouth.theme.YellowTertiaryContainerDark
 import dev.icerock.moko.resources.StringResource
 
 
@@ -136,7 +140,7 @@ fun MainScreen(navController: NavController) {
         ) {
             Column(
                 modifier = Modifier
-                    .background(OnSurfaceDark)
+                    .background(SurfaceVariantDark)
                     .padding(it)
                     .fillMaxWidth()
                     .fillMaxHeight()
@@ -148,7 +152,7 @@ fun MainScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(80.dp)
-                        .background(Color.White)
+                        .background(Color.Black)
 //                        .border(
 //                            width = 31.dp,
 //                            color = Color.Black,
@@ -159,7 +163,7 @@ fun MainScreen(navController: NavController) {
                         text = "Equipamentos",
                         textAlign = TextAlign.Center,
                         style = TextStyle(
-                            color = OnSurfaceVariantLight,
+                            color = YellowContainerLight,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                         )
@@ -232,7 +236,7 @@ fun MainScreen(navController: NavController) {
                                         ),
                                     shape = RoundedCornerShape(16.dp),
                                     elevation = 4.dp,
-                                    backgroundColor = Color.White
+                                    backgroundColor = OutlineDark
                                 ) {
 
                                     Row(
@@ -431,7 +435,7 @@ fun RowScope.AddItem(
     BottomNavigationItem(
         modifier = Modifier
             .then(Modifier.weight(1.0f))
-            .background(YellowContainerLight),
+            .background(Color.Black),
         label = {
             Text(
                 text = screen.title,
@@ -446,9 +450,9 @@ fun RowScope.AddItem(
                 contentDescription = null
             )
         },
-        selectedContentColor = Color.Black,
+        selectedContentColor = YellowContainerLight,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
-        unselectedContentColor = Color.Black,
+        unselectedContentColor = YellowContainerLight,
         onClick = {},
         alwaysShowLabel = true
     )
