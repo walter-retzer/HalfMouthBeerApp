@@ -28,6 +28,7 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
@@ -43,6 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -54,6 +56,7 @@ import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
+import app.halfmouth.android.viewmodel.MainViewModel
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
@@ -62,6 +65,9 @@ import app.halfmouth.theme.OnSurfaceVariantLight
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.TypographyDefault
 import app.halfmouth.theme.YellowContainerLight
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.icerock.moko.resources.StringResource
 
 
@@ -73,10 +79,13 @@ fun MainScreen(navController: NavController) {
         channel = null,
         feeds = emptyList()
     )
-    val requestValuesOnThingSpeak = produceState(
-        initialValue = initialValue,
-        producer = { value = service.getThingSpeakValues("2") }
-    )
+//    var requestValuesOnThingSpeak = produceState(
+//        initialValue = initialValue,
+//        producer = { value = service.getThingSpeakValues("2") }
+//    )
+    val viewModel = viewModel<MainViewModel>()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
 
     val mutableListThing = mutableListOf(
         ThingSpeakResponse(
@@ -117,204 +126,227 @@ fun MainScreen(navController: NavController) {
                 BottomBar(navController = rememberNavController()) { }
             }
         ) {
-            Column(
-                modifier = Modifier
-                    .background(SurfaceVariantDark)
-                    .padding(it)
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            ) {
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .background(Color.Black)
-                ) {
-                    Text(
-                        text = "Equipamentos",
-                        textAlign = TextAlign.Center,
-                        style = TextStyle(
-                            color = YellowContainerLight,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif
-                        )
+            SwipeRefresh(
+                state = swipeRefreshState,
+                onRefresh = {
+                    viewModel::loadStuff
+                },
+                swipeEnabled = true,
+                refreshTriggerDistance = 90.dp,
+                indicator = { state, trigger ->
+                    SwipeRefreshIndicator(
+                        state = state,
+                        refreshTriggerDistance = trigger,
+                        scale = true,
+                        arrowEnabled = false,
+                        backgroundColor = Color.Yellow,
+                        largeIndication = true,
+                        elevation = 16.dp,
+                        contentColor = Color.Black
                     )
                 }
+            ) {
 
-                LazyColumn(
+                Column(
                     modifier = Modifier
+                        .background(SurfaceVariantDark)
+                        .padding(it)
                         .fillMaxWidth()
+                        .fillMaxHeight()
                 ) {
-                    val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                    //val listReceive = mutableListThing
-                    var newList = mutableListOf<Feeds>()
-                    listReceive.forEach { response ->
-                        if (response.feeds.isNullOrEmpty().not()) {
-                            val i1 = if (response.feeds.first()?.field1 == null) 1 else 0
-                            val i2 = if (response.feeds.first()?.field5 == null) 1 else 0
-                            newList = mutableListOf(
-                                Feeds(
-                                    fieldName = response.channel?.field1,
-                                    fieldValue = response.feeds[i1]?.field1,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field2,
-                                    fieldValue = response.feeds[i1]?.field2,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field3,
-                                    fieldValue = response.feeds[i1]?.field3,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field4,
-                                    fieldValue = response.feeds[i1]?.field4,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field5,
-                                    fieldValue = response.feeds[i2]?.field5,
-                                    fieldData = response.feeds[i2]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field6,
-                                    fieldValue = response.feeds[i1]?.field6,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field7,
-                                    fieldValue = response.feeds[i1]?.field7,
-                                    fieldData = response.feeds[i1]?.created_at
-                                ),
-                                Feeds(
-                                    fieldName = response.channel?.field8,
-                                    fieldValue = response.feeds[i2]?.field8,
-                                    fieldData = response.feeds[i2]?.created_at
-                                ),
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(80.dp)
+                            .background(Color.Black)
+                    ) {
+                        Text(
+                            text = "Equipamentos",
+                            textAlign = TextAlign.Center,
+                            style = TextStyle(
+                                color = YellowContainerLight,
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = FontFamily.SansSerif
                             )
+                        )
+                    }
 
-                            items(newList) {
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Card(
-                                    modifier = Modifier
-                                        .padding(
-                                            top = 7.dp,
-                                            bottom = 7.dp,
-                                            start = 12.dp,
-                                            end = 12.dp
-                                        ),
-                                    shape = RoundedCornerShape(16.dp),
-                                    elevation = 4.dp,
-                                    backgroundColor = OnBackgroundDark
-                                ) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        //val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                        val listReceive = mutableListThing
+                        var newList = mutableListOf<Feeds>()
+                        listReceive.forEach { response ->
+                            if (response.feeds.isNullOrEmpty().not()) {
+                                val i1 = if (response.feeds.first()?.field1 == null) 1 else 0
+                                val i2 = if (response.feeds.first()?.field5 == null) 1 else 0
+                                newList = mutableListOf(
+                                    Feeds(
+                                        fieldName = response.channel?.field1,
+                                        fieldValue = response.feeds[i1]?.field1,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field2,
+                                        fieldValue = response.feeds[i1]?.field2,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field3,
+                                        fieldValue = response.feeds[i1]?.field3,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field4,
+                                        fieldValue = response.feeds[i1]?.field4,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field5,
+                                        fieldValue = response.feeds[i2]?.field5,
+                                        fieldData = response.feeds[i2]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field6,
+                                        fieldValue = response.feeds[i1]?.field6,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field7,
+                                        fieldValue = response.feeds[i1]?.field7,
+                                        fieldData = response.feeds[i1]?.created_at
+                                    ),
+                                    Feeds(
+                                        fieldName = response.channel?.field8,
+                                        fieldValue = response.feeds[i2]?.field8,
+                                        fieldData = response.feeds[i2]?.created_at
+                                    ),
+                                )
 
-                                    Row(
+                                items(newList) {
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Card(
                                         modifier = Modifier
                                             .padding(
-                                                top = 24.dp,
-                                                end = 16.dp,
-                                            )
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.End,
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Image(
-                                            painter = painterResource(
-                                                id = R.drawable.icon_chart
+                                                top = 7.dp,
+                                                bottom = 7.dp,
+                                                start = 12.dp,
+                                                end = 12.dp
                                             ),
-                                            contentDescription = null,
-                                            modifier = Modifier.padding(5.dp),
-                                            alignment = Alignment.BottomEnd,
-                                        )
-                                    }
-
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
+                                        shape = RoundedCornerShape(16.dp),
+                                        elevation = 4.dp,
+                                        backgroundColor = OnBackgroundDark
                                     ) {
+
                                         Row(
-                                            verticalAlignment = Alignment.CenterVertically,
                                             modifier = Modifier
                                                 .padding(
-                                                    start = 16.dp,
-                                                    top = 16.dp,
-                                                    end = 0.dp,
-                                                    bottom = 4.dp
+                                                    top = 24.dp,
+                                                    end = 16.dp,
                                                 )
                                                 .fillMaxSize(),
+                                            horizontalArrangement = Arrangement.End,
+                                            verticalAlignment = Alignment.CenterVertically
                                         ) {
-                                            val drawable =
-                                                if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
-                                                else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
-                                                else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_freezer
-                                                else R.drawable.icon_thermostat
                                             Image(
                                                 painter = painterResource(
-                                                    id = drawable
+                                                    id = R.drawable.icon_chart
                                                 ),
                                                 contentDescription = null,
-                                                modifier = Modifier.padding(5.dp)
-                                            )
-                                            val name =
-                                                if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") "BOMBA"
-                                                else it.fieldName.toString()
-                                            Text(
-                                                text = name,
-                                                style = TextStyle(
-                                                    color = Color.Black,
-                                                    fontSize = 20.sp,
-                                                    fontWeight = FontWeight.Bold,
-                                                    fontFamily = FontFamily.SansSerif
-                                                )
-                                            )
-                                            var valueFormatted = ""
-                                            try {
-                                                val value = it.fieldValue.toString().toDouble()
-                                                valueFormatted = String.format("%.2f", value)
-                                            } catch (e: Exception) {
-                                                println("Error: $e")
-                                            }
-                                            val text =
-                                                when (it.fieldValue) {
-                                                    "0.00000" -> " = 0"
-                                                    "1.00000" -> " = 1"
-                                                    else -> " = $valueFormatted°C"
-                                                }
-                                            Text(
-                                                text = text,
-                                                style = TextStyle(
-                                                    color = Color.Black,
-                                                    fontSize = 20.sp,
-                                                    fontWeight = FontWeight.Bold,
-                                                )
+                                                modifier = Modifier.padding(5.dp),
+                                                alignment = Alignment.BottomEnd,
                                             )
                                         }
 
-                                        Row(
+                                        Column(
                                             modifier = Modifier
-                                                .padding(
-                                                    start = 24.dp,
-                                                    top = 0.dp,
-                                                    end = 16.dp,
-                                                    bottom = 8.dp
-                                                )
-                                                .fillMaxSize(),
-                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                                .fillMaxWidth()
                                         ) {
-                                            Text(
-                                                text = "Data: " + it.fieldData.toString(),
-                                                style = TextStyle(
-                                                    color = OnSurfaceVariantLight,
-                                                    fontSize = 14.sp,
-                                                    fontWeight = FontWeight.Normal,
+                                            Row(
+                                                verticalAlignment = Alignment.CenterVertically,
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 16.dp,
+                                                        top = 16.dp,
+                                                        end = 0.dp,
+                                                        bottom = 4.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                            ) {
+                                                val drawable =
+                                                    if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
+                                                    else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_freezer
+                                                    else R.drawable.icon_thermostat
+                                                Image(
+                                                    painter = painterResource(
+                                                        id = drawable
+                                                    ),
+                                                    contentDescription = null,
+                                                    modifier = Modifier.padding(5.dp)
                                                 )
-                                            )
+                                                val name =
+                                                    if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") "BOMBA"
+                                                    else it.fieldName.toString()
+                                                Text(
+                                                    text = name,
+                                                    style = TextStyle(
+                                                        color = Color.Black,
+                                                        fontSize = 20.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        fontFamily = FontFamily.SansSerif
+                                                    )
+                                                )
+                                                var valueFormatted = ""
+                                                try {
+                                                    val value = it.fieldValue.toString().toDouble()
+                                                    valueFormatted = String.format("%.2f", value)
+                                                } catch (e: Exception) {
+                                                    println("Error: $e")
+                                                }
+                                                val text =
+                                                    when (it.fieldValue) {
+                                                        "0.00000" -> " = 0"
+                                                        "1.00000" -> " = 1"
+                                                        else -> " = $valueFormatted°C"
+                                                    }
+                                                Text(
+                                                    text = text,
+                                                    style = TextStyle(
+                                                        color = Color.Black,
+                                                        fontSize = 20.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                    )
+                                                )
+                                            }
+
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(
+                                                        start = 24.dp,
+                                                        top = 0.dp,
+                                                        end = 16.dp,
+                                                        bottom = 8.dp
+                                                    )
+                                                    .fillMaxSize(),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                            ) {
+                                                Text(
+                                                    text = "Data: " + it.fieldData.toString(),
+                                                    style = TextStyle(
+                                                        color = OnSurfaceVariantLight,
+                                                        fontSize = 14.sp,
+                                                        fontWeight = FontWeight.Normal,
+                                                    )
+                                                )
+                                            }
                                         }
                                     }
                                 }
@@ -322,7 +354,11 @@ fun MainScreen(navController: NavController) {
                         }
                     }
                 }
+
+
             }
+
+
         }
     }
 
