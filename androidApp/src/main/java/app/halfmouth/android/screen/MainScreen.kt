@@ -4,11 +4,14 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,10 +21,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -32,6 +37,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -51,15 +57,22 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import app.halfmouth.ThemeApp
+import app.halfmouth.android.R
 import app.halfmouth.android.data.api.ApiService
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.core.Strings
+import app.halfmouth.theme.BackgroundLight
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
+import app.halfmouth.theme.OnBackgroundDark
+import app.halfmouth.theme.OnSurfaceDark
+import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.OnSurfaceVariantLight
 import app.halfmouth.theme.TypographyDefault
+import app.halfmouth.theme.YellowContainerLight
+import app.halfmouth.theme.YellowPrimaryDark
 import app.halfmouth.theme.YellowSecondaryContainerLight
 import dev.icerock.moko.resources.StringResource
 
@@ -116,7 +129,13 @@ fun MainScreen(navController: NavController) {
                 BottomBar(navController = rememberNavController()) { }
             }
         ) {
-            Column(modifier = Modifier.padding(it)) {
+            Column(
+                modifier = Modifier
+                    .background(OnSurfaceDark)
+                    .padding(it)
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            ) {
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -124,7 +143,12 @@ fun MainScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(80.dp)
-                        .background(YellowSecondaryContainerLight)
+                        .background(Color.White)
+//                        .border(
+//                            width = 31.dp,
+//                            color = Color.Black,
+//                            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
+//                        )
                 ) {
                     Text(
                         text = "Equipamentos",
@@ -140,10 +164,10 @@ fun MainScreen(navController: NavController) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 8.dp)
+                        // .background(OnSurfaceDark)
                 ) {
                     val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                    // val listReceive = mutableListThing
+                    //val listReceive = mutableListThing
                     var newList = mutableListOf<Feeds>()
                     listReceive.forEach { response ->
                         if (response.feeds.isNullOrEmpty().not()) {
@@ -193,74 +217,89 @@ fun MainScreen(navController: NavController) {
                             )
 
                             items(newList) {
-                                Column(
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Card(
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(4.dp)
+                                        .padding(
+                                            top = 7.dp,
+                                            bottom = 7.dp,
+                                            start = 12.dp,
+                                            end = 12.dp
+                                        ),
+                                    shape = RoundedCornerShape(16.dp),
+                                    elevation = 4.dp,
+                                    backgroundColor = Color.White
                                 ) {
-                                    Row(
+
+
+                                    Column(
                                         modifier = Modifier
-                                            .padding(
-                                                start = 16.dp,
-                                                top = 16.dp,
-                                                end = 0.dp,
-                                                bottom = 4.dp
-                                            )
-                                            .fillMaxSize(),
+                                            .fillMaxWidth()
                                     ) {
-                                        val drawable =
-                                            if (it.fieldName.toString() == "CAMARA FRIA") app.halfmouth.android.R.drawable.icon_freezer
-                                            else if (it.fieldName.toString() == "CHILLER") app.halfmouth.android.R.drawable.icon_freezer
-                                            else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") app.halfmouth.android.R.drawable.icon_pump
-                                            else app.halfmouth.android.R.drawable.icon_thermostat
-                                        Image(
-                                            painter = painterResource(
-                                                id = drawable
-                                            ),
-                                            contentDescription = null,
-                                        )
-                                        Text(
-                                            text = it.fieldName.toString(),
-                                            style = TextStyle(
-                                                color = OnSurfaceVariantLight,
-                                                fontSize = 20.sp,
-                                                fontWeight = FontWeight.Bold,
+                                        Row(
+                                            modifier = Modifier
+                                                .padding(
+                                                    start = 16.dp,
+                                                    top = 16.dp,
+                                                    end = 0.dp,
+                                                    bottom = 4.dp
+                                                )
+                                                .fillMaxSize(),
+                                        ) {
+                                            val drawable =
+                                                if (it.fieldName.toString() == "CAMARA FRIA") R.drawable.icon_freezer
+                                                else if (it.fieldName.toString() == "CHILLER") R.drawable.icon_freezer
+                                                else if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") R.drawable.icon_freezer
+                                                else R.drawable.icon_thermostat
+                                            Image(
+                                                painter = painterResource(
+                                                    id = drawable
+                                                ),
+                                                contentDescription = null,
                                             )
-                                        )
-                                        val text =
-                                            when (it.fieldValue) {
-                                                "0.00000" -> " = 0"
-                                                "1.00000" -> " = 1"
-                                                else -> " = ${it.fieldValue} °C"
-                                            }
-                                        Text(
-                                            text = text,
-                                            style = TextStyle(
-                                                color = OnSurfaceVariantLight,
-                                                fontSize = 20.sp,
-                                                fontWeight = FontWeight.Bold,
+                                            Text(
+                                                text = it.fieldName.toString(),
+                                                style = TextStyle(
+                                                    color = OnSurfaceVariantLight,
+                                                    fontSize = 20.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                )
                                             )
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 20.dp,
-                                                top = 4.dp,
-                                                end = 16.dp,
-                                                bottom = 4.dp
+                                            val text =
+                                                when (it.fieldValue) {
+                                                    "0.00000" -> " = 0"
+                                                    "1.00000" -> " = 1"
+                                                    else -> " = ${it.fieldValue} °C"
+                                                }
+                                            Text(
+                                                text = text,
+                                                style = TextStyle(
+                                                    color = OnSurfaceVariantLight,
+                                                    fontSize = 20.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                )
                                             )
-                                            .fillMaxSize(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Data: " + it.fieldData.toString(),
-                                            style = TextStyle(
-                                                color = OnSurfaceVariantLight,
-                                                fontSize = 12.sp,
-                                                fontWeight = FontWeight.Normal,
+                                        }
+                                        Row(
+                                            modifier = Modifier
+                                                .padding(
+                                                    start = 20.dp,
+                                                    top = 4.dp,
+                                                    end = 16.dp,
+                                                    bottom = 4.dp
+                                                )
+                                                .fillMaxSize(),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                        ) {
+                                            Text(
+                                                text = "Data: " + it.fieldData.toString(),
+                                                style = TextStyle(
+                                                    color = OnSurfaceVariantLight,
+                                                    fontSize = 12.sp,
+                                                    fontWeight = FontWeight.Normal,
+                                                )
                                             )
-                                        )
+                                        }
                                     }
                                 }
                             }
@@ -271,10 +310,10 @@ fun MainScreen(navController: NavController) {
         }
     }
 
-    ThemeApp(
-        darkTheme = isSystemInDarkTheme(),
-        dynamicColor = true,
-    )
+//    ThemeApp(
+//        darkTheme = isSystemInDarkTheme(),
+//        dynamicColor = true,
+//    )
 }
 
 
@@ -299,17 +338,17 @@ fun MyApplicationTheme(
         else -> LightColorScheme
     }
 
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = Color.Black.toArgb()
-            WindowCompat.getInsetsController(
-                window,
-                view
-            ).isAppearanceLightStatusBars = darkTheme
-        }
-    }
+//    val view = LocalView.current
+//    if (!view.isInEditMode) {
+//        SideEffect {
+//            val window = (view.context as Activity).window
+//            window.statusBarColor = Color.Black.toArgb()
+//            WindowCompat.getInsetsController(
+//                window,
+//                view
+//            ).isAppearanceLightStatusBars = darkTheme
+//        }
+//    }
 
     val typography = TypographyDefault
     val shapes = Shapes(
@@ -354,7 +393,7 @@ fun RowScope.AddItem(
     BottomNavigationItem(
         modifier = Modifier
             .then(Modifier.weight(1.0f))
-            .background(YellowSecondaryContainerLight),
+            .background(YellowContainerLight),
         label = {
             Text(
                 text = screen.title,
@@ -369,9 +408,9 @@ fun RowScope.AddItem(
                 contentDescription = null
             )
         },
-        selectedContentColor = OnSurfaceVariantLight,
+        selectedContentColor = Color.Black,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
-        unselectedContentColor = OnSurfaceVariantLight,
+        unselectedContentColor = Color.Black,
         onClick = {},
         alwaysShowLabel = true
     )
