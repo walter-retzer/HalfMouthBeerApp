@@ -1,8 +1,10 @@
 package app.halfmouth.android.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.halfmouth.android.data.api.ApiService
+import app.halfmouth.android.data.remote.ThingSpeakResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,18 +20,21 @@ class MainViewModel : ViewModel() {
     private val _enableSwipeRefresh = MutableStateFlow(false)
     val enableSwipeRefresh = _enableSwipeRefresh.asStateFlow()
 
+    private val results = "2"
+    var response = mutableStateOf(
+        ThingSpeakResponse(
+            channel = null,
+            feeds = emptyList()
+        )
+    )
+
     init {
         loadFirstShimmer()
     }
 
-    fun request() {
-        viewModelScope.launch {
-            service.getThingSpeakValues("2")
-        }
-    }
-
     private fun loadFirstShimmer() {
         viewModelScope.launch {
+            response.value = service.getThingSpeakValues(results)
             _enableSwipeRefresh.value = true
             delay(5000L)
             _enableSwipeRefresh.value = false
@@ -38,6 +43,7 @@ class MainViewModel : ViewModel() {
 
     fun loadStuff() {
         viewModelScope.launch {
+            response.value = service.getThingSpeakValues("2")
             _isLoading.value = true
             delay(5000L)
             _isLoading.value = false

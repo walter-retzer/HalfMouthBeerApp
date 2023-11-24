@@ -30,7 +30,6 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -106,15 +105,7 @@ fun LoadScreen(
     isLoading: Boolean,
     enableSwipeRefresh: Boolean,
 ) {
-
-    val initialValue = ThingSpeakResponse(
-        channel = null,
-        feeds = emptyList()
-    )
-    val requestValuesOnThingSpeak = produceState(
-        initialValue = initialValue,
-        producer = { value = service.getThingSpeakValues("2") }
-    )
+    val listReceive = mutableListOf(viewModel.response.value)
 
     val mutableListThing = mutableListOf(
         ThingSpeakResponse(
@@ -204,21 +195,18 @@ fun LoadScreen(
                     )
                 }
 
-
                 if (isLoading || enableSwipeRefresh) AnimatedShimmer(ShimmerScreen.HOME)
                 else {
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                        //val listReceive = mutableListThing
-                        var newList = mutableListOf<Feeds>()
+
                         listReceive.forEach { response ->
                             if (response.feeds.isNullOrEmpty().not()) {
                                 val i1 = if (response.feeds.first()?.field1 == null) 1 else 0
                                 val i2 = if (response.feeds.first()?.field5 == null) 1 else 0
-                                newList = mutableListOf(
+                                val newList = mutableListOf(
                                     Feeds(
                                         fieldName = response.channel?.field1,
                                         fieldValue = response.feeds[i1]?.field1,
