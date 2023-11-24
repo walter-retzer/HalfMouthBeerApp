@@ -8,6 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -38,13 +39,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.DarkGray
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -97,7 +102,7 @@ fun MainScreen(navController: NavController) {
                 FeedsThingSpeak(
                     created_at = "",
                     entry_id = 1,
-                    field1 = "25.000000",
+                    field1 = "25.223333",
                     field2 = "25.000000",
                     field3 = "25.000000",
                     field4 = "25.000000",
@@ -164,7 +169,6 @@ fun MainScreen(navController: NavController) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        // .background(OnSurfaceDark)
                 ) {
                     val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
                     //val listReceive = mutableListThing
@@ -231,12 +235,33 @@ fun MainScreen(navController: NavController) {
                                     backgroundColor = Color.White
                                 ) {
 
+                                    Row(
+                                        modifier = Modifier
+                                            .padding(
+                                                top = 24.dp,
+                                                end = 16.dp,
+                                            )
+                                            .fillMaxSize(),
+                                        horizontalArrangement = Arrangement.End,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Image(
+                                            painter = painterResource(
+                                                id = R.drawable.icon_chart
+                                            ),
+                                            contentDescription = null,
+                                            modifier = Modifier.padding(5.dp),
+                                            alignment = Alignment.BottomEnd,
+
+                                            )
+                                    }
 
                                     Column(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                     ) {
                                         Row(
+                                            verticalAlignment = Alignment.CenterVertically,
                                             modifier = Modifier
                                                 .padding(
                                                     start = 16.dp,
@@ -256,30 +281,43 @@ fun MainScreen(navController: NavController) {
                                                     id = drawable
                                                 ),
                                                 contentDescription = null,
+                                                modifier = Modifier.padding(5.dp)
                                             )
+                                            val name =
+                                                if (it.fieldName.toString() == "BOMBA RECIRCULAÇÃO") "BOMBA"
+                                                else it.fieldName.toString()
                                             Text(
-                                                text = it.fieldName.toString(),
+                                                text = name,
                                                 style = TextStyle(
-                                                    color = OnSurfaceVariantLight,
+                                                    color = Color.Black,
                                                     fontSize = 20.sp,
                                                     fontWeight = FontWeight.Bold,
+                                                    fontFamily = FontFamily.SansSerif
                                                 )
                                             )
+                                            var valueFormatted = ""
+                                            try {
+                                                val value = it.fieldValue.toString().toDouble()
+                                                valueFormatted = String.format("%.2f", value)
+                                            } catch (e: Exception) {
+                                                println("Error: $e")
+                                            }
                                             val text =
                                                 when (it.fieldValue) {
                                                     "0.00000" -> " = 0"
                                                     "1.00000" -> " = 1"
-                                                    else -> " = ${it.fieldValue} °C"
+                                                    else -> " = $valueFormatted°C"
                                                 }
                                             Text(
                                                 text = text,
                                                 style = TextStyle(
-                                                    color = OnSurfaceVariantLight,
+                                                    color = Color.Black,
                                                     fontSize = 20.sp,
                                                     fontWeight = FontWeight.Bold,
                                                 )
                                             )
                                         }
+
                                         Row(
                                             modifier = Modifier
                                                 .padding(
