@@ -28,9 +28,13 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -69,23 +73,11 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.icerock.moko.resources.StringResource
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun MainScreen(navController: NavController) {
-
-    val service = ApiService.create()
-    val initialValue = ThingSpeakResponse(
-        channel = null,
-        feeds = emptyList()
-    )
-//    var requestValuesOnThingSpeak = produceState(
-//        initialValue = initialValue,
-//        producer = { value = service.getThingSpeakValues("2") }
-//    )
-    val viewModel = viewModel<MainViewModel>()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
 
     val mutableListThing = mutableListOf(
         ThingSpeakResponse(
@@ -120,68 +112,111 @@ fun MainScreen(navController: NavController) {
     )
 
     MyApplicationTheme {
-        Scaffold(
-            scaffoldState = rememberScaffoldState(),
-            bottomBar = {
-                BottomBar(navController = rememberNavController()) { }
+
+        var isLoadingShimmer by remember {
+            mutableStateOf(true)
+        }
+        LaunchedEffect(key1 = true) {
+            delay(15000L)
+            isLoadingShimmer = false
+        }
+
+        //if (isLoadingShimmer) AnimatedShimmer(ShimmerScreen.CHALLENGE) else LoadScreen(isLoadingShimmer)
+        LoadScreen(isLoadingShimmer)
+
+
+    }
+
+//    ThemeApp(
+//        darkTheme = isSystemInDarkTheme(),
+//        dynamicColor = true,
+//    )
+}
+
+
+@Composable
+fun LoadScreen(isLoadingShimmer: Boolean) {
+
+    val service = ApiService.create()
+    val initialValue = ThingSpeakResponse(
+        channel = null,
+        feeds = emptyList()
+    )
+    var requestValuesOnThingSpeak = produceState(
+        initialValue = initialValue,
+        producer = { value = service.getThingSpeakValues("2") }
+    )
+
+    val viewModel = viewModel<MainViewModel>()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
+
+    Scaffold(
+        scaffoldState = rememberScaffoldState(),
+        bottomBar = {
+            BottomBar(navController = rememberNavController()) { }
+        }
+    ) {
+
+        SwipeRefresh(
+            state = swipeRefreshState,
+            onRefresh = {
+                viewModel.loadStuff()
+            },
+            swipeEnabled = true,
+            refreshTriggerDistance = 90.dp,
+            indicator = { state, trigger ->
+                SwipeRefreshIndicator(
+                    state = state,
+                    refreshTriggerDistance = trigger,
+                    scale = true,
+                    arrowEnabled = false,
+                    backgroundColor = Color.Yellow,
+                    largeIndication = true,
+                    elevation = 16.dp,
+                    contentColor = Color.Black
+                )
             }
         ) {
 
-            SwipeRefresh(
-                state = swipeRefreshState,
-                onRefresh = {
-                    viewModel::loadStuff
-                },
-                swipeEnabled = true,
-                refreshTriggerDistance = 90.dp,
-                indicator = { state, trigger ->
-                    SwipeRefreshIndicator(
-                        state = state,
-                        refreshTriggerDistance = trigger,
-                        scale = true,
-                        arrowEnabled = false,
-                        backgroundColor = Color.Yellow,
-                        largeIndication = true,
-                        elevation = 16.dp,
-                        contentColor = Color.Black
-                    )
-                }
+            Column(
+                modifier = Modifier
+                    .background(SurfaceVariantDark)
+                    .padding(it)
+                    .fillMaxWidth()
+                    .fillMaxHeight()
             ) {
 
-                Column(
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
-                        .background(SurfaceVariantDark)
-                        .padding(it)
                         .fillMaxWidth()
-                        .fillMaxHeight()
+                        .height(80.dp)
+                        .background(Color.Black)
                 ) {
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(80.dp)
-                            .background(Color.Black)
-                    ) {
-                        Text(
-                            text = "Equipamentos",
-                            textAlign = TextAlign.Center,
-                            style = TextStyle(
-                                color = YellowContainerLight,
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.SansSerif
-                            )
+                    Text(
+                        text = "Equipamentos",
+                        textAlign = TextAlign.Center,
+                        style = TextStyle(
+                            color = YellowContainerLight,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif
                         )
-                    }
+                    )
+                }
+
+
+                if (isLoadingShimmer) AnimatedShimmer(ShimmerScreen.HOME)
+                else {
 
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        //val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
-                        val listReceive = mutableListThing
+                        val listReceive = mutableListOf(requestValuesOnThingSpeak.value)
+                        //val listReceive = mutableListThing
                         var newList = mutableListOf<Feeds>()
                         listReceive.forEach { response ->
                             if (response.feeds.isNullOrEmpty().not()) {
@@ -353,21 +388,16 @@ fun MainScreen(navController: NavController) {
                             }
                         }
                     }
+
+
                 }
 
 
             }
 
-
         }
     }
-
-//    ThemeApp(
-//        darkTheme = isSystemInDarkTheme(),
-//        dynamicColor = true,
-//    )
 }
-
 
 @Composable
 fun stringResource(id: StringResource, vararg args: Any): String {

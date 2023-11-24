@@ -19,7 +19,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun request() {
-        loadStuff()
         viewModelScope.launch {
             service.getThingSpeakValues("2")
         }
@@ -29,9 +28,9 @@ class MainViewModel : ViewModel() {
 
     fun loadStuff() {
         viewModelScope.launch {
-            service.getThingSpeakValues("2")
+            //service.getThingSpeakValues("2")
             _isLoading.value = true
-            delay(3000L)
+            delay(30000L)
             _isLoading.value = false
         }
     }
