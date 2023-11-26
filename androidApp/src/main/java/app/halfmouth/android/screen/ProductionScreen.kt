@@ -8,7 +8,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,10 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
@@ -34,10 +30,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -45,14 +39,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import app.halfmouth.android.R
+import app.halfmouth.android.components.BottomBar
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
@@ -74,7 +63,7 @@ import dev.icerock.moko.resources.StringResource
 
 
 @Composable
-fun ProductionScreen(navController: NavController) {
+fun ProductionScreen(navController: NavHostController) {
 
     val viewModel = viewModel<MainViewModel>()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -100,12 +89,13 @@ fun ProductionScreen(navController: NavController) {
 
 @Composable
 fun LoadScreen(
-    navController: NavController,
+    navController: NavHostController,
     viewModel: MainViewModel,
     swipeRefreshState: SwipeRefreshState,
     isLoading: Boolean,
     enableSwipeRefresh: Boolean,
 ) {
+
     val listReceive = mutableListOf(viewModel.response.value)
 
     val mutableListMock = mutableListOf(
@@ -143,7 +133,7 @@ fun LoadScreen(
     Scaffold(
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
-            BottomBar(navController = rememberNavController()) { }
+            BottomBar(navController = navController)
         }
     ) {
 
@@ -433,77 +423,4 @@ fun MyApplicationTheme(
         typography = typography,
         content = content
     )
-}
-
-@Composable
-fun BottomBar(navController: NavHostController, onNavigate: (AddFloatingButton: Boolean) -> Unit) {
-    val screens = listOfBottomBarScreen()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-    BottomNavigation(elevation = 0.dp) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController,
-                onNavigate = onNavigate
-            )
-        }
-    }
-}
-
-@Composable
-fun RowScope.AddItem(
-    screen: ScreenRoute,
-    currentDestination: NavDestination?,
-    navController: NavHostController,
-    onNavigate: (AddFloatingButton: Boolean) -> Unit,
-) {
-    val destinationRoute = currentDestination?.route?.replace("/{isEdit}", "")
-    BottomNavigationItem(
-        modifier = Modifier
-            .then(Modifier.weight(1.0f))
-            .background(Color.Black),
-        label = {
-            Text(
-                text = screen.title,
-                textAlign = TextAlign.Center,
-                softWrap = false,
-                fontSize = 10.sp
-            )
-        },
-        icon = {
-            Icon(
-                imageVector = ImageVector.vectorResource(screen.icon),
-                contentDescription = null
-            )
-        },
-        selectedContentColor = YellowContainerLight,
-        selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
-        unselectedContentColor = YellowContainerLight,
-        onClick = {
-            onNavigate(checkAddFloatingButtonByDestination(screen.route))
-            navigateToScreen(screen, navController)
-        },
-        alwaysShowLabel = true
-    )
-}
-
-private fun checkAddFloatingButtonByDestination(route: String?): Boolean {
-    return when (route) {
-        ScreenRoute.HomeScreen.route -> true
-        ScreenRoute.ProductionScreen.route -> true
-        null -> true
-        else -> false
-    }
-}
-
-private fun navigateToScreen(screen: ScreenRoute, navController: NavHostController) {
-    val route = screen.route
-    navController.navigate(route) {
-        popUpTo(navController.graph.findStartDestination().id)
-        launchSingleTop = true
-        restoreState = true
-    }
 }
