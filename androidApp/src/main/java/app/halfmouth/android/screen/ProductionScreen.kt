@@ -74,7 +74,7 @@ import dev.icerock.moko.resources.StringResource
 
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun ProductionScreen(navController: NavController) {
 
     val viewModel = viewModel<MainViewModel>()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -492,8 +492,8 @@ fun RowScope.AddItem(
 
 private fun checkAddFloatingButtonByDestination(route: String?): Boolean {
     return when (route) {
-        ScreenRoute.MainScreen.route -> true
-        ScreenRoute.EquipmentsScreen.route -> true
+        ScreenRoute.HomeScreen.route -> true
+        ScreenRoute.ProductionScreen.route -> true
         null -> true
         else -> false
     }
