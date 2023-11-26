@@ -1,17 +1,21 @@
 package app.halfmouth.android.screen
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -19,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
+import app.halfmouth.theme.OnBackgroundDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
@@ -37,7 +42,7 @@ fun LoadScreen() {
             .background(YellowContainerLight)
             .fillMaxSize()
     ) {
-        val (text, rectangle, beer) = createRefs()
+        val (text, rectangle, card) = createRefs()
 
         Text(
             text = "Home",
@@ -71,20 +76,37 @@ fun LoadScreen() {
                 Color.White,
                 topLeft = Offset(0f, -100f),
                 size = size,
-                cornerRadius = CornerRadius(50.dp.toPx(), 50.dp.toPx()),
+                cornerRadius = CornerRadius(30.dp.toPx(), 30.dp.toPx()),
             )
         }
 
-        Image(
-            painter = painterResource(id = app.halfmouth.android.R.drawable.bottle_beer),
-            contentDescription = "Logo",
+        LazyColumn(
             modifier = Modifier
-                .padding(top = 100.dp, end = 0.dp)
-                .constrainAs(beer) {
-                    top.linkTo(parent.top)
+                .wrapContentHeight()
+                .padding(top = 155.dp, bottom = 45.dp)
+                .constrainAs(card) {
+                    top.linkTo(rectangle.top)
                     end.linkTo(parent.end)
+                    start.linkTo(parent.start)
+                    bottom.linkTo(parent.bottom)
                 }
-        )
+        ) {
+            items(15) {
+                Card(
+                    modifier = Modifier
+                        .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .height(100.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = 4.dp,
+                    backgroundColor = OnBackgroundDark
+                ) {}
+
+            }
+
+        }
+
     }
 
 }
