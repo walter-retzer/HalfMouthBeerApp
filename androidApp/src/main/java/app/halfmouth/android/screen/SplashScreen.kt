@@ -32,7 +32,7 @@ fun SplashScreen(navController: NavController) {
             )
         )
         delay(3000L)
-        navController.navigate(ScreenRoute.MainScreen.route)
+        navController.navigate(ScreenRoute.HomeScreen.route)
     }
     Box(
         modifier = Modifier.fillMaxSize(),
