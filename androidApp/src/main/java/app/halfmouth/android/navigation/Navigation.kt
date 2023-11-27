@@ -1,6 +1,11 @@
 package app.halfmouth.android.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -12,6 +17,7 @@ import app.halfmouth.android.screen.HomeScreen
 import app.halfmouth.android.screen.ProductionScreen
 import app.halfmouth.android.screen.ScreenRoute
 import app.halfmouth.android.screen.SplashScreen
+import app.halfmouth.android.viewmodel.SharedViewModel
 
 
 @Composable
@@ -21,25 +27,41 @@ fun Navigation() {
         composable(route = ScreenRoute.SplashScreen.route) {
             SplashScreen(navController)
         }
+
         composable(route = ScreenRoute.HomeScreen.route) {
+            val sharedViewModel =
+                it.sharedViewModel<SharedViewModel>(navController = navController)
             HomeScreen(navController)
         }
+
         navigation(
             startDestination = ScreenRoute.ProductionScreen.route,
             route = "navigation_production"
         ) {
-
             composable(
                 route = ScreenRoute.ProductionScreen.route,
                 enterTransition = slideUpEnterAnimation,
                 exitTransition = slideDownExitAnimation
 
             ) {
+                val sharedViewModel =
+                    it.sharedViewModel<SharedViewModel>(navController = navController)
                 ProductionScreen(navController)
             }
             composable(route = ScreenRoute.ChartScreen.route) {
+                val sharedViewModel =
+                    it.sharedViewModel<SharedViewModel>(navController = navController)
                 ChartScreen(navController)
             }
         }
     }
+}
+
+@Composable
+inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navController: NavController): T {
+    val navGraphRoute = destination.parent?.route ?: return viewModel()
+    val parentEntry = remember(this) {
+        navController.getBackStackEntry(navGraphRoute)
+    }
+    return viewModel(parentEntry)
 }
