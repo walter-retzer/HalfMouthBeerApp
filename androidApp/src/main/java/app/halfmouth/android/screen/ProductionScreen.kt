@@ -71,7 +71,7 @@ fun ProductionScreen(navController: NavHostController) {
     val enableSwipeRefresh by viewModel.enableSwipeRefresh.collectAsState()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
 
-    BackHandler {  }
+    BackHandler { }
 
     MyApplicationTheme {
         LoadScreen(
@@ -332,7 +332,12 @@ fun LoadScreen(
                                                     when (it.fieldValue) {
                                                         "0.00000" -> " = 0"
                                                         "1.00000" -> " = 1"
-                                                        else -> " = $valueFormatted°C"
+                                                        else -> " = ${
+                                                            valueFormatted.replace(
+                                                                ",",
+                                                                "."
+                                                            )
+                                                        }°C"
                                                     }
                                                 Text(
                                                     text = text,
