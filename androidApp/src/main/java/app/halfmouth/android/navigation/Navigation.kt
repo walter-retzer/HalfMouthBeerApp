@@ -22,6 +22,7 @@ import app.halfmouth.android.screen.ChartScreen
 import app.halfmouth.android.screen.HomeScreen
 import app.halfmouth.android.screen.ProductionScreen
 import app.halfmouth.android.screen.ScreenRoute
+import app.halfmouth.android.screen.SignInScreen
 import app.halfmouth.android.screen.SplashScreen
 import app.halfmouth.android.viewmodel.SharedViewModel
 
@@ -32,6 +33,18 @@ fun Navigation() {
     NavHost(navController = navController, startDestination = ScreenRoute.SplashScreen.route) {
         composable(route = ScreenRoute.SplashScreen.route) {
             SplashScreen(navController)
+        }
+
+        composable(route = ScreenRoute.SignInScreen.route) {
+            SignInScreen(navController)
+        }
+
+        composable(route = ScreenRoute.ProfileScreen.route) {
+            SignInScreen(navController)
+        }
+
+        composable(route = ScreenRoute.NotificationScreen.route) {
+            SignInScreen(navController)
         }
 
         composable(route = ScreenRoute.HomeScreen.route) {
