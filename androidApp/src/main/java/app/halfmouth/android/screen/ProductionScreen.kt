@@ -1,5 +1,6 @@
 package app.halfmouth.android.screen
 
+import android.app.Activity
 import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
@@ -47,7 +48,8 @@ import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
 import app.halfmouth.android.utils.formattedDate
-import app.halfmouth.android.viewmodel.MainViewModel
+import app.halfmouth.android.utils.lockScreen
+import app.halfmouth.android.viewmodel.ProductionViewModel
 import app.halfmouth.core.Strings
 import app.halfmouth.theme.DarkColorScheme
 import app.halfmouth.theme.LightColorScheme
@@ -58,7 +60,6 @@ import app.halfmouth.theme.TypographyDefault
 import app.halfmouth.theme.YellowContainerLight
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
-import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.icerock.moko.resources.StringResource
 
@@ -66,20 +67,14 @@ import dev.icerock.moko.resources.StringResource
 @Composable
 fun ProductionScreen(navController: NavHostController) {
 
-    val viewModel = viewModel<MainViewModel>()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val enableSwipeRefresh by viewModel.enableSwipeRefresh.collectAsState()
-    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
+    val viewModel = viewModel<ProductionViewModel>()
 
     BackHandler { }
 
     MyApplicationTheme {
         LoadScreen(
             navController,
-            viewModel,
-            swipeRefreshState,
-            isLoading,
-            enableSwipeRefresh
+            viewModel
         )
     }
 
@@ -93,12 +88,14 @@ fun ProductionScreen(navController: NavHostController) {
 @Composable
 fun LoadScreen(
     navController: NavHostController,
-    viewModel: MainViewModel,
-    swipeRefreshState: SwipeRefreshState,
-    isLoading: Boolean,
-    enableSwipeRefresh: Boolean,
+    viewModel: ProductionViewModel,
 ) {
 
+    val isLoading by viewModel.isLoading.collectAsState()
+    val enableSwipeRefresh by viewModel.enableSwipeRefresh.collectAsState()
+    val enableLockScreen by viewModel.enableLockScreen.collectAsState()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
+    val activity = LocalContext.current as Activity
     val listReceive = mutableListOf(viewModel.response.value)
 
     val mutableListMock = mutableListOf(
@@ -139,12 +136,10 @@ fun LoadScreen(
             BottomBar(navController = navController)
         }
     ) {
-
+        activity.lockScreen(enableLockScreen)
         SwipeRefresh(
             state = swipeRefreshState,
-            onRefresh = {
-                viewModel.loadStuff()
-            },
+            onRefresh = { viewModel.loadStuff() },
             swipeEnabled = true,
             refreshTriggerDistance = 90.dp,
             indicator = { state, trigger ->
@@ -160,7 +155,6 @@ fun LoadScreen(
                 )
             }
         ) {
-
             Column(
                 modifier = Modifier
                     .background(SurfaceVariantDark)
