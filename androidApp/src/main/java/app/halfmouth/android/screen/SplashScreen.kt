@@ -14,10 +14,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
+import app.halfmouth.utils.AndroidApp
+import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
+    val googleAuthUiClient by lazy {
+        GoogleAuthUiClient(
+            oneTapClient = Identity.getSignInClient(
+                AndroidApp.applicationContext
+            )
+        )
+    }
+
     val scale = remember {
         Animatable(0f)
     }
@@ -32,7 +43,8 @@ fun SplashScreen(navController: NavController) {
             )
         )
         delay(3000L)
-        navController.navigate(ScreenRoute.HomeScreen.route)
+        if (googleAuthUiClient.getSignedInUser() != null) navController.navigate(ScreenRoute.HomeScreen.route)
+        else navController.navigate(ScreenRoute.ProfileScreen.route)
     }
     Box(
         modifier = Modifier.fillMaxSize(),
