@@ -10,7 +10,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import app.halfmouth.android.navigation.NavAnimations.popEnterDownAnimation
+import app.halfmouth.android.navigation.NavAnimations.popEnterRightAnimation
+import app.halfmouth.android.navigation.NavAnimations.popExitDownAnimation
+import app.halfmouth.android.navigation.NavAnimations.popExitRightAnimation
 import app.halfmouth.android.navigation.NavAnimations.slideDownExitAnimation
+import app.halfmouth.android.navigation.NavAnimations.slideLeftEnterAnimation
+import app.halfmouth.android.navigation.NavAnimations.slideRightExitAnimation
 import app.halfmouth.android.navigation.NavAnimations.slideUpEnterAnimation
 import app.halfmouth.android.screen.ChartScreen
 import app.halfmouth.android.screen.HomeScreen
@@ -41,14 +47,22 @@ fun Navigation() {
             composable(
                 route = ScreenRoute.ProductionScreen.route,
                 enterTransition = slideUpEnterAnimation,
-                exitTransition = slideDownExitAnimation
+                exitTransition = slideDownExitAnimation,
+                popEnterTransition = popEnterDownAnimation,
+                popExitTransition = popExitDownAnimation
 
             ) {
                 val sharedViewModel =
                     it.sharedViewModel<SharedViewModel>(navController = navController)
                 ProductionScreen(navController)
             }
-            composable(route = ScreenRoute.ChartScreen.route) {
+            composable(
+                route = ScreenRoute.ChartScreen.route,
+                enterTransition = slideLeftEnterAnimation,
+                exitTransition = slideRightExitAnimation,
+                popEnterTransition = popEnterRightAnimation,
+                popExitTransition = popExitRightAnimation
+            ) {
                 val sharedViewModel =
                     it.sharedViewModel<SharedViewModel>(navController = navController)
                 ChartScreen(navController)
