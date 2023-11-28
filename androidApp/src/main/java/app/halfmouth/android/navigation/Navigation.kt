@@ -35,7 +35,15 @@ fun Navigation() {
             SplashScreen(navController)
         }
 
+        composable(route = ScreenRoute.SignInScreen.route) {
+            SignInScreen(navController)
+        }
+
         composable(route = ScreenRoute.ProfileScreen.route) {
+            SignInScreen(navController)
+        }
+
+        composable(route = ScreenRoute.NotificationScreen.route) {
             SignInScreen(navController)
         }
 
