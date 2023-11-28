@@ -13,7 +13,7 @@ object NavAnimations {
         {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Up,
-                animationSpec = tween(700)
+                animationSpec = tween(500)
             )
         }
 
@@ -21,15 +21,32 @@ object NavAnimations {
         {
             slideOutOfContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Down,
-                animationSpec = tween(700)
+                animationSpec = tween(500)
             )
         }
+
+    val popEnterDownAnimation: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) =
+        {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Down,
+                animationSpec = tween(500)
+            )
+        }
+
+    val popExitDownAnimation: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition?) =
+        {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Down,
+                animationSpec = tween(500)
+            )
+        }
+
 
     val slideLeftEnterAnimation: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) =
         {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
-                animationSpec = tween(700)
+                animationSpec = tween(500)
             )
         }
 
@@ -37,7 +54,23 @@ object NavAnimations {
         {
             slideOutOfContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
-                animationSpec = tween(700)
+                animationSpec = tween(500)
+            )
+        }
+
+    val popEnterRightAnimation: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) =
+        {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                animationSpec = tween(500)
+            )
+        }
+
+    val popExitRightAnimation: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition?) =
+        {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                animationSpec = tween(500)
             )
         }
 
