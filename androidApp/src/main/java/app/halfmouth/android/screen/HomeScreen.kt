@@ -1,5 +1,6 @@
 package app.halfmouth.android.screen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -33,6 +34,7 @@ import app.halfmouth.theme.YellowContainerLight
 @Composable
 fun HomeScreen(navController: NavHostController) {
 
+    BackHandler {  }
 
     MyApplicationTheme {
         Scaffold(
