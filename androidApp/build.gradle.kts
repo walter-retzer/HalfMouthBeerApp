@@ -75,4 +75,11 @@ dependencies {
     //Accompanist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
+
+    //Firebase Authentication
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    //Coil-Compose (for loading images remotely)
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
