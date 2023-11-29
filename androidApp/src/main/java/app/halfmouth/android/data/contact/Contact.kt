@@ -1,4 +1,4 @@
-package app.halfmouth.contacts.domain
+package app.halfmouth.android.data.contact
 
 data class Contact(
     val firstName: String,

@@ -1,4 +1,4 @@
-package app.halfmouth.contacts.domain
+package app.halfmouth.android.data.contact
 
 object ContactValidator {
 
