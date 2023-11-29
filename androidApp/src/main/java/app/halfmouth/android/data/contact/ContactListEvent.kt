@@ -5,4 +5,5 @@ sealed interface ContactListEvent {
     data class OnLastNameChanged(val value: String): ContactListEvent
     data class OnEmailChanged(val value: String): ContactListEvent
     data class OnPhoneNumberChanged(val value: String): ContactListEvent
+    object SaveContact: ContactListEvent
 }
