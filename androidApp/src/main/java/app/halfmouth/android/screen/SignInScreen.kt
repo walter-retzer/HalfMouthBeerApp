@@ -43,7 +43,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.halfmouth.android.components.ContactTextField
-import app.halfmouth.android.data.contact.ContactListEvent
+import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.viewmodel.SignInViewModel
 import app.halfmouth.theme.SurfaceVariantDark
@@ -60,6 +60,8 @@ fun SignInScreen(
     val viewModel = viewModel<SignInViewModel>()
     val state by viewModel.signInState.collectAsStateWithLifecycle()
     val stateFieldError by viewModel.state.collectAsStateWithLifecycle()
+    val stateSignInSuccessful by viewModel.signInSuccessful.collectAsStateWithLifecycle()
+    val stateSignInError by viewModel.signInError.collectAsStateWithLifecycle()
     val composableScope = rememberCoroutineScope()
 
     val googleAuthUiClient by lazy {
@@ -88,7 +90,7 @@ fun SignInScreen(
         if (state.isSignInSuccessful) {
             Toast.makeText(
                 context,
-                "Successful",
+                "Cadastro Realizado com Sucesso",
                 Toast.LENGTH_LONG
             ).show()
             navController.navigate(ScreenRoute.HomeScreen.route)
@@ -99,10 +101,26 @@ fun SignInScreen(
         state.signInError?.let {
             Toast.makeText(
                 context,
-                it,
+                "Error: $it",
                 Toast.LENGTH_LONG
             ).show()
         }
+    }
+
+    LaunchedEffect(key1 = stateSignInSuccessful) {
+        if (stateSignInSuccessful) Toast.makeText(
+            context,
+            "Cadastro Realizado com Sucesso",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    LaunchedEffect(key1 = stateSignInError) {
+        if (stateSignInError) Toast.makeText(
+            context,
+            "Não foi possível realizar o seu cadastro no momento.",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     BackHandler { }
@@ -134,10 +152,10 @@ fun SignInScreen(
             }
             Spacer(Modifier.height(16.dp))
             ContactTextField(
-                value = viewModel.newContact?.firstName ?: "",
+                value = viewModel.newContact.firstName,
                 placeholder = "First name",
                 error = stateFieldError.firstNameError,
-                onValueChanged = { viewModel.onEvent(ContactListEvent.OnFirstNameChanged(it)) },
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnFirstNameChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -148,10 +166,10 @@ fun SignInScreen(
                 errorReset = { viewModel.resetErrorInputField() }
             )
             ContactTextField(
-                value = viewModel.newContact?.lastName ?: "",
+                value = viewModel.newContact.lastName,
                 placeholder = "Last name",
                 error = stateFieldError.lastNameError,
-                onValueChanged = { viewModel.onEvent(ContactListEvent.OnLastNameChanged(it)) },
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnLastNameChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -162,10 +180,10 @@ fun SignInScreen(
                 errorReset = { viewModel.resetErrorInputField() }
             )
             ContactTextField(
-                value = viewModel.newContact?.email ?: "",
+                value = viewModel.newContact.email,
                 placeholder = "Email",
                 error = stateFieldError.emailError,
-                onValueChanged = { viewModel.onEvent(ContactListEvent.OnEmailChanged(it)) },
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnEmailChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -176,10 +194,10 @@ fun SignInScreen(
                 errorReset = { viewModel.resetErrorInputField() }
             )
             ContactTextField(
-                value = viewModel.newContact?.phoneNumber ?: "",
+                value = viewModel.newContact.phoneNumber,
                 placeholder = "Phone",
                 error = stateFieldError.phoneNumberError,
-                onValueChanged = { viewModel.onEvent(ContactListEvent.OnPhoneNumberChanged(it)) },
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -195,7 +213,7 @@ fun SignInScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
                     .height(50.dp),
-                onClick = { viewModel.onEvent(ContactListEvent.SaveContact) }
+                onClick = { viewModel.onEvent(SignInContactEvent.SaveContact) }
             ) {
                 Text(text = "Salvar")
             }
