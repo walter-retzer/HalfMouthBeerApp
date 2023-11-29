@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
-import app.halfmouth.android.components.BottomBar
+import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.android.data.remote.Feeds
 import app.halfmouth.android.data.remote.FeedsThingSpeak
 import app.halfmouth.android.data.remote.ThingSpeakResponse
@@ -133,7 +133,7 @@ fun LoadScreen(
     Scaffold(
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
-            BottomBar(navController = navController)
+            BottomBarMenu(navController = navController)
         }
     ) {
         activity.lockScreen(enableLockScreen)
