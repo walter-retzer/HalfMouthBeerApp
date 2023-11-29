@@ -4,12 +4,15 @@ import android.app.Activity.RESULT_OK
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,10 +22,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import app.halfmouth.android.R
 import app.halfmouth.android.components.ContactTextField
 import app.halfmouth.android.data.contact.ContactListEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
@@ -121,9 +127,33 @@ fun SignInScreen(
             onValueChanged = { ContactListEvent.OnPhoneNumberChanged(it) },
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(Modifier.height(25.dp))
+        Spacer(Modifier.height(85.dp))
         Button(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            onClick = {},
+            content = {
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.icon_google
+                    ),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable(onClick = {
+                            navController.navigate(ScreenRoute.ChartScreen.route)
+                        }),
+                    alignment = Alignment.BottomEnd,
+                )
+                Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing
+                Text("Continuar com o Google", fontSize = 16.sp)
+            }
+        )
+        Spacer(Modifier.height(16.dp))
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
             onClick = {}
         ) {
             Text(text = "Save")
