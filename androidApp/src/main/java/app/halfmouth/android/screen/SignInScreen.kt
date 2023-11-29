@@ -2,17 +2,26 @@ package app.halfmouth.android.screen
 
 import android.app.Activity.RESULT_OK
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,8 +30,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -32,7 +46,10 @@ import app.halfmouth.android.R
 import app.halfmouth.android.components.ContactTextField
 import app.halfmouth.android.data.contact.ContactListEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
+import app.halfmouth.android.navigation.Navigation
 import app.halfmouth.android.viewmodel.SignInViewModel
+import app.halfmouth.theme.SurfaceVariantDark
+import app.halfmouth.theme.YellowContainerLight
 import app.halfmouth.utils.AndroidApp.applicationContext
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
@@ -89,75 +106,107 @@ fun SignInScreen(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
+    BackHandler { }
 
-        ContactTextField(
-            value = "",
-            placeholder = "First name",
-            error = null,
-            onValueChanged = { ContactListEvent.OnFirstNameChanged(it) },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(16.dp))
-        ContactTextField(
-            value = "",
-            placeholder = "Last name",
-            error = null,
-            onValueChanged = { ContactListEvent.OnLastNameChanged(it) },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(16.dp))
-        ContactTextField(
-            value = "",
-            placeholder = "Email",
-            error = null,
-            onValueChanged = { ContactListEvent.OnEmailChanged(it) },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(16.dp))
-        ContactTextField(
-            value = "",
-            placeholder = "Phone",
-            error = null,
-            onValueChanged = { ContactListEvent.OnPhoneNumberChanged(it) },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(85.dp))
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            onClick = {},
-            content = {
-                Image(
-                    painter = painterResource(
-                        id = R.drawable.icon_google
-                    ),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clickable(onClick = {
-                            navController.navigate(ScreenRoute.ChartScreen.route)
-                        }),
-                    alignment = Alignment.BottomEnd,
-                )
-                Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing
-                Text("Continuar com o Google", fontSize = 16.sp)
-            }
-        )
-        Spacer(Modifier.height(16.dp))
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            onClick = {}
+    Surface(color = SurfaceVariantDark, modifier = Modifier.fillMaxSize()) {
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(text = "Save")
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .background(Color.Black)
+            ) {
+                androidx.compose.material.Text(
+                    text = "Login",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        color = YellowContainerLight,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.SansSerif
+                    )
+                )
+            }
+            Spacer(Modifier.height(16.dp))
+            ContactTextField(
+                value = "",
+                placeholder = "First name",
+                error = null,
+                onValueChanged = { ContactListEvent.OnFirstNameChanged(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            ContactTextField(
+                value = "",
+                placeholder = "Last name",
+                error = null,
+                onValueChanged = { ContactListEvent.OnLastNameChanged(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            ContactTextField(
+                value = "",
+                placeholder = "Email",
+                error = null,
+                onValueChanged = { ContactListEvent.OnEmailChanged(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            ContactTextField(
+                value = "",
+                placeholder = "Phone",
+                error = null,
+                onValueChanged = { ContactListEvent.OnPhoneNumberChanged(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            Spacer(Modifier.height(65.dp))
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(50.dp),
+                onClick = {}
+            ) {
+                Text(text = "Salvar")
+            }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(50.dp),
+                onClick = {
+                    composableScope.launch {
+                    val signInIntentSender = googleAuthUiClient.signIn()
+                    launcher.launch(
+                        IntentSenderRequest.Builder(
+                            signInIntentSender ?: return@launch
+                        ).build()
+                    )
+                }},
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Email,
+                        contentDescription = null,
+                        tint = Color.Black,
+                    )
+                    Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing
+                    Text("Continuar com o Google", fontSize = 16.sp)
+                }
+            )
         }
+
+
     }
 
 
