@@ -25,7 +25,7 @@ import app.halfmouth.android.screen.listOfBottomBarScreen
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBarMenu(navController: NavHostController) {
     val screens = listOfBottomBarScreen()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
