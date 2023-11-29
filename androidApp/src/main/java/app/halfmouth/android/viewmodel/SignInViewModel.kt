@@ -1,29 +1,40 @@
 package app.halfmouth.android.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import app.halfmouth.android.data.contact.Contact
-import app.halfmouth.android.data.contact.ContactListEvent
-import app.halfmouth.android.data.contact.ContactListState
-import app.halfmouth.android.data.contact.ContactValidator
+import app.halfmouth.android.data.contact.SignInContact
+import app.halfmouth.android.data.contact.SignInContactEvent
+import app.halfmouth.android.data.contact.SignInContactErrorState
+import app.halfmouth.android.data.contact.SignInContactValidator
 import app.halfmouth.android.data.googleAuth.SignInResult
 import app.halfmouth.android.data.googleAuth.SignInState
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+
 
 class SignInViewModel : ViewModel() {
 
     private val _signInState = MutableStateFlow(SignInState())
     val signInState = _signInState.asStateFlow()
 
-    private val _state = MutableStateFlow(ContactListState())
+    private val _state = MutableStateFlow(SignInContactErrorState())
     val state = _state.asStateFlow()
 
-    var newContact: Contact? by mutableStateOf(
-        Contact(
+    private val _signInSuccessful = MutableStateFlow(false)
+    val signInSuccessful = _signInSuccessful.asStateFlow()
+
+    private val _signInError = MutableStateFlow(false)
+    val signInError = _signInError.asStateFlow()
+
+    var newContact: SignInContact by mutableStateOf(
+        SignInContact(
             firstName = "",
             lastName = "",
             email = "",
@@ -45,35 +56,35 @@ class SignInViewModel : ViewModel() {
         _signInState.update { SignInState() }
     }
 
-    fun onEvent(event: ContactListEvent) {
+    fun onEvent(event: SignInContactEvent) {
         when (event) {
-            is ContactListEvent.OnEmailChanged -> {
-                newContact = newContact?.copy(
+            is SignInContactEvent.OnEmailChanged -> {
+                newContact = newContact.copy(
                     email = event.value
                 )
             }
 
-            is ContactListEvent.OnFirstNameChanged -> {
-                newContact = newContact?.copy(
+            is SignInContactEvent.OnFirstNameChanged -> {
+                newContact = newContact.copy(
                     firstName = event.value
                 )
             }
 
-            is ContactListEvent.OnLastNameChanged -> {
-                newContact = newContact?.copy(
+            is SignInContactEvent.OnLastNameChanged -> {
+                newContact = newContact.copy(
                     lastName = event.value
                 )
             }
 
-            is ContactListEvent.OnPhoneNumberChanged -> {
-                newContact = newContact?.copy(
+            is SignInContactEvent.OnPhoneNumberChanged -> {
+                newContact = newContact.copy(
                     phoneNumber = event.value
                 )
             }
 
-            is ContactListEvent.SaveContact -> {
-                newContact?.let { contact ->
-                    val result = ContactValidator.validateContact(contact)
+            is SignInContactEvent.SaveContact -> {
+                newContact.let { contact ->
+                    val result = SignInContactValidator.validateContact(contact)
                     val errors = listOfNotNull(
                         result.firstNameError,
                         result.lastNameError,
@@ -89,6 +100,7 @@ class SignInViewModel : ViewModel() {
                                 phoneNumberError = null
                             )
                         }
+                        createUser()
                     } else {
                         _state.update {
                             it.copy(
@@ -113,5 +125,42 @@ class SignInViewModel : ViewModel() {
                 phoneNumberError = null
             )
         }
+    }
+
+    private fun createUser() {
+        _signInError.value = false
+        val auth = FirebaseAuth.getInstance()
+        val password = newContact.firstName
+        val email  = newContact.email
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = task.result.user
+                    if (user != null) {
+                        _signInSuccessful.value = true
+                        Log.d("SignUpAuthFirebase", "Success! ${user.uid}")
+                        user.sendEmailVerification()
+                            .addOnCompleteListener { task ->
+                                if (!task.isSuccessful) {
+                                    _signInError.value = true
+                                    Log.d("SignUpAuthFirebase", "Fail ${task.exception?.message}")
+                                }
+                            }
+                    } else {
+                        _signInError.value = true
+                        Log.d("SignUpAuthFirebase", "Empty or Null userId!")
+                    }
+                } else {
+                    _signInError.value = true
+                    val errorMessage: String = try {
+                        throw task.exception!!
+                    } catch (e: FirebaseAuthUserCollisionException) {
+                        "O endereço de e-mail já está sendo usado por outra conta."
+                    } catch (e: FirebaseAuthInvalidCredentialsException) {
+                        "Endereço de e-mail mal formatado ou inválido."
+                    }
+                    Log.w("SignUpAuthFirebase", "Failure!", task.exception)
+                }
+            }
     }
 }
