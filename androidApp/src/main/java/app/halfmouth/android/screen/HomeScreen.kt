@@ -34,20 +34,19 @@ import app.halfmouth.theme.YellowContainerLight
 @Composable
 fun HomeScreen(navController: NavHostController) {
 
-    BackHandler {  }
+    BackHandler { }
 
-    MyApplicationTheme {
-        Scaffold(
-            scaffoldState = rememberScaffoldState(),
-            bottomBar = {
-                BottomBarMenu(navController = navController)
-            }
-        ) {
-            Box(modifier = Modifier.padding(it)) {
-                LoadScreen()
-            }
+    Scaffold(
+        scaffoldState = rememberScaffoldState(),
+        bottomBar = {
+            BottomBarMenu(navController = navController)
+        }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            LoadScreen()
         }
     }
+
 }
 
 

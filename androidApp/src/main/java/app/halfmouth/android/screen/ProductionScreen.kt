@@ -1,12 +1,10 @@
 package app.halfmouth.android.screen
 
 import android.app.Activity
-import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,9 +21,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -51,12 +46,9 @@ import app.halfmouth.android.utils.formattedDate
 import app.halfmouth.android.utils.lockScreen
 import app.halfmouth.android.viewmodel.ProductionViewModel
 import app.halfmouth.core.Strings
-import app.halfmouth.theme.DarkColorScheme
-import app.halfmouth.theme.LightColorScheme
 import app.halfmouth.theme.OnBackgroundDark
 import app.halfmouth.theme.OnSurfaceVariantLight
 import app.halfmouth.theme.SurfaceVariantDark
-import app.halfmouth.theme.TypographyDefault
 import app.halfmouth.theme.YellowContainerLight
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
@@ -71,17 +63,10 @@ fun ProductionScreen(navController: NavHostController) {
 
     BackHandler { }
 
-    MyApplicationTheme {
-        LoadScreen(
-            navController,
-            viewModel
-        )
-    }
-
-//    ThemeApp(
-//        darkTheme = isSystemInDarkTheme(),
-//        dynamicColor = true,
-//    )
+    LoadScreen(
+        navController,
+        viewModel
+    )
 }
 
 
@@ -383,46 +368,4 @@ fun LoadScreen(
 @Composable
 fun stringResource(id: StringResource, vararg args: Any): String {
     return Strings(LocalContext.current).get(id, args.toList())
-}
-
-@Composable
-fun MyApplicationTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val dynamicColor = true
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
-//    val view = LocalView.current
-//    if (!view.isInEditMode) {
-//        SideEffect {
-//            val window = (view.context as Activity).window
-//            window.statusBarColor = Color.Black.toArgb()
-//            WindowCompat.getInsetsController(
-//                window,
-//                view
-//            ).isAppearanceLightStatusBars = darkTheme
-//        }
-//    }
-
-    val typography = TypographyDefault
-    val shapes = Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
-        large = RoundedCornerShape(0.dp)
-    )
-    androidx.compose.material3.MaterialTheme(
-        colorScheme = colorScheme,
-        shapes = shapes,
-        typography = typography,
-        content = content
-    )
 }
