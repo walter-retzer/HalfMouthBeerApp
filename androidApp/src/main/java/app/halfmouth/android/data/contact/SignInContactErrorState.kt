@@ -1,6 +1,6 @@
 package app.halfmouth.android.data.contact
 
-data class ContactListState(
+data class SignInContactErrorState(
     val firstNameError: String? = null,
     val lastNameError: String? = null,
     val emailError: String? = null,

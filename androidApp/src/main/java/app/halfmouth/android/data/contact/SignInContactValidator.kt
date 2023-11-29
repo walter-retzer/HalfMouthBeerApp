@@ -1,8 +1,8 @@
 package app.halfmouth.android.data.contact
 
-object ContactValidator {
+object SignInContactValidator {
 
-    fun validateContact(contact: Contact): ValidationResult {
+    fun validateContact(contact: SignInContact): ValidationResult {
         var result = ValidationResult()
 
         if(contact.firstName.isBlank()) {

@@ -1,6 +1,6 @@
 package app.halfmouth.android.data.contact
 
-data class Contact(
+data class SignInContact(
     val firstName: String,
     val lastName: String,
     val email: String,
