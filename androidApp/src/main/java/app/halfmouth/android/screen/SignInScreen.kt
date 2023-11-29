@@ -3,33 +3,31 @@ package app.halfmouth.android.screen
 import android.app.Activity.RESULT_OK
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import app.halfmouth.android.components.ContactTextField
+import app.halfmouth.android.data.contact.ContactListEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.viewmodel.SignInViewModel
 import app.halfmouth.utils.AndroidApp.applicationContext
-import coil.compose.AsyncImage
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -89,46 +87,91 @@ fun SignInScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Button(onClick = {
-            composableScope.launch {
-                val signInIntentSender = googleAuthUiClient.signIn()
-                launcher.launch(
-                    IntentSenderRequest.Builder(
-                        signInIntentSender ?: return@launch
-                    ).build()
-                )
-            }
-        }) {
-            Text(text = "SignIn")
-        }
 
-        Button(onClick = {
-            composableScope.launch {
-                googleAuthUiClient.signOut()
-            }
-        }) {
-            Text(text = "SignOut")
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
+        ContactTextField(
+            value = "",
+            placeholder = "First name",
+            error = null,
+            onValueChanged = { ContactListEvent.OnFirstNameChanged(it) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(16.dp))
+        ContactTextField(
+            value = "",
+            placeholder = "Last name",
+            error = null,
+            onValueChanged = { ContactListEvent.OnLastNameChanged(it) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(16.dp))
+        ContactTextField(
+            value = "",
+            placeholder = "Email",
+            error = null,
+            onValueChanged = { ContactListEvent.OnEmailChanged(it) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(16.dp))
+        ContactTextField(
+            value = "",
+            placeholder = "Phone",
+            error = null,
+            onValueChanged = { ContactListEvent.OnPhoneNumberChanged(it) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(25.dp))
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {}
         ) {
-            val user = googleAuthUiClient.getSignedInUser()
-            if (user?.profilePictureUrl != null) {
-                AsyncImage(
-                    model = user.profilePictureUrl,
-                    contentDescription = "Photo",
-                    modifier = Modifier
-                        .size(150.dp)
-                        .clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
-            }
+            Text(text = "Save")
         }
-
     }
+
+
+//        Button(onClick = {
+//            composableScope.launch {
+//                val signInIntentSender = googleAuthUiClient.signIn()
+//                launcher.launch(
+//                    IntentSenderRequest.Builder(
+//                        signInIntentSender ?: return@launch
+//                    ).build()
+//                )
+//            }
+//        }) {
+//            Text(text = "SignIn")
+//        }
+//
+//        Button(onClick = {
+//            composableScope.launch {
+//                googleAuthUiClient.signOut()
+//            }
+//        }) {
+//            Text(text = "SignOut")
+//        }
+//
+//        Row(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(16.dp),
+//        ) {
+//            val user = googleAuthUiClient.getSignedInUser()
+//            if (user?.profilePictureUrl != null) {
+//                AsyncImage(
+//                    model = user.profilePictureUrl,
+//                    contentDescription = "Photo",
+//                    modifier = Modifier
+//                        .size(150.dp)
+//                        .clip(CircleShape),
+//                    contentScale = ContentScale.Crop
+//                )
+//            }
+//        }
+
 }
+
+
+
+
