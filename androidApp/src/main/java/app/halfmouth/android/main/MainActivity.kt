@@ -1,4 +1,4 @@
-package app.halfmouth.android
+package app.halfmouth.android.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -18,8 +18,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
-                Navigation()
+            MyApplicationTheme {
+                Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+                    Navigation()
+                }
             }
         }
     }

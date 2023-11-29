@@ -1,4 +1,4 @@
-package app.halfmouth.android
+package app.halfmouth.android.main
 
 import android.app.Application
 import android.content.Context
