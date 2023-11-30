@@ -49,6 +49,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.ContactTextField
+import app.halfmouth.android.components.ContactTextFieldPassword
 import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.viewmodel.SignInViewModel
@@ -202,11 +203,11 @@ fun SignInScreen(
                 ),
                 errorReset = { viewModel.resetErrorInputField() }
             )
-            ContactTextField(
-                value = viewModel.newContact.lastName,
+            ContactTextFieldPassword(
+                value = viewModel.newContact.password,
                 placeholder = "Senha",
-                error = stateFieldError.lastNameError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnLastNameChanged(it)) },
+                error = stateFieldError.passwordError,
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPasswordChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -216,11 +217,11 @@ fun SignInScreen(
                 ),
                 errorReset = { viewModel.resetErrorInputField() }
             )
-            ContactTextField(
-                value = viewModel.newContact.phoneNumber,
+            ContactTextFieldPassword(
+                value = viewModel.newContact.confirmPassword,
                 placeholder = "Confirma Senha",
-                error = stateFieldError.phoneNumberError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
+                error = stateFieldError.confirmPasswordError,
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnConfirmPasswordChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
