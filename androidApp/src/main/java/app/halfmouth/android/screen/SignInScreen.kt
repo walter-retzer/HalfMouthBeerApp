@@ -6,6 +6,7 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,12 +17,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -42,10 +47,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import app.halfmouth.android.R
 import app.halfmouth.android.components.ContactTextField
 import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.viewmodel.SignInViewModel
+import app.halfmouth.theme.OnYellowSecondaryContainerLight
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 import app.halfmouth.utils.AndroidApp.applicationContext
@@ -128,7 +135,9 @@ fun SignInScreen(
     Surface(color = SurfaceVariantDark, modifier = Modifier.fillMaxSize()) {
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
@@ -140,7 +149,7 @@ fun SignInScreen(
                     .background(Color.Black)
             ) {
                 androidx.compose.material.Text(
-                    text = "Login",
+                    text = "Criar uma Conta",
                     textAlign = TextAlign.Center,
                     style = TextStyle(
                         color = YellowContainerLight,
@@ -153,7 +162,7 @@ fun SignInScreen(
             Spacer(Modifier.height(16.dp))
             ContactTextField(
                 value = viewModel.newContact.firstName,
-                placeholder = "First name",
+                placeholder = "Nome",
                 error = stateFieldError.firstNameError,
                 onValueChanged = { viewModel.onEvent(SignInContactEvent.OnFirstNameChanged(it)) },
                 modifier = Modifier
@@ -166,16 +175,16 @@ fun SignInScreen(
                 errorReset = { viewModel.resetErrorInputField() }
             )
             ContactTextField(
-                value = viewModel.newContact.lastName,
-                placeholder = "Last name",
-                error = stateFieldError.lastNameError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnLastNameChanged(it)) },
+                value = viewModel.newContact.phoneNumber,
+                placeholder = "Telefone",
+                error = stateFieldError.phoneNumberError,
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 inputType = KeyboardOptions.Default.copy(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Next
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done
                 ),
                 errorReset = { viewModel.resetErrorInputField() }
             )
@@ -194,34 +203,56 @@ fun SignInScreen(
                 errorReset = { viewModel.resetErrorInputField() }
             )
             ContactTextField(
+                value = viewModel.newContact.lastName,
+                placeholder = "Senha",
+                error = stateFieldError.lastNameError,
+                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnLastNameChanged(it)) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                inputType = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.NumberPassword,
+                    imeAction = ImeAction.Next
+                ),
+                errorReset = { viewModel.resetErrorInputField() }
+            )
+            ContactTextField(
                 value = viewModel.newContact.phoneNumber,
-                placeholder = "Phone",
+                placeholder = "Confirma Senha",
                 error = stateFieldError.phoneNumberError,
                 onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 inputType = KeyboardOptions.Default.copy(
-                    keyboardType = KeyboardType.Number,
+                    keyboardType = KeyboardType.NumberPassword,
                     imeAction = ImeAction.Done
                 ),
                 errorReset = { viewModel.resetErrorInputField() }
             )
-            Spacer(Modifier.height(65.dp))
+            Spacer(Modifier.height(16.dp))
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
                     .height(50.dp),
-                onClick = { viewModel.onEvent(SignInContactEvent.SaveContact) }
-            ) {
-                Text(text = "Salvar")
-            }
+                onClick = { viewModel.onEvent(SignInContactEvent.SaveContact) },
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.AccountCircle,
+                        contentDescription = null,
+                        tint = Color.Black,
+                    )
+                    Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing
+                    Text(text = "Cadastrar", fontSize = 16.sp)
+                }
+            )
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
                     .height(50.dp),
+                colors = ButtonDefaults.buttonColors(OnYellowSecondaryContainerLight),
                 onClick = {
                     composableScope.launch {
                         val signInIntentSender = googleAuthUiClient.signIn()
@@ -233,13 +264,17 @@ fun SignInScreen(
                     }
                 },
                 content = {
-                    Icon(
-                        imageVector = Icons.Filled.Email,
+                    Image(
+                        modifier = Modifier
+                            .width(24.dp)
+                            .height(24.dp),
+                        painter = painterResource(
+                            id = R.drawable.icon_google
+                        ),
                         contentDescription = null,
-                        tint = Color.Black,
                     )
                     Spacer(modifier = Modifier.width(8.dp)) // Adjust spacing
-                    Text("Continuar com o Google", fontSize = 16.sp)
+                    Text("Entrar com o Google", fontSize = 16.sp, color = Color.White)
                 }
             )
         }
