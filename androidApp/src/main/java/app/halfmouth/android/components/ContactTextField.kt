@@ -32,7 +32,37 @@ fun ContactTextField(
     modifier: Modifier = Modifier,
     inputType: KeyboardOptions,
     errorReset: () -> Unit,
-    trailingIcon: @Composable() (() -> Unit)?
+) {
+    Column(modifier) {
+        OutlinedTextField(
+            value = value,
+            placeholder = { Text(text = placeholder) },
+            onValueChange = onValueChanged,
+            shape = RoundedCornerShape(20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged { errorReset() },
+            keyboardOptions = inputType,
+        )
+        if (error != null) {
+            Text(
+                text = error,
+                color = MaterialTheme.colorScheme.error
+            )
+        }
+    }
+}
+
+
+@Composable
+fun ContactTextFieldPassword(
+    value: String,
+    placeholder: String,
+    error: String?,
+    onValueChanged: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    inputType: KeyboardOptions,
+    errorReset: () -> Unit
 ) {
     var passwordVisibility: Boolean by remember { mutableStateOf(false) }
 
