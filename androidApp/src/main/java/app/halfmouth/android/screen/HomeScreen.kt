@@ -27,27 +27,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
-import app.halfmouth.android.components.BottomBar
+import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.theme.OnBackgroundDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
 
-    BackHandler {  }
+    BackHandler { }
 
-    MyApplicationTheme {
-        Scaffold(
-            scaffoldState = rememberScaffoldState(),
-            bottomBar = {
-                BottomBar(navController = navController)
-            }
-        ) {
-            Box(modifier = Modifier.padding(it)) {
-                LoadScreen()
-            }
+    Scaffold(
+        scaffoldState = rememberScaffoldState(),
+        bottomBar = {
+            BottomBarMenu(navController = navController)
+        }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            LoadScreen()
         }
     }
+
 }
 
 
