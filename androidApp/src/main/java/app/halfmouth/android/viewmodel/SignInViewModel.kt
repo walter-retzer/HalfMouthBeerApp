@@ -36,9 +36,10 @@ class SignInViewModel : ViewModel() {
     var newContact: SignInContact by mutableStateOf(
         SignInContact(
             firstName = "",
-            lastName = "",
-            email = "",
             phoneNumber = "",
+            email = "",
+            password = "",
+            confirmPassword = ""
         )
     )
         private set
@@ -58,21 +59,9 @@ class SignInViewModel : ViewModel() {
 
     fun onEvent(event: SignInContactEvent) {
         when (event) {
-            is SignInContactEvent.OnEmailChanged -> {
-                newContact = newContact.copy(
-                    email = event.value
-                )
-            }
-
             is SignInContactEvent.OnFirstNameChanged -> {
                 newContact = newContact.copy(
                     firstName = event.value
-                )
-            }
-
-            is SignInContactEvent.OnLastNameChanged -> {
-                newContact = newContact.copy(
-                    lastName = event.value
                 )
             }
 
@@ -82,12 +71,31 @@ class SignInViewModel : ViewModel() {
                 )
             }
 
+            is SignInContactEvent.OnEmailChanged -> {
+                newContact = newContact.copy(
+                    email = event.value
+                )
+            }
+
+            is SignInContactEvent.OnPasswordChanged -> {
+                newContact = newContact.copy(
+                    password = event.value
+                )
+            }
+
+            is SignInContactEvent.OnConfirmPasswordChanged -> {
+                newContact = newContact.copy(
+                    confirmPassword = event.value
+                )
+            }
+
             is SignInContactEvent.SaveContact -> {
                 newContact.let { contact ->
                     val result = SignInContactValidator.validateContact(contact)
                     val errors = listOfNotNull(
                         result.firstNameError,
-                        result.lastNameError,
+                        result.passwordError,
+                        result.confirmPasswordError,
                         result.emailError,
                         result.phoneNumberError
                     )
@@ -95,7 +103,8 @@ class SignInViewModel : ViewModel() {
                         _state.update {
                             it.copy(
                                 firstNameError = null,
-                                lastNameError = null,
+                                passwordError = null,
+                                confirmPasswordError = null,
                                 emailError = null,
                                 phoneNumberError = null
                             )
@@ -105,7 +114,8 @@ class SignInViewModel : ViewModel() {
                         _state.update {
                             it.copy(
                                 firstNameError = result.firstNameError,
-                                lastNameError = result.lastNameError,
+                                passwordError = result.passwordError,
+                                confirmPasswordError = result.confirmPasswordError,
                                 emailError = result.emailError,
                                 phoneNumberError = result.phoneNumberError
                             )
@@ -120,7 +130,8 @@ class SignInViewModel : ViewModel() {
         _state.update {
             it.copy(
                 firstNameError = null,
-                lastNameError = null,
+                passwordError = null,
+                confirmPasswordError = null,
                 emailError = null,
                 phoneNumberError = null
             )
@@ -131,7 +142,7 @@ class SignInViewModel : ViewModel() {
         _signInError.value = false
         val auth = FirebaseAuth.getInstance()
         val password = newContact.firstName
-        val email  = newContact.email
+        val email = newContact.email
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
