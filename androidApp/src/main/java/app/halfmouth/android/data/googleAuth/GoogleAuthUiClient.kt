@@ -83,8 +83,10 @@ class GoogleAuthUiClient(private val oneTapClient: SignInClient) {
     }
 
     fun getSignedInUser(): UserId? = auth.currentUser?.run {
+        pref.put(Constants.USER_GOOGLE_SIGNIN, true)
         pref.put(Constants.USER_UID, uid)
         pref.put(Constants.USER_NAME, displayName.toString())
+        pref.put(Constants.USER_EMAIL, email.toString())
         pref.put(Constants.USER_IMAGE, photoUrl.toString())
         UserId(
             userId = uid,
