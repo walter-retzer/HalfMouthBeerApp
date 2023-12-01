@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -19,9 +17,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import app.halfmouth.android.R
+import app.halfmouth.theme.OnSurfaceDark
 
 @Composable
 fun ContactTextField(
@@ -79,11 +80,21 @@ fun ContactTextFieldPassword(
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                    Icon(
-                        modifier = Modifier.clickable { passwordVisibility = !passwordVisibility },
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = null,
-                    )
+                    if (passwordVisibility) {
+                        Icon(
+                            modifier = Modifier.clickable { passwordVisibility = !passwordVisibility },
+                            painter = painterResource(id = R.drawable.icon_eye_close),
+                            contentDescription = null,
+                            tint = OnSurfaceDark
+                        )
+                    } else {
+                        Icon(
+                            modifier = Modifier.clickable { passwordVisibility = !passwordVisibility },
+                            painter = painterResource(id = R.drawable.icon_eye_open),
+                            contentDescription = null,
+                            tint = OnSurfaceDark
+                        )
+                    }
                 }
             }
         )
