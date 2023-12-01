@@ -21,6 +21,7 @@ import app.halfmouth.android.navigation.NavAnimations.slideUpEnterAnimation
 import app.halfmouth.android.screen.ChartScreen
 import app.halfmouth.android.screen.HomeScreen
 import app.halfmouth.android.screen.ProductionScreen
+import app.halfmouth.android.screen.ProfileScreen
 import app.halfmouth.android.screen.ScreenRoute
 import app.halfmouth.android.screen.SignInScreen
 import app.halfmouth.android.screen.SplashScreen
@@ -37,6 +38,10 @@ fun Navigation() {
 
         composable(route = ScreenRoute.SignInScreen.route) {
             SignInScreen(navController)
+        }
+
+        composable(route = ScreenRoute.ProfileScreen.route) {
+            ProfileScreen(navController)
         }
 
 
