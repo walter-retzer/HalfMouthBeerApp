@@ -3,6 +3,7 @@ package app.halfmouth.android.data.googleAuth
 import android.content.Intent
 import android.content.IntentSender
 import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -82,7 +83,9 @@ class GoogleAuthUiClient(private val oneTapClient: SignInClient) {
     }
 
     fun getSignedInUser(): UserId? = auth.currentUser?.run {
-        pref.put("UUID", uid)
+        pref.put(Constants.USER_UID, uid)
+        pref.put(Constants.USER_NAME, displayName.toString())
+        pref.put(Constants.USER_IMAGE, photoUrl.toString())
         UserId(
             userId = uid,
             userName = displayName.toString(),

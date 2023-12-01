@@ -12,6 +12,7 @@ import app.halfmouth.android.data.contact.SignInContactValidator
 import app.halfmouth.android.data.googleAuth.SignInResult
 import app.halfmouth.android.data.googleAuth.SignInState
 import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -141,10 +142,14 @@ class SignInViewModel : ViewModel() {
     }
 
     private fun createUser() {
-        _signInError.value = false
-        val auth = FirebaseAuth.getInstance()
         val password = newContact.firstName
         val email = newContact.email
+        val cellphone = newContact.phoneNumber
+        pref.put(Constants.USER_EMAIL, email)
+        pref.put(Constants.USER_CELLPHONE, cellphone)
+        _signInError.value = false
+
+        val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
