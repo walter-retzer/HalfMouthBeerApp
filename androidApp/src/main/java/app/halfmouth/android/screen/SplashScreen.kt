@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.delay
 
@@ -24,7 +25,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(navController: NavController) {
     val context = LocalContext.current
     val pref = SecurePreferencesApp()
-    val userId = pref.get("UUID") ?: ""
+    val userId = pref.get(Constants.USER_UID) ?: ""
 
     val googleAuthUiClient by lazy {
         GoogleAuthUiClient(oneTapClient = Identity.getSignInClient(context))
