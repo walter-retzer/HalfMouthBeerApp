@@ -2,7 +2,6 @@ package app.halfmouth.android.main
 
 import android.app.Application
 import android.content.Context
-import app.halfmouth.utils.AndroidApp
 
 class MainApplication: Application() {
 

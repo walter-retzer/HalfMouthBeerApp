@@ -1,10 +1,11 @@
 package app.halfmouth.android.security
 
-import android.content.Context
+import app.halfmouth.android.main.AndroidApp
 import kotlin.reflect.KClass
 
-class SecurePreferences(context: Context) {
+class SecurePreferencesApp() {
 
+    private val context = AndroidApp.applicationContext
     private val storage: SecureStorage =  Encryption(context)
 
     @SuppressWarnings("SwallowedException", "CastToNullableType")
