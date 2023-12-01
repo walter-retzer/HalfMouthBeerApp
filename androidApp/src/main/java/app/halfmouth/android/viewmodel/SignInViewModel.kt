@@ -142,11 +142,12 @@ class SignInViewModel : ViewModel() {
     }
 
     private fun createUser() {
-        val password = newContact.firstName
+        val password = newContact.password
         val email = newContact.email
         val cellphone = newContact.phoneNumber
         pref.put(Constants.USER_EMAIL, email)
         pref.put(Constants.USER_CELLPHONE, cellphone)
+        pref.put(Constants.USER_DEFAULT_SIGNIN, true)
         _signInError.value = false
 
         val auth = FirebaseAuth.getInstance()
@@ -164,7 +165,7 @@ class SignInViewModel : ViewModel() {
                                     Log.d("SignUpAuthFirebase", "Fail ${task.exception?.message}")
                                 }
                             }
-                        pref.put("UUID", user.uid)
+                        pref.put(Constants.USER_UID, user.uid)
                     } else {
                         _signInError.value = true
                         Log.d("SignUpAuthFirebase", "Empty or Null userId!")
