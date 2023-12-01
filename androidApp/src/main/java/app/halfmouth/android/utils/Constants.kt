@@ -7,6 +7,9 @@ class Constants {
         const val USER_IMAGE = "user_image"
         const val USER_EMAIL = "user_email"
         const val USER_CELLPHONE = "user_cellphone"
-        const val PHONE_MAX_NUMBER = 11
+        const val USER_UID_NULL = "null"
+        const val USER_GOOGLE_SIGNIN = "signin_google"
+        const val USER_DEFAULT_SIGNIN = "signin_default"
+        const val USER_DEFAULT_IMAGE = "https://raw.githubusercontent.com/walter-retzer/HalfMouthBeerApp/feature/user-profile/images/perfil_default.png"
     }
 }
