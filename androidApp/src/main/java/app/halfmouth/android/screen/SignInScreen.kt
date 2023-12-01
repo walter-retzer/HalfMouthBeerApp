@@ -116,11 +116,14 @@ fun SignInScreen(
     }
 
     LaunchedEffect(key1 = stateSignInSuccessful) {
-        if (stateSignInSuccessful) Toast.makeText(
-            context,
-            "Cadastro Realizado com Sucesso",
-            Toast.LENGTH_LONG
-        ).show()
+        if (stateSignInSuccessful) {
+            Toast.makeText(
+                context,
+                "Cadastro Realizado com Sucesso",
+                Toast.LENGTH_LONG
+            ).show()
+            navController.navigate(ScreenRoute.HomeScreen.route)
+        }
     }
 
     LaunchedEffect(key1 = stateSignInError) {
@@ -177,7 +180,7 @@ fun SignInScreen(
             )
             ContactTextField(
                 value = viewModel.newContact.phoneNumber,
-                placeholder = "Telefone",
+                placeholder = "Celular",
                 error = stateFieldError.phoneNumberError,
                 onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
                 modifier = Modifier
