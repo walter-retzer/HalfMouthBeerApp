@@ -56,7 +56,6 @@ import app.halfmouth.android.viewmodel.SignInViewModel
 import app.halfmouth.theme.OnYellowSecondaryContainerLight
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
-import app.halfmouth.utils.AndroidApp.applicationContext
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -75,7 +74,7 @@ fun SignInScreen(
     val googleAuthUiClient by lazy {
         GoogleAuthUiClient(
             oneTapClient = Identity.getSignInClient(
-                applicationContext
+                context
             )
         )
     }
