@@ -39,17 +39,8 @@ fun Navigation() {
             SignInScreen(navController)
         }
 
-        composable(route = ScreenRoute.ProfileScreen.route) {
-            SignInScreen(navController)
-        }
-
-        composable(route = ScreenRoute.NotificationScreen.route) {
-            SignInScreen(navController)
-        }
 
         composable(route = ScreenRoute.HomeScreen.route) {
-            val sharedViewModel =
-                it.sharedViewModel<SharedViewModel>(navController = navController)
             HomeScreen(navController)
         }
 

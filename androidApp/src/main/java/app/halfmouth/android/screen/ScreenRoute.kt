@@ -15,6 +15,6 @@ sealed class ScreenRoute(val route: String, val title: String, val icon: Int) {
 fun listOfBottomBarScreen(): List<ScreenRoute> = listOf(
     ScreenRoute.HomeScreen,
     ScreenRoute.ProductionScreen,
-    ScreenRoute.ProfileScreen,
+    ScreenRoute.SignInScreen,
     ScreenRoute.NotificationScreen,
 )
