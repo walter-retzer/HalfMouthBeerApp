@@ -11,6 +11,7 @@ import app.halfmouth.android.data.contact.SignInContactErrorState
 import app.halfmouth.android.data.contact.SignInContactValidator
 import app.halfmouth.android.data.googleAuth.SignInResult
 import app.halfmouth.android.data.googleAuth.SignInState
+import app.halfmouth.android.security.SecurePreferencesApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.update
 
 
 class SignInViewModel : ViewModel() {
+    private val pref = SecurePreferencesApp()
 
     private val _signInState = MutableStateFlow(SignInState())
     val signInState = _signInState.asStateFlow()
@@ -157,6 +159,7 @@ class SignInViewModel : ViewModel() {
                                     Log.d("SignUpAuthFirebase", "Fail ${task.exception?.message}")
                                 }
                             }
+                        pref.put("UUID", user.uid)
                     } else {
                         _signInError.value = true
                         Log.d("SignUpAuthFirebase", "Empty or Null userId!")
