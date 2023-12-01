@@ -70,7 +70,7 @@ fun ProfileScreen(navController: NavHostController) {
                     .background(Color.Black)
                     .fillMaxSize()
             ) {
-                val (text, rectangle, image, name, email) = createRefs()
+                val (text, rectangle, image, image1, name, email) = createRefs()
 
                 Text(
                     text = "Perfil",
@@ -124,19 +124,20 @@ fun ProfileScreen(navController: NavHostController) {
                             }
                     )
                 }
-                if(userSignInDefault) {
+
+                if (userSignInDefault) {
                     Image(
-                        painter = painterResource(id = R.drawable.profile_default_image),
+                        painter = painterResource(id = R.drawable.perfil_default),
                         contentDescription = userName,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .size(100.dp)
                             .offset(25.dp, 70.dp)
                             .clip(RoundedCornerShape(35))
-                            .constrainAs(image) {
+                            .constrainAs(image1) {
                                 top.linkTo(rectangle.top)
                                 start.linkTo(parent.start)
-                            },
+                            }
                     )
                 }
 
