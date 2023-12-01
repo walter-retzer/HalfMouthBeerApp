@@ -44,7 +44,7 @@ fun SplashScreen(navController: NavController) {
         )
         delay(3000L)
         if (googleAuthUiClient.getSignedInUser() != null) navController.navigate(ScreenRoute.HomeScreen.route)
-        else navController.navigate(ScreenRoute.ProfileScreen.route)
+        else navController.navigate(ScreenRoute.SignInScreen.route)
     }
     Box(
         modifier = Modifier.fillMaxSize(),
