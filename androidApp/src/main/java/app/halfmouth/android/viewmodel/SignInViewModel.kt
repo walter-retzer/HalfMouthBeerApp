@@ -144,7 +144,9 @@ class SignInViewModel : ViewModel() {
     private fun createUser() {
         val password = newContact.password
         val email = newContact.email
+        val name = newContact.firstName
         val cellphone = newContact.phoneNumber
+        pref.put(Constants.USER_NAME, name)
         pref.put(Constants.USER_EMAIL, email)
         pref.put(Constants.USER_CELLPHONE, cellphone)
         pref.put(Constants.USER_DEFAULT_SIGNIN, true)
