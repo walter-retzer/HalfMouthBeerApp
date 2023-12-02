@@ -20,6 +20,7 @@ import app.halfmouth.android.navigation.NavAnimations.slideRightExitAnimation
 import app.halfmouth.android.navigation.NavAnimations.slideUpEnterAnimation
 import app.halfmouth.android.screen.ChartScreen
 import app.halfmouth.android.screen.HomeScreen
+import app.halfmouth.android.screen.NotificationScreen
 import app.halfmouth.android.screen.ProductionScreen
 import app.halfmouth.android.screen.ProfileScreen
 import app.halfmouth.android.screen.ScreenRoute
@@ -31,7 +32,7 @@ import app.halfmouth.android.viewmodel.SharedViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = ScreenRoute.SplashScreen.route) {
+    NavHost(navController = navController, startDestination = ScreenRoute.SignInScreen.route) {
         composable(route = ScreenRoute.SplashScreen.route) {
             SplashScreen(navController)
         }
@@ -44,6 +45,9 @@ fun Navigation() {
             ProfileScreen(navController)
         }
 
+        composable(route = ScreenRoute.NotificationScreen.route) {
+            NotificationScreen(navController)
+        }
 
         composable(route = ScreenRoute.HomeScreen.route) {
             HomeScreen(navController)
