@@ -2,6 +2,8 @@ package app.halfmouth.android.data.googleAuth
 
 import android.content.Intent
 import android.content.IntentSender
+import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -14,6 +16,7 @@ import java.util.concurrent.CancellationException
 class GoogleAuthUiClient(private val oneTapClient: SignInClient) {
 
     private val auth = Firebase.auth
+    private val pref = SecurePreferencesApp()
 
     suspend fun signIn(): IntentSender? {
         val result = try {
@@ -80,6 +83,12 @@ class GoogleAuthUiClient(private val oneTapClient: SignInClient) {
     }
 
     fun getSignedInUser(): UserId? = auth.currentUser?.run {
+        pref.put(Constants.USER_GOOGLE_SIGNIN, true)
+        pref.put(Constants.USER_UID, uid)
+        pref.put(Constants.USER_NAME, displayName.toString())
+        pref.put(Constants.USER_EMAIL, email.toString())
+        pref.put(Constants.USER_CELLPHONE, phoneNumber.toString())
+        pref.put(Constants.USER_IMAGE, photoUrl.toString())
         UserId(
             userId = uid,
             userName = displayName.toString(),

@@ -11,6 +11,8 @@ import app.halfmouth.android.data.contact.SignInContactErrorState
 import app.halfmouth.android.data.contact.SignInContactValidator
 import app.halfmouth.android.data.googleAuth.SignInResult
 import app.halfmouth.android.data.googleAuth.SignInState
+import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -20,6 +22,7 @@ import kotlinx.coroutines.flow.update
 
 
 class SignInViewModel : ViewModel() {
+    private val pref = SecurePreferencesApp()
 
     private val _signInState = MutableStateFlow(SignInState())
     val signInState = _signInState.asStateFlow()
@@ -139,10 +142,17 @@ class SignInViewModel : ViewModel() {
     }
 
     private fun createUser() {
-        _signInError.value = false
-        val auth = FirebaseAuth.getInstance()
-        val password = newContact.firstName
+        val password = newContact.password
         val email = newContact.email
+        val name = newContact.firstName
+        val cellphone = newContact.phoneNumber
+        pref.put(Constants.USER_NAME, name)
+        pref.put(Constants.USER_EMAIL, email)
+        pref.put(Constants.USER_CELLPHONE, cellphone)
+        pref.put(Constants.USER_DEFAULT_SIGNIN, true)
+        _signInError.value = false
+
+        val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -157,6 +167,7 @@ class SignInViewModel : ViewModel() {
                                     Log.d("SignUpAuthFirebase", "Fail ${task.exception?.message}")
                                 }
                             }
+                        pref.put(Constants.USER_UID, user.uid)
                     } else {
                         _signInError.value = true
                         Log.d("SignUpAuthFirebase", "Empty or Null userId!")
