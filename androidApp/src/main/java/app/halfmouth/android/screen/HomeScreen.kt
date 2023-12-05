@@ -39,12 +39,15 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
+import app.halfmouth.android.data.ingridients.Ingredients
 import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+
+
     BackHandler { }
 
     Scaffold(
@@ -152,14 +155,21 @@ fun SubListIngredients() {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        items(10) {
+        val mock = listOf(
+            Ingredients("Lúpulo", "", R.drawable.lupulo),
+            Ingredients("Malte", "", R.drawable.malte),
+            Ingredients("Agua", "", R.drawable.agua),
+            Ingredients("Leveduras", "", R.drawable.leveduras),
+        )
+
+        items(mock.size) {
             ConstraintLayout(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
                 val (text, image) = createRefs()
                 Image(
-                    painter = painterResource(id = R.drawable.lupulo),
+                    painter = painterResource(id = mock[it].image),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -179,7 +189,7 @@ fun SubListIngredients() {
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                         },
-                    text = "Lúpulo",
+                    text = mock[it].name,
                     style = TextStyle(
                         color = OnSurfaceVariantDark,
                         fontSize = 14.sp,
