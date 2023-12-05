@@ -69,6 +69,7 @@ fun ProfileScreen(navController: NavHostController) {
     BackHandler { }
 
     Scaffold(
+        modifier = Modifier.background(SurfaceVariantDark),
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
             BottomBarMenu(navController = navController)
@@ -86,14 +87,13 @@ fun ProfileScreen(navController: NavHostController) {
                 Canvas(
                     modifier = Modifier
                         .fillMaxSize()
-                        .height(80.dp)
-                        .padding(top = 80.dp)
+                        .padding(top = 60.dp)
 
                 ) {
                     val size = size
                     drawRoundRect(
                         SurfaceVariantDark,
-                        topLeft = Offset(0f, 0f),
+                        topLeft = Offset(0f, 100f),
                         size = size,
                         cornerRadius = CornerRadius(30.dp.toPx(), 30.dp.toPx()),
                     )
