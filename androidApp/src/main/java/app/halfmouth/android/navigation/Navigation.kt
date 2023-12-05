@@ -41,7 +41,11 @@ fun Navigation() {
             SignInScreen(navController)
         }
 
-        composable(route = ScreenRoute.ProfileScreen.route) {
+        composable(route = ScreenRoute.ProfileScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation) {
             ProfileScreen(navController)
         }
 
