@@ -3,10 +3,10 @@ package app.halfmouth.android.utils
 class Constants {
     companion object{
         const val USER_UID = "user_uid"
-        const val USER_NAME = "user_name"
-        const val USER_IMAGE = "user_image"
-        const val USER_EMAIL = "user_email"
-        const val USER_CELLPHONE = "user_cellphone"
+        const val USER_NAME = "user_name1"
+        const val USER_IMAGE = "user_image1"
+        const val USER_EMAIL = "user_email1"
+        const val USER_CELLPHONE = "user_cellphone1"
         const val USER_NULL = "null"
         const val USER_PHONE_NULL = "+XX (XX)-XXXXX-XXXX"
         const val USER_GOOGLE_SIGNIN = "signin_google"
