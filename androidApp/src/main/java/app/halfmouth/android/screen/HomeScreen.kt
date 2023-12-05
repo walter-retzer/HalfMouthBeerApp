@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
@@ -148,16 +149,46 @@ fun SubItemTitle() {
 
 @Composable
 fun SubListIngredients() {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
         items(10) {
-            Image(
-                painter = painterResource(id = R.drawable.lupulo),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
+            ConstraintLayout(
                 modifier = Modifier
-                    .size(120.dp)
-                    .clip(RoundedCornerShape(16))
-            )
+                    .fillMaxWidth(),
+            ) {
+                val (text, image) = createRefs()
+                Image(
+                    painter = painterResource(id = R.drawable.lupulo),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(120.dp)
+                        .clip(RoundedCornerShape(16))
+                        .constrainAs(image) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                        .constrainAs(text) {
+                            top.linkTo(image.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        },
+                    text = "Lúpulo",
+                    style = TextStyle(
+                        color = OnSurfaceVariantDark,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Normal,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = TextAlign.Center
+                    ),
+                )
+            }
         }
     }
 }
