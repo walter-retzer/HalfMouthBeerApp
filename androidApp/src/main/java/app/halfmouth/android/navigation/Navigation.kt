@@ -32,7 +32,7 @@ import app.halfmouth.android.viewmodel.SharedViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = ScreenRoute.SignInScreen.route) {
+    NavHost(navController = navController, startDestination = ScreenRoute.HomeScreen.route) {
         composable(route = ScreenRoute.SplashScreen.route) {
             SplashScreen(navController)
         }
@@ -45,7 +45,13 @@ fun Navigation() {
             ProfileScreen(navController)
         }
 
-        composable(route = ScreenRoute.NotificationScreen.route) {
+        composable(
+            route = ScreenRoute.NotificationScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             NotificationScreen(navController)
         }
 
