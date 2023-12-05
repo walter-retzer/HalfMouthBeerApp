@@ -35,6 +35,8 @@ import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.theme.OnBackgroundDark
+import app.halfmouth.theme.OnSurfaceVariantDark
+import app.halfmouth.theme.SurfaceDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 
@@ -138,7 +140,7 @@ fun LoadScreen() {
                                 .wrapContentHeight(),
                             text = "05/12/2023 - Nova Cerveja Session IPA em Produção!! \nFaça logo a sua reserva, não perca!",
                             style = TextStyle(
-                                color = Color.Black,
+                                color = SurfaceDark,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily.SansSerif,
