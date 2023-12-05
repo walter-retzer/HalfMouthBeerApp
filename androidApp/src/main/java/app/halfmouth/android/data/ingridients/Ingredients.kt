@@ -5,3 +5,9 @@ data class Ingredients(
     val description: String,
     val image: Int
 )
+
+data class BeerTypes(
+    val name: String,
+    val description: String,
+    val image: Int
+)
