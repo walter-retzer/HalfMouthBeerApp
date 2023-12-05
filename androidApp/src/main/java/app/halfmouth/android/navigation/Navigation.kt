@@ -32,24 +32,48 @@ import app.halfmouth.android.viewmodel.SharedViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = ScreenRoute.SignInScreen.route) {
+    NavHost(navController = navController, startDestination = ScreenRoute.SplashScreen.route) {
         composable(route = ScreenRoute.SplashScreen.route) {
             SplashScreen(navController)
         }
 
-        composable(route = ScreenRoute.SignInScreen.route) {
+        composable(
+            route = ScreenRoute.SignInScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             SignInScreen(navController)
         }
 
-        composable(route = ScreenRoute.ProfileScreen.route) {
+        composable(
+            route = ScreenRoute.ProfileScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             ProfileScreen(navController)
         }
 
-        composable(route = ScreenRoute.NotificationScreen.route) {
+        composable(
+            route = ScreenRoute.NotificationScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             NotificationScreen(navController)
         }
 
-        composable(route = ScreenRoute.HomeScreen.route) {
+        composable(
+            route = ScreenRoute.HomeScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             HomeScreen(navController)
         }
 

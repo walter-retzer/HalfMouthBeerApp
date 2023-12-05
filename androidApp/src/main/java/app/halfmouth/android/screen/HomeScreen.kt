@@ -4,20 +4,24 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Text
@@ -36,20 +40,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
-import app.halfmouth.theme.OnBackgroundDark
+import app.halfmouth.android.data.ingridients.BeerTypes
+import app.halfmouth.android.data.ingridients.Ingredients
+import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OnSurfaceVariantDark
-import app.halfmouth.theme.OutlineDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+
     BackHandler { }
 
     Scaffold(
+        modifier = Modifier.background(SurfaceVariantDark),
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
             BottomBarMenu(navController = navController)
@@ -60,33 +68,26 @@ fun HomeScreen(navController: NavHostController) {
                 .padding(it)
                 .background(Color.Black),
         ) {
-
             Box(
                 modifier = Modifier.fillMaxSize()
             ) {
                 Canvas(
                     modifier = Modifier
                         .fillMaxSize()
-                        .height(80.dp)
-                        .padding(top = 80.dp)
+                        .padding(top = 50.dp)
 
                 ) {
                     val size = size
                     drawRoundRect(
                         SurfaceVariantDark,
-                        topLeft = Offset(0f, 0f),
+                        topLeft = Offset(0f, 100f),
                         size = size,
                         cornerRadius = CornerRadius(30.dp.toPx(), 30.dp.toPx()),
                     )
-
                 }
             }
         }
-
-        Column(
-            modifier = Modifier
-
-        ) {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -94,7 +95,6 @@ fun HomeScreen(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-
                 Image(
                     painter = painterResource(id = R.drawable.perfil_default),
                     contentDescription = "",
@@ -103,7 +103,6 @@ fun HomeScreen(navController: NavHostController) {
                         .clip(RoundedCornerShape(35))
                 )
             }
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -122,86 +121,308 @@ fun HomeScreen(navController: NavHostController) {
                     ),
                 )
             }
-
-
-            Row(
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
+                    .fillMaxSize()
+                    .padding(bottom = 50.dp),
+                contentPadding = PaddingValues(16.dp),
             ) {
-                Text(
-                    text = "Nossos Ingredientes:",
-                    style = TextStyle(
-                        color = OnSurfaceVariantDark,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
-                        textAlign = TextAlign.Center
-                    ),
-                )
+                item { SubItemTitle() }
+                item { SubListIngredients() }
+                subListBeerProduction()
+                subListHalfMouthContact()
             }
+        }
+    }
+}
 
-            Row(
+@Composable
+fun SubItemTitle() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Text(
+            modifier = Modifier.padding(bottom = 8.dp),
+            text = "Nossos Ingredientes:",
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Start
+            ),
+        )
+    }
+}
+
+@Composable
+fun SubListIngredients() {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        val mock = listOf(
+            Ingredients("Lúpulo", "", R.drawable.lupulo),
+            Ingredients("Malte", "", R.drawable.malte),
+            Ingredients("Agua", "", R.drawable.agua),
+            Ingredients("Leveduras", "", R.drawable.leveduras),
+        )
+        items(mock.size) {
+            ConstraintLayout(
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
             ) {
+                val (text, image) = createRefs()
                 Image(
-                    painter = painterResource(id = R.drawable.lupulo),
+                    painter = painterResource(id = mock[it].image),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, end = 10.dp)
+                        .size(120.dp)
                         .clip(RoundedCornerShape(16))
+                        .constrainAs(image) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
                 )
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
                 Text(
-                    text = "Cervejas produzidas:",
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                        .constrainAs(text) {
+                            top.linkTo(image.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        },
+                    text = mock[it].name,
                     style = TextStyle(
                         color = OnSurfaceVariantDark,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Normal,
                         fontFamily = FontFamily.SansSerif,
                         textAlign = TextAlign.Center
                     ),
                 )
             }
+        }
+    }
+}
 
-            LazyVerticalGrid(
+fun LazyListScope.subListBeerProduction() {
+    val mock = listOf(
+        BeerTypes(
+            "Pilsen",
+            "Também chamado de Pilsner, o estilo surgiu na cidade de Pilsen, região da Bohemia, na República Tcheca, com a criação da cerveja Pilsner Urquell, em 1842, a primeira Pilsen da história. As cervejas Pilsen são caracterizadas por um lúpulo acentuado no aroma e sabor e por sua cor dourada brilhante.",
+            R.drawable.beer_mug_ipa
+        ),
+        BeerTypes(
+            "Session Ipa",
+            "Cerveja leve e cítrica, a Session IPA traz um frescor ao paladar, mesmo com amargor e aroma de lúpulo bem presentes. A versão mais suave da American IPA é ideal para se iniciar nas cervejas ale.",
+            R.drawable.beermug
+        ),
+        BeerTypes(
+            "Ipa",
+            "O estilo IPA é marcado pelo sua alta concentração de lúpulos, o que faz com que seu sabor seja mais puxado para o amargor. Sua graduação alcoólica também é um pouco maior que o normal. É muito comum a utilização da técnica de “dry hopping” neste estilo, o que consiste em adicionar mais lúpulo ao mosto durante a fase de maturação ou fermentação do mosto. Isso adiciona mais frescor e aroma à cerveja, sem aumentar muito seu amargor.",
+            R.drawable.beer_craft_glass
+        ),
+    )
+    items(mock.size) {
+        if (it == 0) {
+            Text(
+                modifier = Modifier.padding(top = 8.dp),
+                text = "Nossas Cervejas:",
+                style = TextStyle(
+                    color = OnSurfaceVariantDark,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center
+                ),
+            )
+            Image(
+                painter = painterResource(id = R.drawable.brewingbeer),
+                contentDescription = "",
                 modifier = Modifier
-                    .padding(bottom = 50.dp),
-                columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(8) {
-                    Card(
-                        modifier = Modifier
-                            .background(SurfaceVariantDark)
-                            .fillMaxWidth()
-                            .height(100.dp),
-                        shape = RoundedCornerShape(16.dp),
-                        elevation = 4.dp,
-                        backgroundColor = OnBackgroundDark
-                    ) {}
+                    .fillMaxSize()
+                    .padding(top = 8.dp, bottom = 8.dp)
+                    .clip(RoundedCornerShape(16))
+            )
 
-                }
+            Text(
+                modifier = Modifier.padding(top = 4.dp),
+                text = "Fazemos cervejas com a mais alta qualidade, atualmente produzimos 3 estilos de cerveja, sendo eles: PILSEN, SESSION IPA e IPA.",
+                style = TextStyle(
+                    color = OnSurfaceVariantDark,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center
+                ),
+            )
+        }
+        Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = mock[it].name,
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Center
+            ),
+        )
+        Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = mock[it].description,
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Center
+            ),
+        )
+        Image(
+            painter = painterResource(id = mock[it].image),
+            contentDescription = "",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 8.dp, bottom = 8.dp)
+                .clip(RoundedCornerShape(16))
+        )
+    }
+}
 
-            }
-
+fun LazyListScope.subListHalfMouthContact() {
+    items(1) {
+        Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = "Nosso Contato:",
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Center
+            ),
+        )
+        Text(
+            modifier = Modifier
+                .wrapContentHeight()
+                .padding(top = 4.dp, bottom = 4.dp),
+            text = "Solicite um orçamento através dos canais abaixo.",
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Start
+            ),
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Icon(
+                modifier = Modifier
+                    .clickable { }
+                    .padding(top = 5.dp),
+                painter = painterResource(id = R.drawable.icon_phone),
+                contentDescription = null,
+                tint = OnSurfaceDark
+            )
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = "+55 15 99999-9999",
+                style = TextStyle(
+                    color = OnSurfaceVariantDark,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center
+                ),
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Icon(
+                modifier = Modifier
+                    .clickable { }
+                    .padding(top = 5.dp),
+                painter = painterResource(id = R.drawable.icon_email),
+                contentDescription = null,
+                tint = OnSurfaceDark
+            )
+            Text(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .wrapContentHeight(),
+                text = "halfmouth@halmouth.com.br",
+                style = TextStyle(
+                    color = OnSurfaceVariantDark,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Start
+                ),
+            )
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = "Nosso Endereço:",
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Center
+            ),
+        )
+        Text(
+            modifier = Modifier
+                .wrapContentHeight()
+                .padding(top = 4.dp, bottom = 4.dp),
+            text = "Venha encher os seus growlers.",
+            style = TextStyle(
+                color = OnSurfaceVariantDark,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Start
+            ),
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Icon(
+                modifier = Modifier
+                    .clickable { }
+                    .padding(top = 5.dp),
+                painter = painterResource(id = R.drawable.icon_location),
+                contentDescription = null,
+                tint = OnSurfaceDark
+            )
+            Text(
+                modifier = Modifier
+                    .padding(start = 8.dp, end = 8.dp)
+                    .wrapContentHeight(),
+                text = "Rua João Martini Filho, 426 - Jardim São Conrado, Sorocaba-SP.",
+                style = TextStyle(
+                    color = OnSurfaceVariantDark,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Start
+                ),
+            )
         }
     }
 }

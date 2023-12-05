@@ -43,6 +43,12 @@ import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.security.SecurePreferencesApp
 import app.halfmouth.android.utils.Constants
+import app.halfmouth.android.utils.Constants.Companion.USER_CELLPHONE
+import app.halfmouth.android.utils.Constants.Companion.USER_EMAIL
+import app.halfmouth.android.utils.Constants.Companion.USER_IMAGE
+import app.halfmouth.android.utils.Constants.Companion.USER_NAME
+import app.halfmouth.android.utils.Constants.Companion.USER_NULL
+import app.halfmouth.android.utils.Constants.Companion.USER_PHONE_NULL
 import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OutlineDark
 import app.halfmouth.theme.SurfaceVariantDark
@@ -61,14 +67,15 @@ fun ProfileScreen(navController: NavHostController) {
     val init = googleAuthUiClient.getSignedInUser() != null
     val userGoogle = pref.get(Constants.USER_GOOGLE_SIGNIN) ?: false
     val userSignInDefault = pref.get(Constants.USER_DEFAULT_SIGNIN) ?: false
-    val userImage = pref.get(Constants.USER_IMAGE) ?: ""
-    val userName = pref.get(Constants.USER_NAME) ?: ""
-    val userEmail = pref.get(Constants.USER_EMAIL) ?: ""
-    val userCellphone = pref.get(Constants.USER_CELLPHONE) ?: ""
+    val userImage = pref.get(USER_IMAGE) ?: ""
+    val userName = pref.get(USER_NAME) ?: ""
+    val userEmail = pref.get(USER_EMAIL) ?: ""
+    val userCellphone = pref.get(USER_CELLPHONE) ?: ""
 
     BackHandler { }
 
     Scaffold(
+        modifier = Modifier.background(SurfaceVariantDark),
         scaffoldState = rememberScaffoldState(),
         bottomBar = {
             BottomBarMenu(navController = navController)
@@ -86,14 +93,13 @@ fun ProfileScreen(navController: NavHostController) {
                 Canvas(
                     modifier = Modifier
                         .fillMaxSize()
-                        .height(80.dp)
-                        .padding(top = 80.dp)
+                        .padding(top = 60.dp)
 
                 ) {
                     val size = size
                     drawRoundRect(
                         SurfaceVariantDark,
-                        topLeft = Offset(0f, 0f),
+                        topLeft = Offset(0f, 100f),
                         size = size,
                         cornerRadius = CornerRadius(30.dp.toPx(), 30.dp.toPx()),
                     )
@@ -103,41 +109,85 @@ fun ProfileScreen(navController: NavHostController) {
         }
 
         Column(modifier = Modifier) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 40.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Image(
-                    painter = rememberAsyncImagePainter(userImage),
-                    contentDescription = userName,
-                    contentScale = ContentScale.Crop,
+            if(userImage == "null"){
+                Row(
                     modifier = Modifier
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(35))
-                )
+                        .fillMaxWidth()
+                        .padding(top = 40.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.perfil_default),
+                        contentDescription = userName,
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier
+                            .size(120.dp)
+                            .padding(10.dp)
+                            .clip(RoundedCornerShape(100))
+                    )
+                }
+            } else {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 40.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = rememberAsyncImagePainter(userImage),
+                        contentDescription = userName,
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier
+                            .size(120.dp)
+                            .padding(10.dp)
+                            .clip(RoundedCornerShape(100))
+                    )
+                }
             }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 5.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = userName,
-                    style = TextStyle(
-                        color = YellowContainerLight,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
-                        textAlign = TextAlign.Center
-                    ),
-                )
+            if(userName == USER_NULL){
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "USER",
+                        style = TextStyle(
+                            color = YellowContainerLight,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Center
+                        ),
+                    )
+                }
             }
+            if(userName.isNotEmpty() && userName != USER_NULL){
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = userName,
+                        style = TextStyle(
+                            color = YellowContainerLight,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Center
+                        ),
+                    )
+                }
+            }
+
 
             Row(
                 modifier = Modifier
@@ -178,19 +228,31 @@ fun ProfileScreen(navController: NavHostController) {
                     contentDescription = null,
                     tint = OnSurfaceDark
                 )
-                val phone =
-                    if (init && userCellphone == Constants.USER_NULL) Constants.USER_PHONE_NULL
-                    else userCellphone
-                Text(
-                    text = phone,
-                    style = TextStyle(
-                        color = OutlineDark,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
-                        textAlign = TextAlign.Center
-                    ),
-                )
+                if(userCellphone == Constants.USER_NULL){
+                    Text(
+                        text = USER_PHONE_NULL,
+                        style = TextStyle(
+                            color = OutlineDark,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Center
+                        ),
+                    )
+                }
+                if(userCellphone.isNotEmpty()){
+                    Text(
+                        text = userCellphone,
+                        style = TextStyle(
+                            color = OutlineDark,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Center
+                        ),
+                    )
+                }
+
             }
 
             Divider(
