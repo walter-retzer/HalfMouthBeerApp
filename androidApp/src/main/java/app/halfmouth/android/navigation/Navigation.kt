@@ -55,7 +55,13 @@ fun Navigation() {
             NotificationScreen(navController)
         }
 
-        composable(route = ScreenRoute.HomeScreen.route) {
+        composable(
+            route = ScreenRoute.HomeScreen.route,
+            enterTransition = slideUpEnterAnimation,
+            exitTransition = slideDownExitAnimation,
+            popEnterTransition = popEnterDownAnimation,
+            popExitTransition = popExitDownAnimation
+        ) {
             HomeScreen(navController)
         }
 
