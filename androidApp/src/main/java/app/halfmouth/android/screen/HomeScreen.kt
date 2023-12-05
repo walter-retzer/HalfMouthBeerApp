@@ -46,14 +46,12 @@ import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.android.data.ingridients.BeerTypes
 import app.halfmouth.android.data.ingridients.Ingredients
-import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-
 
     BackHandler { }
 
@@ -294,7 +292,6 @@ fun LazyListScope.subListBeerProduction() {
         )
     }
 }
-
 
 fun LazyListScope.subListHalfMouthContact() {
     items(1) {
