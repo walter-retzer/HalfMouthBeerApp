@@ -46,6 +46,7 @@ import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
 import app.halfmouth.android.data.ingridients.BeerTypes
 import app.halfmouth.android.data.ingridients.Ingredients
+import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
@@ -330,7 +331,7 @@ fun LazyListScope.subListHalfMouthContact() {
                     .padding(top = 5.dp),
                 painter = painterResource(id = R.drawable.icon_phone),
                 contentDescription = null,
-                tint = OnSurfaceVariantDark
+                tint = OnSurfaceDark
             )
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -355,7 +356,7 @@ fun LazyListScope.subListHalfMouthContact() {
                     .padding(top = 5.dp),
                 painter = painterResource(id = R.drawable.icon_email),
                 contentDescription = null,
-                tint = OnSurfaceVariantDark
+                tint = OnSurfaceDark
             )
             Text(
                 modifier = Modifier
@@ -407,7 +408,7 @@ fun LazyListScope.subListHalfMouthContact() {
                     .padding(top = 5.dp),
                 painter = painterResource(id = R.drawable.icon_location),
                 contentDescription = null,
-                tint = OnSurfaceVariantDark
+                tint = OnSurfaceDark
             )
             Text(
                 modifier = Modifier
