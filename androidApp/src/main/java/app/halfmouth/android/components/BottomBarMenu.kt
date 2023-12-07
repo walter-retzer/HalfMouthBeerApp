@@ -2,6 +2,8 @@ package app.halfmouth.android.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.Badge
+import androidx.compose.material.BadgedBox
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -35,7 +37,8 @@ fun BottomBarMenu(navController: NavHostController) {
             AddItem(
                 screen = screen,
                 currentDestination = currentDestination,
-                navController = navController
+                navController = navController,
+                badgeCount = screen.badgeCount
             )
         }
     }
@@ -46,6 +49,7 @@ fun RowScope.AddItem(
     screen: ScreenRoute,
     currentDestination: NavDestination?,
     navController: NavHostController,
+    badgeCount: Int
 ) {
     val destinationRoute = currentDestination?.route
 
@@ -62,16 +66,24 @@ fun RowScope.AddItem(
             )
         },
         icon = {
-            Icon(
-                imageVector = ImageVector.vectorResource(screen.icon),
-                contentDescription = null
-            )
+            BadgedBox(badge = {
+                if (badgeCount != 0) {
+                    Badge {
+                        Text(text = badgeCount.toString())
+                    }
+                }
+            }) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(screen.icon),
+                    contentDescription = null
+                )
+            }
         },
         selectedContentColor = YellowContainerLight,
         selected = currentDestination?.hierarchy?.any { destinationRoute == screen.route } == true,
         unselectedContentColor = YellowContainerLight,
         onClick = { navigateToScreen(screen, navController) },
-        alwaysShowLabel = true
+        alwaysShowLabel = true,
     )
 }
 
