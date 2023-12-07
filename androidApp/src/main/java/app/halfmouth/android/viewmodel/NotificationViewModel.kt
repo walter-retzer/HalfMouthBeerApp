@@ -38,12 +38,12 @@ class NotificationViewModel : ViewModel() {
                         }
                     }
                 } catch (e: Exception) {
-                    Log.d("Error", "Error $e")
+                    Log.d("Firebase Error", "Error $e")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.i("firebase", "Error to read Firebase!", error.toException())
+                Log.i("Firebase Error", "Error to read Firebase!", error.toException())
             }
         })
     }
