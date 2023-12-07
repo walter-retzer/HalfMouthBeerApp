@@ -83,6 +83,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
+    //Firebase RealTimeDataBase
+    implementation ("com.google.firebase:firebase-database:20.3.0")
+
     //Coil-Compose (for loading images remotely)
     implementation("io.coil-kt:coil-compose:2.4.0")
 
