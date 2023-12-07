@@ -65,7 +65,7 @@ fun NotificationScreen(navController: NavHostController) {
 @Composable
 fun LoadScreen() {
     val viewModel = viewModel<NotificationViewModel>()
-    val message by viewModel.message.collectAsStateWithLifecycle()
+    val notifications by viewModel.listNotifications.collectAsStateWithLifecycle()
 
     ConstraintLayout(
         modifier = Modifier
@@ -120,7 +120,8 @@ fun LoadScreen() {
                     bottom.linkTo(parent.bottom)
                 }
         ) {
-            items(10) {
+            var index = 0
+            items(notifications.size) {
                 Card(
                     modifier = Modifier
                         .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
@@ -140,11 +141,13 @@ fun LoadScreen() {
                                 .padding(top = 10.dp, start = 10.dp, bottom = 10.dp)
                                 .clip(RoundedCornerShape(100))
                         )
+                        val text = notifications[index].message.toString()
+                        index++
                         Text(
                             modifier = Modifier
                                 .padding(start = 110.dp, top = 16.dp, end = 16.dp, bottom = 16.dp)
                                 .wrapContentHeight(),
-                            text = message,
+                            text =  text,
                             style = TextStyle(
                                 color = SurfaceDark,
                                 fontSize = 14.sp,
