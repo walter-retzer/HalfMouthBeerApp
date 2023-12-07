@@ -46,6 +46,8 @@ import app.halfmouth.theme.YellowContainerLight
 @Composable
 fun NotificationScreen(navController: NavHostController) {
 
+    resetBadge()
+
     BackHandler { }
 
     Scaffold(
@@ -58,7 +60,6 @@ fun NotificationScreen(navController: NavHostController) {
             LoadScreen()
         }
     }
-
 }
 
 
@@ -120,46 +121,54 @@ fun LoadScreen() {
                     bottom.linkTo(parent.bottom)
                 }
         ) {
-            var index = 0
-            items(notifications.size) {
-                Card(
-                    modifier = Modifier
-                        .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
-                        .background(SurfaceVariantDark)
-                        .fillMaxWidth()
-                        .height(100.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    elevation = 4.dp,
-                    backgroundColor = OnBackgroundDark
-                ) {
-                    Box {
-                        Image(
-                            painter = painterResource(id = R.drawable.perfil_default),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(100.dp)
-                                .padding(top = 10.dp, start = 10.dp, bottom = 10.dp)
-                                .clip(RoundedCornerShape(100))
-                        )
-                        val text = notifications[index].message.toString()
-                        index++
-                        Text(
-                            modifier = Modifier
-                                .padding(start = 110.dp, top = 16.dp, end = 16.dp, bottom = 16.dp)
-                                .wrapContentHeight(),
-                            text =  text,
-                            style = TextStyle(
-                                color = SurfaceDark,
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Normal,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start,
-                            ),
-                        )
+            items(1) {
+                notifications.sortedBy { it.index }.forEach { notifications ->
+                    Card(
+                        modifier = Modifier
+                            .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
+                            .background(SurfaceVariantDark)
+                            .fillMaxWidth()
+                            .height(100.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        elevation = 4.dp,
+                        backgroundColor = OnBackgroundDark
+                    ) {
+                        Box {
+                            Image(
+                                painter = painterResource(id = R.drawable.perfil_default),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .padding(top = 10.dp, start = 10.dp, bottom = 10.dp)
+                                    .clip(RoundedCornerShape(100))
+                            )
 
+                            Text(
+                                modifier = Modifier
+                                    .padding(
+                                        start = 110.dp,
+                                        top = 6.dp,
+                                        end = 6.dp,
+                                        bottom = 6.dp
+                                    )
+                                    .wrapContentHeight(),
+                                text = notifications.data.toString() + "\n" + notifications.message.toString(),
+                                style = TextStyle(
+                                    color = SurfaceDark,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    fontFamily = FontFamily.SansSerif,
+                                    textAlign = TextAlign.Start,
+                                ),
+                            )
+                        }
                     }
                 }
             }
         }
     }
+}
+
+private fun resetBadge() {
+    ScreenRoute.NotificationScreen.badgeCount = 0
 }
