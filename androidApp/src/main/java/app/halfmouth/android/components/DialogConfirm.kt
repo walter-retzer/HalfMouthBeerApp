@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun ConfirmDialog(
@@ -33,7 +34,7 @@ fun ConfirmDialog(
                     setShowDialog(false)
                 }
             ) {
-                Text(text = buttonMessage, color = Color.White)
+                Text(text = buttonMessage, color = YellowContainerLight)
             }
         },
         dismissButton = {
@@ -47,7 +48,7 @@ fun ConfirmDialog(
                     setShowDialog(false)
                 }
             ) {
-                Text(text = negativeButtonMessage, color = Color.White)
+                Text(text = negativeButtonMessage, color = YellowContainerLight)
             }
         }
     )
