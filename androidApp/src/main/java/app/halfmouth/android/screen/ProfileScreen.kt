@@ -1,5 +1,6 @@
 package app.halfmouth.android.screen
 
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -20,6 +21,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +30,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -51,13 +54,25 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun ProfileScreen(navController: NavHostController) {
     val viewModel = viewModel<ProfileViewModel>()
+    val context = LocalContext.current
     val name by viewModel.name.collectAsStateWithLifecycle()
     val email by viewModel.email.collectAsStateWithLifecycle()
     val phone by viewModel.phone.collectAsStateWithLifecycle()
     val image by viewModel.image.collectAsStateWithLifecycle()
-
+    val stateSignOutSuccessful by viewModel.signOutSuccessful.collectAsStateWithLifecycle()
 
     BackHandler { }
+
+    LaunchedEffect(key1 = stateSignOutSuccessful) {
+        if (stateSignOutSuccessful) {
+            Toast.makeText(
+                context,
+                "Os dados da sua conta foram excluídos com sucesso.",
+                Toast.LENGTH_LONG
+            ).show()
+            navController.navigate(ScreenRoute.SplashScreen.route)
+        }
+    }
 
     Scaffold(
         modifier = Modifier.background(SurfaceVariantDark),
@@ -285,7 +300,7 @@ fun ProfileScreen(navController: NavHostController) {
                 )
             }
             if (viewModel.isClicked) {
-                DeleteUserAccountScreen(navController)
+                DeleteUserAccountScreen()
             }
         }
     }
