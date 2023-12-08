@@ -33,23 +33,44 @@ fun ContactTextField(
     modifier: Modifier = Modifier,
     inputType: KeyboardOptions,
     errorReset: () -> Unit,
+    visualTransformation: VisualTransformation? = null
 ) {
     Column(modifier) {
-        OutlinedTextField(
-            value = value,
-            placeholder = { Text(text = placeholder) },
-            onValueChange = onValueChanged,
-            shape = RoundedCornerShape(20.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .onFocusChanged { errorReset() },
-            keyboardOptions = inputType,
-        )
-        if (error != null) {
-            Text(
-                text = error,
-                color = MaterialTheme.colorScheme.error
+        if(visualTransformation == null){
+            OutlinedTextField(
+                value = value,
+                placeholder = { Text(text = placeholder) },
+                onValueChange = onValueChanged,
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onFocusChanged { errorReset() },
+                keyboardOptions = inputType,
             )
+            if (error != null) {
+                Text(
+                    text = error,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        } else{
+            OutlinedTextField(
+                value = value,
+                placeholder = { Text(text = placeholder) },
+                onValueChange = onValueChanged,
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onFocusChanged { errorReset() },
+                keyboardOptions = inputType,
+                visualTransformation = visualTransformation
+            )
+            if (error != null) {
+                Text(
+                    text = error,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
         }
     }
 }
