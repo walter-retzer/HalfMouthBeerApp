@@ -60,10 +60,6 @@ class SignInViewModel : ViewModel() {
         }
     }
 
-    fun resetState() {
-        _signInState.update { SignInState() }
-    }
-
     fun onEvent(event: SignInContactEvent) {
         when (event) {
             is SignInContactEvent.OnFirstNameChanged -> {
@@ -71,7 +67,6 @@ class SignInViewModel : ViewModel() {
                     firstName = event.value
                 )
                 pref.put(USER_NAME, event.value)
-
             }
 
             is SignInContactEvent.OnPhoneNumberChanged -> {
@@ -157,7 +152,6 @@ class SignInViewModel : ViewModel() {
         pref.put(USER_NAME, name)
         pref.put(USER_EMAIL, email)
         pref.put(USER_CELLPHONE, cellphone)
-        pref.put(USER_DEFAULT_SIGNIN, true)
         _signInError.value = false
 
         val auth = FirebaseAuth.getInstance()
