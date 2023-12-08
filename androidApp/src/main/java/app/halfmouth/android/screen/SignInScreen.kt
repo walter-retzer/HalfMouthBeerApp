@@ -52,6 +52,13 @@ import app.halfmouth.android.components.ContactTextField
 import app.halfmouth.android.components.ContactTextFieldPassword
 import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
+import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants.Companion.NAME_MAX_NUMBER
+import app.halfmouth.android.utils.Constants.Companion.PASSWORD_MAX_NUMBER
+import app.halfmouth.android.utils.Constants.Companion.PHONE_MAX_NUMBER
+import app.halfmouth.android.utils.Constants.Companion.USER_DEFAULT_SIGNIN
+import app.halfmouth.android.utils.Constants.Companion.USER_GOOGLE_SIGNIN
+import app.halfmouth.android.utils.MaskVisualTransformation
 import app.halfmouth.android.viewmodel.SignInViewModel
 import app.halfmouth.theme.OnYellowSecondaryContainerLight
 import app.halfmouth.theme.SurfaceVariantDark
@@ -63,6 +70,7 @@ import kotlinx.coroutines.launch
 fun SignInScreen(
     navController: NavController
 ) {
+    val pref = SecurePreferencesApp()
     val context = LocalContext.current
     val viewModel = viewModel<SignInViewModel>()
     val state by viewModel.signInState.collectAsStateWithLifecycle()
@@ -167,7 +175,11 @@ fun SignInScreen(
                 value = viewModel.newContact.firstName,
                 placeholder = "Nome",
                 error = stateFieldError.firstNameError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnFirstNameChanged(it)) },
+                onValueChanged = {
+                    if (it.length <= NAME_MAX_NUMBER) viewModel.onEvent(
+                        SignInContactEvent.OnFirstNameChanged(it)
+                    )
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -181,7 +193,11 @@ fun SignInScreen(
                 value = viewModel.newContact.phoneNumber,
                 placeholder = "Celular",
                 error = stateFieldError.phoneNumberError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPhoneNumberChanged(it)) },
+                onValueChanged = {
+                    if (it.length <= PHONE_MAX_NUMBER) viewModel.onEvent(
+                        SignInContactEvent.OnPhoneNumberChanged(it)
+                    )
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -189,7 +205,8 @@ fun SignInScreen(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done
                 ),
-                errorReset = { viewModel.resetErrorInputField() }
+                errorReset = { viewModel.resetErrorInputField() },
+                visualTransformation = MaskVisualTransformation(MaskVisualTransformation.PHONE)
             )
             ContactTextField(
                 value = viewModel.newContact.email,
@@ -209,7 +226,11 @@ fun SignInScreen(
                 value = viewModel.newContact.password,
                 placeholder = "Senha",
                 error = stateFieldError.passwordError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnPasswordChanged(it)) },
+                onValueChanged = {
+                    if (it.length <= PASSWORD_MAX_NUMBER) viewModel.onEvent(
+                        SignInContactEvent.OnPasswordChanged(it)
+                    )
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -223,7 +244,11 @@ fun SignInScreen(
                 value = viewModel.newContact.confirmPassword,
                 placeholder = "Confirma Senha",
                 error = stateFieldError.confirmPasswordError,
-                onValueChanged = { viewModel.onEvent(SignInContactEvent.OnConfirmPasswordChanged(it)) },
+                onValueChanged = {
+                    if (it.length <= PASSWORD_MAX_NUMBER) viewModel.onEvent(
+                        SignInContactEvent.OnConfirmPasswordChanged(it)
+                    )
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -239,7 +264,11 @@ fun SignInScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
                     .height(50.dp),
-                onClick = { viewModel.onEvent(SignInContactEvent.SaveContact) },
+                onClick = {
+                    pref.put(USER_DEFAULT_SIGNIN, true)
+                    pref.put(USER_GOOGLE_SIGNIN, false)
+                    viewModel.onEvent(SignInContactEvent.SaveContact)
+                },
                 content = {
                     Icon(
                         imageVector = Icons.Filled.AccountCircle,
@@ -258,6 +287,8 @@ fun SignInScreen(
                 colors = ButtonDefaults.buttonColors(OnYellowSecondaryContainerLight),
                 onClick = {
                     composableScope.launch {
+                        pref.put(USER_GOOGLE_SIGNIN, true)
+                        pref.put(USER_DEFAULT_SIGNIN, false)
                         val signInIntentSender = googleAuthUiClient.signIn()
                         launcher.launch(
                             IntentSenderRequest.Builder(

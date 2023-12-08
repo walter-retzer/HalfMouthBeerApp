@@ -1,5 +1,6 @@
 package app.halfmouth.android.screen
 
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -11,7 +12,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,9 +19,10 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Divider
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,40 +38,37 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
-import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.security.SecurePreferencesApp
 import app.halfmouth.android.utils.Constants
 import app.halfmouth.android.utils.Constants.Companion.USER_CELLPHONE
 import app.halfmouth.android.utils.Constants.Companion.USER_EMAIL
 import app.halfmouth.android.utils.Constants.Companion.USER_IMAGE
 import app.halfmouth.android.utils.Constants.Companion.USER_NAME
-import app.halfmouth.android.utils.Constants.Companion.USER_NULL
-import app.halfmouth.android.utils.Constants.Companion.USER_PHONE_NULL
+import app.halfmouth.android.utils.formattedAsPhone
+import app.halfmouth.android.viewmodel.ProfileViewModel
 import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OutlineDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 import coil.compose.rememberAsyncImagePainter
-import com.google.android.gms.auth.api.identity.Identity
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
     val context = LocalContext.current
+    val viewModel = viewModel<ProfileViewModel>()
+    val stateSignOutSuccessful by viewModel.signOutSuccessful.collectAsStateWithLifecycle()
     val pref = SecurePreferencesApp()
-    val googleAuthUiClient by lazy {
-        GoogleAuthUiClient(oneTapClient = Identity.getSignInClient(context))
-    }
-
-    val init = googleAuthUiClient.getSignedInUser() != null
-    val userGoogle = pref.get(Constants.USER_GOOGLE_SIGNIN) ?: false
-    val userSignInDefault = pref.get(Constants.USER_DEFAULT_SIGNIN) ?: false
-    val userImage = pref.get(USER_IMAGE) ?: ""
-    val userName = pref.get(USER_NAME) ?: ""
-    val userEmail = pref.get(USER_EMAIL) ?: ""
-    val userCellphone = pref.get(USER_CELLPHONE) ?: ""
+    val phone = pref.get<String>(USER_CELLPHONE)
+    val name = pref.get<String>(USER_NAME)
+    val image = pref.get<String>(USER_IMAGE)
+    val email = pref.get<String>(USER_EMAIL)
+    val signInGoogle = pref.get<Boolean>(Constants.USER_GOOGLE_SIGNIN)
+    val signInDefault = pref.get<Boolean>(Constants.USER_DEFAULT_SIGNIN)
 
     BackHandler { }
 
@@ -81,6 +79,18 @@ fun ProfileScreen(navController: NavHostController) {
             BottomBarMenu(navController = navController)
         }
     ) {
+
+        LaunchedEffect(key1 = stateSignOutSuccessful) {
+            if (stateSignOutSuccessful) {
+                Toast.makeText(
+                    context,
+                    "Os dados da sua conta foram excluídos com sucesso.",
+                    Toast.LENGTH_LONG
+                ).show()
+                navController.navigate(ScreenRoute.SplashScreen.route)
+            }
+        }
+
         Column(
             modifier = Modifier
                 .padding(it)
@@ -103,13 +113,12 @@ fun ProfileScreen(navController: NavHostController) {
                         size = size,
                         cornerRadius = CornerRadius(30.dp.toPx(), 30.dp.toPx()),
                     )
-
                 }
             }
         }
 
         Column(modifier = Modifier) {
-            if(userImage == "null"){
+            if (signInDefault == true) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -119,7 +128,7 @@ fun ProfileScreen(navController: NavHostController) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.perfil_default),
-                        contentDescription = userName,
+                        contentDescription = name,
                         contentScale = ContentScale.FillBounds,
                         modifier = Modifier
                             .size(120.dp)
@@ -136,8 +145,8 @@ fun ProfileScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = rememberAsyncImagePainter(userImage),
-                        contentDescription = userName,
+                        painter = rememberAsyncImagePainter(image),
+                        contentDescription = name,
                         contentScale = ContentScale.FillBounds,
                         modifier = Modifier
                             .size(120.dp)
@@ -147,45 +156,23 @@ fun ProfileScreen(navController: NavHostController) {
                 }
             }
 
-            if(userName == USER_NULL){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 5.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "USER",
-                        style = TextStyle(
-                            color = YellowContainerLight,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        ),
-                    )
-                }
-            }
-            if(userName.isNotEmpty() && userName != USER_NULL){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 5.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = userName,
-                        style = TextStyle(
-                            color = YellowContainerLight,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        ),
-                    )
-                }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = name.toString(),
+                    style = TextStyle(
+                        color = YellowContainerLight,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = TextAlign.Center
+                    ),
+                )
             }
 
 
@@ -204,7 +191,7 @@ fun ProfileScreen(navController: NavHostController) {
                     tint = OnSurfaceDark
                 )
                 Text(
-                    text = userEmail,
+                    text = email.toString(),
                     style = TextStyle(
                         color = OutlineDark,
                         fontSize = 16.sp,
@@ -214,45 +201,31 @@ fun ProfileScreen(navController: NavHostController) {
                     ),
                 )
             }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Icon(
+            if (signInDefault == true) {
+                Row(
                     modifier = Modifier
-                        .padding(8.dp),
-                    painter = painterResource(id = R.drawable.icon_phone),
-                    contentDescription = null,
-                    tint = OnSurfaceDark
-                )
-                if(userCellphone == Constants.USER_NULL){
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .padding(8.dp),
+                        painter = painterResource(id = R.drawable.icon_phone),
+                        contentDescription = null,
+                        tint = OnSurfaceDark
+                    )
                     Text(
-                        text = USER_PHONE_NULL,
+                        text = phone.toString().formattedAsPhone(),
                         style = TextStyle(
                             color = OutlineDark,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
                             textAlign = TextAlign.Center
-                        ),
+                        )
                     )
                 }
-                if(userCellphone.isNotEmpty()){
-                    Text(
-                        text = userCellphone,
-                        style = TextStyle(
-                            color = OutlineDark,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        ),
-                    )
-                }
-
             }
 
             Divider(
@@ -295,12 +268,14 @@ fun ProfileScreen(navController: NavHostController) {
             ) {
                 Icon(
                     modifier = Modifier
-                        .padding(8.dp),
+                        .padding(8.dp)
+                        .clickable { viewModel.isClicked = true },
                     painter = painterResource(id = R.drawable.icon_logout),
                     contentDescription = null,
                     tint = OnSurfaceDark
                 )
                 Text(
+                    modifier = Modifier.clickable { viewModel.isClicked = true },
                     text = "Sair",
                     style = TextStyle(
                         color = OutlineDark,
@@ -311,9 +286,9 @@ fun ProfileScreen(navController: NavHostController) {
                     ),
                 )
             }
-
+            if (viewModel.isClicked) {
+                DeleteUserAccountScreen()
+            }
         }
-
-
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
@@ -31,17 +32,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
+import app.halfmouth.android.viewmodel.NotificationViewModel
 import app.halfmouth.theme.OnBackgroundDark
-import app.halfmouth.theme.OnSurfaceVariantDark
 import app.halfmouth.theme.SurfaceDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 
 @Composable
 fun NotificationScreen(navController: NavHostController) {
+
+    resetBadge()
 
     BackHandler { }
 
@@ -55,12 +60,14 @@ fun NotificationScreen(navController: NavHostController) {
             LoadScreen()
         }
     }
-
 }
 
 
 @Composable
 fun LoadScreen() {
+    val viewModel = viewModel<NotificationViewModel>()
+    val notifications by viewModel.listNotifications.collectAsStateWithLifecycle()
+
     ConstraintLayout(
         modifier = Modifier
             .background(Color.Black)
@@ -114,43 +121,54 @@ fun LoadScreen() {
                     bottom.linkTo(parent.bottom)
                 }
         ) {
-            items(10) {
-                Card(
-                    modifier = Modifier
-                        .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
-                        .background(SurfaceVariantDark)
-                        .fillMaxWidth()
-                        .height(100.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    elevation = 4.dp,
-                    backgroundColor = OnBackgroundDark
-                ) {
-                    Box {
-                        Image(
-                            painter = painterResource(id = R.drawable.perfil_default),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(100.dp)
-                                .padding(top = 10.dp, start = 10.dp, bottom = 10.dp)
-                                .clip(RoundedCornerShape(100))
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(start = 110.dp, top = 16.dp, end = 16.dp, bottom = 16.dp)
-                                .wrapContentHeight(),
-                            text = "05/12/2023 - Nova Cerveja Session IPA em Produção!! \nFaça logo a sua reserva, não perca!",
-                            style = TextStyle(
-                                color = SurfaceDark,
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Normal,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start,
-                            ),
-                        )
+            items(1) {
+                notifications.sortedBy { it.index }.forEach { notifications ->
+                    Card(
+                        modifier = Modifier
+                            .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 10.dp)
+                            .background(SurfaceVariantDark)
+                            .fillMaxWidth()
+                            .height(100.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        elevation = 4.dp,
+                        backgroundColor = OnBackgroundDark
+                    ) {
+                        Box {
+                            Image(
+                                painter = painterResource(id = R.drawable.perfil_default),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .padding(top = 10.dp, start = 10.dp, bottom = 10.dp)
+                                    .clip(RoundedCornerShape(100))
+                            )
 
+                            Text(
+                                modifier = Modifier
+                                    .padding(
+                                        start = 110.dp,
+                                        top = 6.dp,
+                                        end = 6.dp,
+                                        bottom = 6.dp
+                                    )
+                                    .wrapContentHeight(),
+                                text = notifications.data.toString() + "\n" + notifications.message.toString(),
+                                style = TextStyle(
+                                    color = SurfaceDark,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    fontFamily = FontFamily.SansSerif,
+                                    textAlign = TextAlign.Start,
+                                ),
+                            )
+                        }
                     }
                 }
             }
         }
     }
+}
+
+private fun resetBadge() {
+    ScreenRoute.NotificationScreen.badgeCount = 0
 }

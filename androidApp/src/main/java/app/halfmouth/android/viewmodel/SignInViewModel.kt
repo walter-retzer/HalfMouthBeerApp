@@ -6,14 +6,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import app.halfmouth.android.data.contact.SignInContact
-import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.contact.SignInContactErrorState
+import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.contact.SignInContactValidator
 import app.halfmouth.android.data.googleAuth.SignInResult
 import app.halfmouth.android.data.googleAuth.SignInState
 import app.halfmouth.android.security.SecurePreferencesApp
 import app.halfmouth.android.utils.Constants.Companion.USER_CELLPHONE
-import app.halfmouth.android.utils.Constants.Companion.USER_DEFAULT_SIGNIN
 import app.halfmouth.android.utils.Constants.Companion.USER_EMAIL
 import app.halfmouth.android.utils.Constants.Companion.USER_NAME
 import app.halfmouth.android.utils.Constants.Companion.USER_UID
@@ -60,32 +59,24 @@ class SignInViewModel : ViewModel() {
         }
     }
 
-    fun resetState() {
-        _signInState.update { SignInState() }
-    }
-
     fun onEvent(event: SignInContactEvent) {
         when (event) {
             is SignInContactEvent.OnFirstNameChanged -> {
                 newContact = newContact.copy(
                     firstName = event.value
                 )
-                pref.put(USER_NAME, event.value)
-
             }
 
             is SignInContactEvent.OnPhoneNumberChanged -> {
                 newContact = newContact.copy(
                     phoneNumber = event.value
                 )
-                pref.put(USER_CELLPHONE, event.value)
             }
 
             is SignInContactEvent.OnEmailChanged -> {
                 newContact = newContact.copy(
                     email = event.value
                 )
-                pref.put(USER_EMAIL, event.value)
             }
 
             is SignInContactEvent.OnPasswordChanged -> {
@@ -157,7 +148,6 @@ class SignInViewModel : ViewModel() {
         pref.put(USER_NAME, name)
         pref.put(USER_EMAIL, email)
         pref.put(USER_CELLPHONE, cellphone)
-        pref.put(USER_DEFAULT_SIGNIN, true)
         _signInError.value = false
 
         val auth = FirebaseAuth.getInstance()

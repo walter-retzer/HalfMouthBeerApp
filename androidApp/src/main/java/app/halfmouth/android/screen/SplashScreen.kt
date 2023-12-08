@@ -12,24 +12,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
-import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
 import app.halfmouth.android.security.SecurePreferencesApp
-import app.halfmouth.android.utils.Constants
-import com.google.android.gms.auth.api.identity.Identity
+import app.halfmouth.android.utils.Constants.Companion.USER_DEFAULT_SIGNIN
+import app.halfmouth.android.utils.Constants.Companion.USER_GOOGLE_SIGNIN
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
-    val context = LocalContext.current
     val pref = SecurePreferencesApp()
-    val userId = pref.get(Constants.USER_UID) ?: ""
-
-    val googleAuthUiClient by lazy {
-        GoogleAuthUiClient(oneTapClient = Identity.getSignInClient(context))
-    }
+    val userGoogle = pref.get(USER_GOOGLE_SIGNIN) ?: false
+    val userDefault = pref.get(USER_DEFAULT_SIGNIN) ?: false
 
     val scale = remember {
         Animatable(0f)
@@ -45,7 +39,7 @@ fun SplashScreen(navController: NavController) {
             )
         )
         delay(3000L)
-        if (googleAuthUiClient.getSignedInUser() != null || userId.isNotEmpty()) navController.navigate(ScreenRoute.HomeScreen.route)
+        if (userGoogle || userDefault) navController.navigate(ScreenRoute.HomeScreen.route)
         else navController.navigate(ScreenRoute.SignInScreen.route)
     }
     Box(
