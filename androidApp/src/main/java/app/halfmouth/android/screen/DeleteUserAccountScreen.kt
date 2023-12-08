@@ -38,6 +38,7 @@ fun DeleteUserAccountContent(navController: NavHostController) {
             },
         ) {
             showDialog = it
+            viewModel.isClicked = it
         }
     }
 }
