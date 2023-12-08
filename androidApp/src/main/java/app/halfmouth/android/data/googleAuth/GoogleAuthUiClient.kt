@@ -3,7 +3,11 @@ package app.halfmouth.android.data.googleAuth
 import android.content.Intent
 import android.content.IntentSender
 import app.halfmouth.android.security.SecurePreferencesApp
-import app.halfmouth.android.utils.Constants
+import app.halfmouth.android.utils.Constants.Companion.USER_CELLPHONE
+import app.halfmouth.android.utils.Constants.Companion.USER_EMAIL
+import app.halfmouth.android.utils.Constants.Companion.USER_IMAGE
+import app.halfmouth.android.utils.Constants.Companion.USER_NAME
+import app.halfmouth.android.utils.Constants.Companion.USER_UID
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -83,12 +87,11 @@ class GoogleAuthUiClient(private val oneTapClient: SignInClient) {
     }
 
     fun getSignedInUser(): UserId? = auth.currentUser?.run {
-        pref.put(Constants.USER_GOOGLE_SIGNIN, true)
-        pref.put(Constants.USER_UID, uid)
-        pref.put(Constants.USER_NAME, displayName.toString())
-        pref.put(Constants.USER_EMAIL, email.toString())
-        pref.put(Constants.USER_CELLPHONE, phoneNumber.toString())
-        pref.put(Constants.USER_IMAGE, photoUrl.toString())
+        pref.put(USER_UID, uid)
+        pref.put(USER_NAME, displayName.toString())
+        pref.put(USER_EMAIL, email.toString())
+        pref.put(USER_CELLPHONE, phoneNumber.toString())
+        pref.put(USER_IMAGE, photoUrl.toString())
         UserId(
             userId = uid,
             userName = displayName.toString(),
