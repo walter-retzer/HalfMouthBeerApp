@@ -245,6 +245,7 @@ fun SignInScreen(
                     .height(50.dp),
                 onClick = {
                     pref.put(USER_DEFAULT_SIGNIN, true)
+                    pref.put(USER_GOOGLE_SIGNIN, false)
                     viewModel.onEvent(SignInContactEvent.SaveContact) },
                 content = {
                     Icon(
@@ -265,6 +266,7 @@ fun SignInScreen(
                 onClick = {
                     composableScope.launch {
                         pref.put(USER_GOOGLE_SIGNIN, true)
+                        pref.put(USER_DEFAULT_SIGNIN, false)
                         val signInIntentSender = googleAuthUiClient.signIn()
                         launcher.launch(
                             IntentSenderRequest.Builder(
