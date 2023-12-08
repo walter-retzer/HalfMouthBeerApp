@@ -52,6 +52,9 @@ import app.halfmouth.android.components.ContactTextField
 import app.halfmouth.android.components.ContactTextFieldPassword
 import app.halfmouth.android.data.contact.SignInContactEvent
 import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
+import app.halfmouth.android.security.SecurePreferencesApp
+import app.halfmouth.android.utils.Constants.Companion.USER_DEFAULT_SIGNIN
+import app.halfmouth.android.utils.Constants.Companion.USER_GOOGLE_SIGNIN
 import app.halfmouth.android.viewmodel.SignInViewModel
 import app.halfmouth.theme.OnYellowSecondaryContainerLight
 import app.halfmouth.theme.SurfaceVariantDark
@@ -63,6 +66,7 @@ import kotlinx.coroutines.launch
 fun SignInScreen(
     navController: NavController
 ) {
+    val pref = SecurePreferencesApp()
     val context = LocalContext.current
     val viewModel = viewModel<SignInViewModel>()
     val state by viewModel.signInState.collectAsStateWithLifecycle()
@@ -239,7 +243,9 @@ fun SignInScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
                     .height(50.dp),
-                onClick = { viewModel.onEvent(SignInContactEvent.SaveContact) },
+                onClick = {
+                    pref.put(USER_DEFAULT_SIGNIN, true)
+                    viewModel.onEvent(SignInContactEvent.SaveContact) },
                 content = {
                     Icon(
                         imageVector = Icons.Filled.AccountCircle,
@@ -258,6 +264,7 @@ fun SignInScreen(
                 colors = ButtonDefaults.buttonColors(OnYellowSecondaryContainerLight),
                 onClick = {
                     composableScope.launch {
+                        pref.put(USER_GOOGLE_SIGNIN, true)
                         val signInIntentSender = googleAuthUiClient.signIn()
                         launcher.launch(
                             IntentSenderRequest.Builder(
