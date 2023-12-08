@@ -89,9 +89,12 @@ fun RowScope.AddItem(
 
 private fun navigateToScreen(screen: ScreenRoute, navController: NavHostController) {
     val route = screen.route
-    navController.navigate(route) {
-        popUpTo(navController.graph.findStartDestination().id)
-        launchSingleTop = true
-        restoreState = true
+    val previousRoute = navController.currentBackStackEntry?.destination?.route
+    if (previousRoute != route) {
+        navController.navigate(route) {
+            popUpTo(navController.graph.findStartDestination().id)
+            launchSingleTop = true
+            restoreState = true
+        }
     }
 }
