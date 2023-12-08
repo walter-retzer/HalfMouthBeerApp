@@ -39,40 +39,40 @@ fun Navigation() {
 
         composable(
             route = ScreenRoute.SignInScreen.route,
-            enterTransition = slideUpEnterAnimation,
-            exitTransition = slideDownExitAnimation,
-            popEnterTransition = popEnterDownAnimation,
-            popExitTransition = popExitDownAnimation
+//            enterTransition = slideUpEnterAnimation,
+//            exitTransition = slideDownExitAnimation,
+//            popEnterTransition = popEnterDownAnimation,
+//            popExitTransition = popExitDownAnimation
         ) {
             SignInScreen(navController)
         }
 
         composable(
             route = ScreenRoute.ProfileScreen.route,
-            enterTransition = slideUpEnterAnimation,
-            exitTransition = slideDownExitAnimation,
-            popEnterTransition = popEnterDownAnimation,
-            popExitTransition = popExitDownAnimation
+//            enterTransition = slideUpEnterAnimation,
+//            exitTransition = slideDownExitAnimation,
+//            popEnterTransition = popEnterDownAnimation,
+//            popExitTransition = popExitDownAnimation
         ) {
             ProfileScreen(navController)
         }
 
         composable(
             route = ScreenRoute.NotificationScreen.route,
-            enterTransition = slideUpEnterAnimation,
-            exitTransition = slideDownExitAnimation,
-            popEnterTransition = popEnterDownAnimation,
-            popExitTransition = popExitDownAnimation
+//            enterTransition = slideLeftEnterAnimation,
+//            exitTransition = slideRightExitAnimation,
+//            popEnterTransition = popEnterRightAnimation,
+//            popExitTransition = popExitRightAnimation
         ) {
             NotificationScreen(navController)
         }
 
         composable(
             route = ScreenRoute.HomeScreen.route,
-            enterTransition = slideUpEnterAnimation,
-            exitTransition = slideDownExitAnimation,
-            popEnterTransition = popEnterDownAnimation,
-            popExitTransition = popExitDownAnimation
+//            enterTransition = slideLeftEnterAnimation,
+//            exitTransition = slideRightExitAnimation,
+//            popEnterTransition = popEnterRightAnimation,
+//            popExitTransition = popExitRightAnimation
         ) {
             HomeScreen(navController)
         }
@@ -83,10 +83,10 @@ fun Navigation() {
         ) {
             composable(
                 route = ScreenRoute.ProductionScreen.route,
-                enterTransition = slideUpEnterAnimation,
-                exitTransition = slideDownExitAnimation,
-                popEnterTransition = popEnterDownAnimation,
-                popExitTransition = popExitDownAnimation
+//                enterTransition = slideUpEnterAnimation,
+//                exitTransition = slideDownExitAnimation,
+//                popEnterTransition = popEnterDownAnimation,
+//                popExitTransition = popExitDownAnimation
 
             ) {
                 val sharedViewModel =
