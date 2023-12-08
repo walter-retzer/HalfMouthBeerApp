@@ -18,6 +18,8 @@ import app.halfmouth.android.utils.Constants.Companion.USER_NAME
 import app.halfmouth.android.utils.Constants.Companion.USER_NULL
 import app.halfmouth.android.utils.Constants.Companion.USER_UID
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -29,6 +31,9 @@ class ProfileViewModel : ViewModel() {
     private val signInDefault = pref.get(USER_DEFAULT_SIGNIN) ?: false
 
     var isClicked by mutableStateOf(false)
+
+    private val _signOutSuccessful = MutableStateFlow(false)
+    val signOutSuccessful = _signOutSuccessful.asStateFlow()
 
     private val _signInState = MutableStateFlow(SignInState())
     val signInState = _signInState.asStateFlow()
@@ -66,7 +71,8 @@ class ProfileViewModel : ViewModel() {
 
     fun deleteAccount() {
         _signInState.update { SignInState() }
-        resetGoogleAccount()
+        deleteUserGoogleAccount()
+        deleteUserFirebase()
         pref.delete(USER_UID)
         pref.delete(USER_GOOGLE_SIGNIN)
         pref.delete(USER_DEFAULT_SIGNIN)
@@ -76,9 +82,20 @@ class ProfileViewModel : ViewModel() {
         pref.delete(USER_IMAGE)
     }
 
-    private fun resetGoogleAccount() {
+    private fun deleteUserGoogleAccount() {
         viewModelScope.launch {
             googleAuthUiClient.signOut()
+            _signOutSuccessful.value = true
+            delay(3000L)
         }
+    }
+
+    private fun deleteUserFirebase() = viewModelScope.launch {
+        FirebaseAuth.getInstance().currentUser?.delete()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _signOutSuccessful.value = true
+            }
+        }
+        delay(3000L)
     }
 }
