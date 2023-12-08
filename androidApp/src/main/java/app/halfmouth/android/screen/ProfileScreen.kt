@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,7 +28,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -34,40 +35,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import app.halfmouth.android.R
 import app.halfmouth.android.components.BottomBarMenu
-import app.halfmouth.android.data.googleAuth.GoogleAuthUiClient
-import app.halfmouth.android.security.SecurePreferencesApp
-import app.halfmouth.android.utils.Constants
-import app.halfmouth.android.utils.Constants.Companion.USER_CELLPHONE
-import app.halfmouth.android.utils.Constants.Companion.USER_EMAIL
-import app.halfmouth.android.utils.Constants.Companion.USER_IMAGE
-import app.halfmouth.android.utils.Constants.Companion.USER_NAME
 import app.halfmouth.android.utils.Constants.Companion.USER_NULL
-import app.halfmouth.android.utils.Constants.Companion.USER_PHONE_NULL
+import app.halfmouth.android.viewmodel.ProfileViewModel
 import app.halfmouth.theme.OnSurfaceDark
 import app.halfmouth.theme.OutlineDark
 import app.halfmouth.theme.SurfaceVariantDark
 import app.halfmouth.theme.YellowContainerLight
 import coil.compose.rememberAsyncImagePainter
-import com.google.android.gms.auth.api.identity.Identity
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
-    val context = LocalContext.current
-    val pref = SecurePreferencesApp()
-    val googleAuthUiClient by lazy {
-        GoogleAuthUiClient(oneTapClient = Identity.getSignInClient(context))
-    }
+    val viewModel = viewModel<ProfileViewModel>()
+    val name by viewModel.name.collectAsStateWithLifecycle()
+    val email by viewModel.email.collectAsStateWithLifecycle()
+    val phone by viewModel.phone.collectAsStateWithLifecycle()
+    val image by viewModel.image.collectAsStateWithLifecycle()
 
-    val init = googleAuthUiClient.getSignedInUser() != null
-    val userGoogle = pref.get(Constants.USER_GOOGLE_SIGNIN) ?: false
-    val userSignInDefault = pref.get(Constants.USER_DEFAULT_SIGNIN) ?: false
-    val userImage = pref.get(USER_IMAGE) ?: ""
-    val userName = pref.get(USER_NAME) ?: ""
-    val userEmail = pref.get(USER_EMAIL) ?: ""
-    val userCellphone = pref.get(USER_CELLPHONE) ?: ""
 
     BackHandler { }
 
@@ -106,7 +94,7 @@ fun ProfileScreen(navController: NavHostController) {
         }
 
         Column(modifier = Modifier) {
-            if(userImage == "null"){
+            if (image == "null") {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -116,7 +104,7 @@ fun ProfileScreen(navController: NavHostController) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.perfil_default),
-                        contentDescription = userName,
+                        contentDescription = name,
                         contentScale = ContentScale.FillBounds,
                         modifier = Modifier
                             .size(120.dp)
@@ -133,8 +121,8 @@ fun ProfileScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = rememberAsyncImagePainter(userImage),
-                        contentDescription = userName,
+                        painter = rememberAsyncImagePainter(image),
+                        contentDescription = name,
                         contentScale = ContentScale.FillBounds,
                         modifier = Modifier
                             .size(120.dp)
@@ -144,7 +132,7 @@ fun ProfileScreen(navController: NavHostController) {
                 }
             }
 
-            if(userName == USER_NULL){
+            if (name == USER_NULL) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -164,7 +152,7 @@ fun ProfileScreen(navController: NavHostController) {
                     )
                 }
             }
-            if(userName.isNotEmpty() && userName != USER_NULL){
+            if (name.isNotEmpty() && name != USER_NULL) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -173,7 +161,7 @@ fun ProfileScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = userName,
+                        text = name,
                         style = TextStyle(
                             color = YellowContainerLight,
                             fontSize = 20.sp,
@@ -201,7 +189,7 @@ fun ProfileScreen(navController: NavHostController) {
                     tint = OnSurfaceDark
                 )
                 Text(
-                    text = userEmail,
+                    text = email,
                     style = TextStyle(
                         color = OutlineDark,
                         fontSize = 16.sp,
@@ -211,23 +199,22 @@ fun ProfileScreen(navController: NavHostController) {
                     ),
                 )
             }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Icon(
+            if (phone != USER_NULL) {
+                Row(
                     modifier = Modifier
-                        .padding(8.dp),
-                    painter = painterResource(id = R.drawable.icon_phone),
-                    contentDescription = null,
-                    tint = OnSurfaceDark
-                )
-                if(userCellphone == Constants.USER_NULL){
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .padding(8.dp),
+                        painter = painterResource(id = R.drawable.icon_phone),
+                        contentDescription = null,
+                        tint = OnSurfaceDark
+                    )
                     Text(
-                        text = USER_PHONE_NULL,
+                        text = phone,
                         style = TextStyle(
                             color = OutlineDark,
                             fontSize = 16.sp,
@@ -237,19 +224,6 @@ fun ProfileScreen(navController: NavHostController) {
                         ),
                     )
                 }
-                if(userCellphone.isNotEmpty()){
-                    Text(
-                        text = userCellphone,
-                        style = TextStyle(
-                            color = OutlineDark,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        ),
-                    )
-                }
-
             }
 
             Divider(
@@ -292,12 +266,14 @@ fun ProfileScreen(navController: NavHostController) {
             ) {
                 Icon(
                     modifier = Modifier
-                        .padding(8.dp),
+                        .padding(8.dp)
+                        .clickable { viewModel.isClicked = true },
                     painter = painterResource(id = R.drawable.icon_logout),
                     contentDescription = null,
                     tint = OnSurfaceDark
                 )
                 Text(
+                    modifier = Modifier.clickable { viewModel.isClicked = true },
                     text = "Sair",
                     style = TextStyle(
                         color = OutlineDark,
@@ -308,9 +284,9 @@ fun ProfileScreen(navController: NavHostController) {
                     ),
                 )
             }
-
+            if (viewModel.isClicked) {
+                DeleteUserAccountScreen(navController)
+            }
         }
-
-
     }
 }
